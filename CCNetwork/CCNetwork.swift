@@ -2,8 +2,8 @@
 //  CCNetwork.swift
 //  DEMO
 //
-//  Created by D.Alex on 12/21/15.
-//  Copyright © 2015 Alex. All rights reserved.
+//  Created by Alex D. on 12/21/15.
+//  Copyright © 2015 ifnil. All rights reserved.
 //
 
 import Foundation
