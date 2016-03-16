@@ -2,8 +2,8 @@
 //  DEMOTests.m
 //  DEMOTests
 //
-//  Created by Alex D. on 3/2/16.
-//  Copyright © 2016 Alex. All rights reserved.
+//  Created by Alex D. on 3/16/16.
+//  Copyright © 2016 ifnil. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>

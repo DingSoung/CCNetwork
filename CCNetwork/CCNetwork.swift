@@ -8,27 +8,7 @@
 
 import Foundation
 
-class CCNetworkRequest: NSMutableURLRequest {
-    var startTime:NSTimeInterval
-    var retryTimes:Int
-    
-    override init(URL: NSURL, cachePolicy: NSURLRequestCachePolicy, timeoutInterval: NSTimeInterval) {
-        self.startTime = NSTimeIntervalSince1970
-        self.retryTimes = 0
-        super.init(URL: URL, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
-    }
-    
-    convenience init(URL: NSURL, cachePolicy: NSURLRequestCachePolicy, timeoutInterval: NSTimeInterval, startTime:NSTimeInterval) {
-        self.init(URL: URL, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
-        self.startTime = startTime
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-class CCNetwork: NSObject {
+public class CCNetwork: NSObject {
     
     static let instance = CCNetwork()
     var session:NSURLSession
@@ -38,7 +18,7 @@ class CCNetwork: NSObject {
         
         //http://www.raywenderlich.com/51127/nsurlsession-tutorial
         
-        //configuration
+        //configuration:
         //session.configuration.allowsCellularAccess = true //移动网络
         
         //session.configuration.HTTPAdditionalHeaders = ["Accept": "application/json"] //test/html
@@ -53,7 +33,6 @@ class CCNetwork: NSObject {
     }
     
     func generateRequest(httpMethod:String, url:String, parameter:NSData?) -> CCNetworkRequest? {
-        
         guard let URL = NSURL(string: url) else {
             return nil
         }
@@ -87,28 +66,6 @@ class CCNetwork: NSObject {
         }
         task.resume()
         return task
-    }
-}
-
-extension CCNetwork {
-    
-    //https://lvwenhan.com/ios/455.html
-    
-    class func POST(url:String, parameter:NSDictionary, success:((data: NSData) -> Void), fail:((error: NSError) -> Void)) -> Void {
-        let parameter = NSKeyedArchiver.archivedDataWithRootObject(parameter)
-        guard let request = CCNetwork.instance.generateRequest("POST", url: url, parameter: parameter) else {
-            fail(error: NSError(domain: "generate request", code: -1, userInfo: ["url" : url, "parameter": parameter]))
-            return
-        }
-        CCNetwork.instance.processTask(request, success: success, fail: fail)
-    }
-    
-    class func GET(url:String, parameter:NSDictionary, success:((data: NSData) -> Void), fail:((error: NSError) -> Void)) {
-        guard let request = CCNetwork.instance.generateRequest("GET", url: url, parameter: nil) else {
-            fail(error: NSError(domain: "generate request", code: -1, userInfo: ["url" : url]))
-            return
-        }
-        CCNetwork.instance.processTask(request, success: success, fail: fail)
     }
 }
 
