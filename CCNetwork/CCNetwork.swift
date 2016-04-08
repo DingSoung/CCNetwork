@@ -53,7 +53,7 @@ public class CCNetwork: NSObject {
             if let data = data {
                 success (data: data)
             } else {
-                if request.retryTimes++ >= 5 || NSTimeIntervalSince1970 >= request.startTime + 60 {
+                if request.retryTimes >= 5 || NSTimeIntervalSince1970 >= request.startTime + 60 {
                     if let error = error {
                         fail(error: error)
                     } else {
@@ -62,6 +62,7 @@ public class CCNetwork: NSObject {
                 } else {
                     self.processTask(request, success: success, fail: fail)
                 }
+                request.retryTimes += 1
             }
         }
         task.resume()
