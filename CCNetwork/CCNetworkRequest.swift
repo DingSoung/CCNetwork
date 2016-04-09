@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CCNetworkRequest: NSMutableURLRequest {
+public class CCNetworkRequest: NSMutableURLRequest {
     var startTime:NSTimeInterval
     var retryTimes:Int
     
@@ -18,12 +18,12 @@ class CCNetworkRequest: NSMutableURLRequest {
         super.init(URL: URL, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
     }
     
-    convenience init(URL: NSURL, cachePolicy: NSURLRequestCachePolicy, timeoutInterval: NSTimeInterval, startTime:NSTimeInterval) {
+    public convenience init(URL: NSURL, cachePolicy: NSURLRequestCachePolicy, timeoutInterval: NSTimeInterval, startTime:NSTimeInterval) {
         self.init(URL: URL, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
         self.startTime = startTime
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }

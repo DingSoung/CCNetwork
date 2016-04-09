@@ -10,8 +10,8 @@ import Foundation
 
 public class CCNetwork: NSObject {
     
-    static let instance = CCNetwork()
-    var session:NSURLSession
+    public static let instance = CCNetwork()
+    public var session:NSURLSession
     
     private override init() {
         session = NSURLSession.sharedSession()
@@ -32,7 +32,7 @@ public class CCNetwork: NSObject {
     deinit {
     }
     
-    func generateRequest(httpMethod:String, url:String, parameter:NSData?) -> CCNetworkRequest? {
+    public func generateRequest(httpMethod:String, url:String, parameter:NSData?) -> CCNetworkRequest? {
         guard let URL = NSURL(string: url) else {
             return nil
         }
@@ -45,7 +45,7 @@ public class CCNetwork: NSObject {
         return request
     }
     
-    func processTask(request:CCNetworkRequest, success:((data:NSData)->Void), fail:((error:NSError)->Void)) -> NSURLSessionDataTask {
+    public func processTask(request:CCNetworkRequest, success:((data:NSData)->Void), fail:((error:NSError)->Void)) -> NSURLSessionDataTask {
         
         //check network available
         
