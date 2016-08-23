@@ -70,7 +70,7 @@ public class CCNetwork: NSObject {
                 if let error = error {
                     fail(error: error)
                 } else {
-                    fail(error: NSError(domain: "requet timeout", code: -1, userInfo: nil))
+                    fail(error: NSError(domain: "request fail", code: -1, userInfo: nil))
                 }
             }
         }
