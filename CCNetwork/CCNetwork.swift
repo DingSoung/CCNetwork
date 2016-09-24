@@ -11,7 +11,7 @@ public class CCNetwork: NSObject {
     private override init() {
         session = {
             return $0
-        }(URLSession.shared)
+        }(URLSession(configuration: URLSessionConfiguration.default))
         
         //configuration:
         let config = session.configuration
