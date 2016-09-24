@@ -1,34 +1,31 @@
-//
-//  CCNetwork+Tools.swift
-//  DEMO
-//
 //  Created by Songwen Ding 3/16/16.
 //  Copyright © 2016 DingSoung. All rights reserved.
-//
 
 import Foundation
 
 extension CCNetwork {
     
-    private enum HTTPMethod: String {
-        case POST = "POST"
-        case GET = "GET"
+    private enum httpMethod: String {
+        case post = "POST"
+        case get = "GET"
     }
     
-    public class func POST(url:String, parameter:NSDictionary, success:((data: NSData) -> Void), fail:((error: NSError) -> Void)) -> Void {
-        let parameter = NSKeyedArchiver.archivedDataWithRootObject(parameter)
-        guard let request = CCNetwork.instance.generateRequest(self.HTTPMethod.POST.rawValue, url: url, parameter: parameter) else {
-            fail(error: NSError(domain: "generate request", code: -1, userInfo: ["url" : url, "parameter": parameter]))
-            return
+    /// POST request
+    public class func post(url:String, parameter:NSDictionary, success:@escaping ((_: Data) -> Void), fail:@escaping ((_: Error) -> Void)) -> URLSessionDataTask? {
+        let parameter = NSKeyedArchiver.archivedData(withRootObject: parameter)
+        guard let request = CCNetwork.instance.generateRequest(httpMethod: self.httpMethod.post.rawValue, url: url, parameter: parameter as NSData?) else {
+            fail(NSError(domain: "generate request", code: -1, userInfo: ["url" : url, "parameter": parameter]))
+            return nil
         }
-        CCNetwork.instance.processTask(request, success: success, fail: fail)
+        return CCNetwork.instance.processTask(request: request as URLRequest, success: success, fail: fail)
     }
     
-    public class func GET(url:String, parameter:NSDictionary?, success:((data: NSData) -> Void), fail:((error: NSError) -> Void)) {
-        guard let request = CCNetwork.instance.generateRequest(self.HTTPMethod.GET.rawValue, url: url, parameter: nil) else {
-            fail(error: NSError(domain: "generate request", code: -1, userInfo: ["url" : url]))
-            return
+    /// GET request
+    public class func get(url:String, parameter:NSDictionary?, success:@escaping ((_: Data) -> Void), fail:@escaping ((_: Error) -> Void)) -> URLSessionDataTask? {
+        guard let request = CCNetwork.instance.generateRequest(httpMethod: self.httpMethod.get.rawValue, url: url, parameter: nil) else {
+            fail(NSError(domain: "generate request", code: -1, userInfo: ["url" : url]))
+            return nil
         }
-        CCNetwork.instance.processTask(request, success: success, fail: fail)
+        return CCNetwork.instance.processTask(request: request as URLRequest, success: success, fail: fail)
     }
 }

@@ -1,22 +1,53 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A313a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://www.v2ex.com/api/nodes/all.json" borderStyle="roundedRect" placeholder="http://domain.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aPG-i4-aVS">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="VR3-jp-YUT"/>
+                                </constraints>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txb-LN-o7m">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="aPG-i4-aVS" secondAttribute="trailing" id="0BQ-M9-t9r"/>
+                            <constraint firstItem="aPG-i4-aVS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="1Cq-KT-WJq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Txb-LN-o7m" secondAttribute="trailing" id="HU9-Qb-Bra"/>
+                            <constraint firstItem="Txb-LN-o7m" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="NNh-nv-hAl"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Txb-LN-o7m" secondAttribute="bottom" id="YAW-tT-wQ3"/>
+                            <constraint firstItem="Txb-LN-o7m" firstAttribute="top" secondItem="aPG-i4-aVS" secondAttribute="bottom" id="bDw-G9-3eA"/>
+                            <constraint firstItem="aPG-i4-aVS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="kYH-XO-O5P"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="logLabel" destination="Txb-LN-o7m" id="Qkd-3q-vli"/>
+                        <outlet property="urlTextFiled" destination="aPG-i4-aVS" id="um7-rv-1fk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
