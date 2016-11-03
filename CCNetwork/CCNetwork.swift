@@ -3,19 +3,19 @@
 
 import Foundation
 
-public class CCNetwork: NSObject {
+open class CCNetwork: NSObject {
     
-    public static let instance = CCNetwork()
-    public var session:URLSession
+    open static let instance = CCNetwork()
+    open var session:URLSession
     
-    private override init() {
+    fileprivate override init() {
         session = {
             return $0
         }(URLSession(configuration: URLSessionConfiguration.default))
         
         //configuration:
         let config = session.configuration
-        config.requestCachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
+        config.requestCachePolicy = URLRequest.CachePolicy.reloadIgnoringCacheData
         config.timeoutIntervalForRequest = 30.0;
         config.timeoutIntervalForResource = 60.0;
         config.networkServiceType = NSURLRequest.NetworkServiceType.default
@@ -27,23 +27,23 @@ public class CCNetwork: NSObject {
         config.sessionSendsLaunchEvents = true
         
         /*
-        open var connectionProxyDictionary: [AnyHashable : Any]?
-        open var tlsMinimumSupportedProtocol: SSLProtocol
-        open var tlsMaximumSupportedProtocol: SSLProtocol
-        open var httpShouldUsePipelining: Bool
-        open var httpShouldSetCookies: Bool
-        open var httpCookieAcceptPolicy: HTTPCookie.AcceptPolicy
-        */
+         open var connectionProxyDictionary: [AnyHashable : Any]?
+         open var tlsMinimumSupportedProtocol: SSLProtocol
+         open var tlsMaximumSupportedProtocol: SSLProtocol
+         open var httpShouldUsePipelining: Bool
+         open var httpShouldSetCookies: Bool
+         open var httpCookieAcceptPolicy: HTTPCookie.AcceptPolicy
+         */
         config.httpAdditionalHeaders = ["Accept": "application/json"] //test/html
         config.httpMaximumConnectionsPerHost = 10;
         /*
-        open var httpCookieStorage: HTTPCookieStorage?
-        open var urlCredentialStorage: URLCredentialStorage?
-        open var urlCache: URLCache?
-        @available(iOS 9.0, *)
-        open var shouldUseExtendedBackgroundIdleMode: Bool
-        open var protocolClasses: [Swift.AnyClass]?
-        */
+         open var httpCookieStorage: HTTPCookieStorage?
+         open var urlCredentialStorage: URLCredentialStorage?
+         open var urlCache: URLCache?
+         @available(iOS 9.0, *)
+         open var shouldUseExtendedBackgroundIdleMode: Bool
+         open var protocolClasses: [Swift.AnyClass]?
+         */
         
         super.init()
     }
@@ -71,7 +71,7 @@ public class CCNetwork: NSObject {
         return request
     }
     
-    public func processTask(request:URLRequest, success:@escaping ((_:Data)->Void), fail:@escaping ((_:Error)->Void)) -> URLSessionDataTask {
+    public func processTask(request:URLRequest, success:@escaping ((_ data:Data)->Void), fail:@escaping ((_ error:Error)->Void)) -> URLSessionDataTask {
         let task = self.session.dataTask(with: request) { (data, response, error) -> Void in
             if let data = data {
                 success(data)

@@ -37,13 +37,21 @@
         [textField resignFirstResponder];
         __weak typeof(self) weakSelf = self;
         self.logLabel.text = @"requesting...";
-        [CCNetwork getWithUrl:self.urlTextFiled.text parameter:@{} success:^(NSData *data) {
-            // serialization request data as json ...
-            weakSelf.logLabel.text = [NSString stringWithFormat:@"%@", data];
+        [CCNetwork getWithUrl:self.urlTextFiled.text parameter:nil success:^(NSData *data) {
+            weakSelf.logLabel.text = [data jsonStr];
         } fail:^(NSError *error) {
             weakSelf.logLabel.text = error.domain;
         }];
-        
+        NSDictionary *parameter = @{
+            @"username": @"Ding Songwen",
+            @"email": @"dingsoung@gmail.com",
+            @"age": @26,
+            };
+        [CCNetwork getWithUrl:self.urlTextFiled.text parameter:parameter success:^(NSData *data) {
+            NSLog(@"%@", [data jsonStr]);
+        } fail:^(NSError *error) {
+            NSLog(@"%@", error.domain);
+        }];
         return NO;
     }
     return YES;
