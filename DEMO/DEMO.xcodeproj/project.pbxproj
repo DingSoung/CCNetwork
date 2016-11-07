@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CE96EA981DCB78EB004241B7 /* NSData+Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96EA971DCB78EB004241B7 /* NSData+Transfer.swift */; };
+		CED77C991DD059360065FCFD /* NSDictionary+Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED77C981DD059360065FCFD /* NSDictionary+Transfer.swift */; };
 		FA60D3D71C995EC500814C9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA60D3D61C995EC500814C9A /* main.m */; };
 		FA60D3DA1C995EC500814C9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA60D3D91C995EC500814C9A /* AppDelegate.m */; };
 		FA60D3DD1C995EC500814C9A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA60D3DC1C995EC500814C9A /* ViewController.m */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		CE96EA971DCB78EB004241B7 /* NSData+Transfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Transfer.swift"; sourceTree = "<group>"; };
+		CED77C981DD059360065FCFD /* NSDictionary+Transfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+Transfer.swift"; sourceTree = "<group>"; };
 		FA60D3D21C995EC500814C9A /* DEMO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DEMO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA60D3D61C995EC500814C9A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FA60D3D81C995EC500814C9A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				CE96EA971DCB78EB004241B7 /* NSData+Transfer.swift */,
+				CED77C981DD059360065FCFD /* NSDictionary+Transfer.swift */,
 				FA60D40B1C995ED700814C9A /* CCNetwork */,
 				FA60D3D81C995EC500814C9A /* AppDelegate.h */,
 				FA60D3D91C995EC500814C9A /* AppDelegate.m */,
@@ -201,6 +204,7 @@
 				FA60D4121C995FAD00814C9A /* CCNetwork+Tools.swift in Sources */,
 				FA60D3E31C995EC500814C9A /* DEMO.xcdatamodeld in Sources */,
 				FA60D3D71C995EC500814C9A /* main.m in Sources */,
+				CED77C991DD059360065FCFD /* NSDictionary+Transfer.swift in Sources */,
 				FA60D40D1C995ED700814C9A /* CCNetwork.swift in Sources */,
 				CE96EA981DCB78EB004241B7 /* NSData+Transfer.swift in Sources */,
 			);

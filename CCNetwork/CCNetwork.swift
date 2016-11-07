@@ -50,7 +50,7 @@ open class CCNetwork: NSObject {
     deinit {
     }
     
-    public func generateRequest(httpMethod:String, url:String, parameter:Data?) -> NSMutableURLRequest? {
+    final func generateRequest(httpMethod:String, url:String, parameter:Data?) -> NSMutableURLRequest? {
         guard let URL = NSURL(string: url) else {
             return nil
         }
@@ -63,7 +63,9 @@ open class CCNetwork: NSObject {
         request.httpMethod = httpMethod
         if httpMethod == "POST" {
             request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            request.httpBody = parameter as Data?
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            request.httpBody = parameter
         }
         //request.allHTTPHeaderFields
         //request.HTTPShouldHandleCookies
@@ -71,7 +73,7 @@ open class CCNetwork: NSObject {
         return request
     }
     
-    public func processTask(request:URLRequest, success:@escaping ((_ data:Data)->Void), fail:@escaping ((_ error:Error)->Void)) -> URLSessionDataTask {
+    final func processTask(request:URLRequest, success:@escaping ((_ data:Data)->Void), fail:@escaping ((_ error:Error)->Void)) -> URLSessionDataTask {
         let task = self.session.dataTask(with: request) { (data, response, error) -> Void in
             if let data = data {
                 success(data)

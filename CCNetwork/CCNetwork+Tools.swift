@@ -11,9 +11,8 @@ extension CCNetwork {
     }
     
     /// POST request
-    public class func post(url:String, parameter:Dictionary<String, Any>, success: @escaping ((_ data: Data) -> Void), fail: @escaping ((_ error: Error) -> Void)) -> URLSessionDataTask? {
-        let parameter = NSKeyedArchiver.archivedData(withRootObject: parameter)
-        guard let request = CCNetwork.instance.generateRequest(httpMethod: self.httpMethod.post.rawValue, url: url, parameter: parameter) else {
+    open class func post(url:String, parameter:Dictionary<String, Any>, success: @escaping ((_ data: Data) -> Void), fail: @escaping ((_ error: Error) -> Void)) -> URLSessionDataTask? {
+        guard let request = CCNetwork.instance.generateRequest(httpMethod: self.httpMethod.post.rawValue, url: url, parameter: (parameter as NSDictionary).jsonData) else {
             fail(NSError(domain: "generate request", code: -1, userInfo: ["url" : url, "parameter": parameter]))
             return nil
         }
@@ -21,7 +20,7 @@ extension CCNetwork {
     }
     
     /// GET request
-    public class func get(url:String, parameter:Dictionary<String, Any>?, success:@escaping ((_ data: Data) -> Void), fail:@escaping ((_ error: Error) -> Void)) -> URLSessionDataTask? {
+    open class func get(url:String, success:@escaping ((_ data: Data) -> Void), fail:@escaping ((_ error: Error) -> Void)) -> URLSessionDataTask? {
         guard let request = CCNetwork.instance.generateRequest(httpMethod: self.httpMethod.get.rawValue, url: url, parameter: nil) else {
             fail(NSError(domain: "generate request", code: -1, userInfo: ["url" : url]))
             return nil
