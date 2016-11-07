@@ -50,7 +50,7 @@ open class CCNetwork: NSObject {
     deinit {
     }
     
-    public func generateRequest(httpMethod:String, url:String, parameter:NSData?) -> NSMutableURLRequest? {
+    public func generateRequest(httpMethod:String, url:String, parameter:Data?) -> NSMutableURLRequest? {
         guard let URL = NSURL(string: url) else {
             return nil
         }
