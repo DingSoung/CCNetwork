@@ -16,8 +16,8 @@
 		FA60D3E31C995EC500814C9A /* DEMO.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA60D3E11C995EC500814C9A /* DEMO.xcdatamodeld */; };
 		FA60D3E51C995EC500814C9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA60D3E41C995EC500814C9A /* Assets.xcassets */; };
 		FA60D3E81C995EC500814C9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA60D3E61C995EC500814C9A /* LaunchScreen.storyboard */; };
-		FA60D40D1C995ED700814C9A /* CCNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA60D40C1C995ED700814C9A /* CCNetwork.swift */; };
-		FA60D4121C995FAD00814C9A /* CCNetwork+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA60D4111C995FAD00814C9A /* CCNetwork+Tools.swift */; };
+		FA60D40D1C995ED700814C9A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA60D40C1C995ED700814C9A /* Network.swift */; };
+		FA60D4121C995FAD00814C9A /* Network+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA60D4111C995FAD00814C9A /* Network+Tools.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +38,8 @@
 		FA60D3F41C995EC500814C9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA60D3FD1C995EC500814C9A /* DEMOUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEMOUITests.m; sourceTree = "<group>"; };
 		FA60D3FF1C995EC500814C9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA60D40C1C995ED700814C9A /* CCNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCNetwork.swift; sourceTree = "<group>"; };
-		FA60D4111C995FAD00814C9A /* CCNetwork+Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CCNetwork+Tools.swift"; sourceTree = "<group>"; };
+		FA60D40C1C995ED700814C9A /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		FA60D4111C995FAD00814C9A /* Network+Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Network+Tools.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,8 +120,8 @@
 		FA60D40B1C995ED700814C9A /* CCNetwork */ = {
 			isa = PBXGroup;
 			children = (
-				FA60D40C1C995ED700814C9A /* CCNetwork.swift */,
-				FA60D4111C995FAD00814C9A /* CCNetwork+Tools.swift */,
+				FA60D40C1C995ED700814C9A /* Network.swift */,
+				FA60D4111C995FAD00814C9A /* Network+Tools.swift */,
 			);
 			name = CCNetwork;
 			path = ../../CCNetwork;
@@ -201,11 +201,11 @@
 			files = (
 				FA60D3DD1C995EC500814C9A /* ViewController.m in Sources */,
 				FA60D3DA1C995EC500814C9A /* AppDelegate.m in Sources */,
-				FA60D4121C995FAD00814C9A /* CCNetwork+Tools.swift in Sources */,
+				FA60D4121C995FAD00814C9A /* Network+Tools.swift in Sources */,
 				FA60D3E31C995EC500814C9A /* DEMO.xcdatamodeld in Sources */,
 				FA60D3D71C995EC500814C9A /* main.m in Sources */,
 				CED77C991DD059360065FCFD /* NSDictionary+Transfer.swift in Sources */,
-				FA60D40D1C995ED700814C9A /* CCNetwork.swift in Sources */,
+				FA60D40D1C995ED700814C9A /* Network.swift in Sources */,
 				CE96EA981DCB78EB004241B7 /* NSData+Transfer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

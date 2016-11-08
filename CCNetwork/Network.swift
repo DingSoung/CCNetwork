@@ -3,9 +3,9 @@
 
 import Foundation
 
-open class CCNetwork: NSObject {
+open class Network: NSObject {
     
-    open static let instance = CCNetwork()
+    open static let instance = Network()
     open var session:URLSession
     
     fileprivate override init() {
@@ -50,6 +50,9 @@ open class CCNetwork: NSObject {
     deinit {
     }
     
+    
+    // 写一个operation  queue 管理task， 方便 暂停 取消 控制并发数量 等等
+    
     final func generateRequest(httpMethod:String, url:String, parameter:Data?) -> NSMutableURLRequest? {
         guard let URL = NSURL(string: url) else {
             return nil
@@ -70,10 +73,14 @@ open class CCNetwork: NSObject {
         //request.allHTTPHeaderFields
         //request.HTTPShouldHandleCookies
         //request.HTTPShouldUsePipelining
+        /*
+        request.httpMethod = "POST"
+        request.httpBody = "data=Hello".data(using: String.Encoding.utf8, allowLossyConversion: true) 
+         */
         return request
     }
     
-    final func processTask(request:URLRequest, success:@escaping ((_ data:Data)->Void), fail:@escaping ((_ error:Error)->Void)) -> URLSessionDataTask {
+    final func processDataTask(request:URLRequest, success:@escaping ((_ data:Data)->Void), fail:@escaping ((_ error:Error)->Void)) -> URLSessionDataTask {
         let task = self.session.dataTask(with: request) { (data, response, error) -> Void in
             if let data = data {
                 success(data)
@@ -88,5 +95,18 @@ open class CCNetwork: NSObject {
         task.resume()
         return task
     }
+    
+    final func processDownloadTask(request:URLRequest, completionHandler: @escaping (URL?, URLResponse?, Error?) -> Swift.Void) -> URLSessionDownloadTask {
+        let task = self.session.downloadTask(with: request, completionHandler: completionHandler)
+        task.resume()
+        return task
+    }
+    
+    
+    
+    
 }
+
+
+
 
