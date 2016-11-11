@@ -37,6 +37,9 @@
         [textField resignFirstResponder];
         __weak typeof(self) weakSelf = self;
         self.logLabel.text = @"requesting...";
+        [[Network instance].session downloadTaskWithRequest:nil completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            <#code#>
+        }
         [Network getWithUrl:self.urlTextFiled.text success:^(NSData *data) {
             weakSelf.logLabel.text = [data jsonStr];
         } fail:^(NSError *error) {
