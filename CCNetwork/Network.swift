@@ -7,6 +7,15 @@ open class Network: NSObject {
     
     open static let instance = Network()
     open var session:URLSession
+    private var _completeQueue:DispatchQueue = DispatchQueue.main
+    open var completeQueue:DispatchQueue {
+        get {
+            return _completeQueue
+        }
+        set {
+            _completeQueue = newValue
+        }
+    }
     
     fileprivate override init() {
         session = {
@@ -87,16 +96,19 @@ open class Network: NSObject {
         switch httpMethod {
         case "GET", "POST":
             task = self.session.dataTask(with: request) { (data, response, error) -> Void in
-                if let data = data {
-                    success(data)
-                } else {
-                    if let error = error {
-                        fail(error)
+                self.completeQueue.sync {
+                    if let data = data {
+                        success(data)
                     } else {
-                        fail(NSError(domain: "request fail", code: -1, userInfo: nil))
+                        if let error = error {
+                            fail(error)
+                        } else {
+                            fail(NSError(domain: "request fail", code: -1, userInfo: nil))
+                        }
                     }
                 }
             }
+            /*
         case "DOWNLOAD":
             task = self.session.downloadTask(with: request, completionHandler: { (url, response, error) in
                 
@@ -107,8 +119,6 @@ open class Network: NSObject {
                 print(uuid)
                 
                 FileManager.default.moveItem(at: url, to: <#T##URL#>)
-                
-                
                 
                 
                 if (fileURL) {
@@ -122,10 +132,7 @@ open class Network: NSObject {
                     
                     return;
                 }
-                
-                
-                
-                
+             
                 let fileManager = FileManager.default
                 let documents = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
                 let fileURL = documents.URLByAppendingPathComponent("test.jpg")
@@ -134,16 +141,12 @@ open class Network: NSObject {
                 } catch {
                     print(error)
                 }
-
-                
-                
             })
+ */
         default: break
         }
         
-        
- 
-        task.resume()
+        task?.resume()
         return task
     }
     
