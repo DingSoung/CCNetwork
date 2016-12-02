@@ -7,16 +7,7 @@ open class Network: NSObject {
     
     open static let instance = Network()
     open var session:URLSession
-    private var _completeQueue:DispatchQueue = DispatchQueue.main
-    open var completeQueue:DispatchQueue {
-        get {
-            return _completeQueue
-        }
-        set {
-            _completeQueue = newValue
-        }
-    }
-    
+    open var completeQueue:DispatchQueue = DispatchQueue.main
     fileprivate override init() {
         session = {
             return $0
