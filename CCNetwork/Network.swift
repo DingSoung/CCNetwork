@@ -21,11 +21,12 @@ open class Network: NSObject {
         config.networkServiceType = NSURLRequest.NetworkServiceType.default
         config.allowsCellularAccess = true
         config.isDiscretionary = true
-        if NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0 {
+        if #available(iOS 8.0, *) {
             config.sharedContainerIdentifier = "CCNetwork"
+        } else {
+            // Fallback on earlier versions
         }
         config.sessionSendsLaunchEvents = true
-        
         /*
          open var connectionProxyDictionary: [AnyHashable : Any]?
          open var tlsMinimumSupportedProtocol: SSLProtocol
@@ -34,7 +35,7 @@ open class Network: NSObject {
          open var httpShouldSetCookies: Bool
          open var httpCookieAcceptPolicy: HTTPCookie.AcceptPolicy
          */
-        config.httpAdditionalHeaders = ["Accept": "application/json"] //test/html
+        config.httpAdditionalHeaders = ["Accept": "application/json"] //text/html
         config.httpMaximumConnectionsPerHost = 10;
         /*
          open var httpCookieStorage: HTTPCookieStorage?
@@ -74,8 +75,8 @@ open class Network: NSObject {
         //request.HTTPShouldHandleCookies
         //request.HTTPShouldUsePipelining
         /*
-        request.httpMethod = "POST"
-        request.httpBody = "data=Hello".data(using: String.Encoding.utf8, allowLossyConversion: true) 
+         request.httpMethod = "POST"
+         request.httpBody = "data=Hello".data(using: String.Encoding.utf8, allowLossyConversion: true)
          */
         return request
     }
@@ -99,15 +100,15 @@ open class Network: NSObject {
                     }
                 }
             }
-            /*
         case "DOWNLOAD":
             task = self.session.downloadTask(with: request, completionHandler: { (url, response, error) in
-                
                 guard let url = url else {
-                
+                    //....
                 }
-                let uuid = NSUUID().UUIDString
-                print(uuid)
+                
+                
+                
+                
                 
                 FileManager.default.moveItem(at: url, to: <#T##URL#>)
                 
@@ -123,7 +124,7 @@ open class Network: NSObject {
                     
                     return;
                 }
-             
+                
                 let fileManager = FileManager.default
                 let documents = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
                 let fileURL = documents.URLByAppendingPathComponent("test.jpg")
@@ -133,8 +134,8 @@ open class Network: NSObject {
                     print(error)
                 }
             })
- */
-        default: break
+        default:
+            break
         }
         
         task?.resume()
