@@ -8,6 +8,8 @@ open class Network: NSObject {
     open static let instance = Network()
     open var session:URLSession
     open var completeQueue:DispatchQueue = DispatchQueue.main
+    open var downloadDirectory:URL?
+    
     fileprivate override init() {
         session = {
             return $0
@@ -45,15 +47,24 @@ open class Network: NSObject {
          open var shouldUseExtendedBackgroundIdleMode: Bool
          open var protocolClasses: [Swift.AnyClass]?
          */
-        
         super.init()
+        
+        do {
+            self.downloadDirectory =  try FileManager.default.url(for: FileManager.SearchPathDirectory.cachesDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create: true)
+        } catch {
+            if let urlStr = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first,
+                let url = URL(string: urlStr) {
+                self.downloadDirectory = url
+            } else {
+                // self.downloadDirectory will be nil
+            }
+        }
     }
     deinit {
     }
     
     
     // 写一个operation  queue 管理task， 方便 暂停 取消 控制并发数量 等等
-    
     final func request(httpMethod:String, url:String, parameter:Data?) -> NSMutableURLRequest? {
         guard let URL = NSURL(string: url) else {
             return nil
@@ -81,68 +92,73 @@ open class Network: NSObject {
         return request
     }
     
-    final func task(request:URLRequest, success:@escaping ((Data) -> Swift.Void), fail:@escaping ((Error) -> Swift.Void)) -> URLSessionTask? {
-        
-        var task:URLSessionTask?
-        guard let httpMethod = request.httpMethod else {return task}
-        switch httpMethod {
-        case "GET", "POST":
-            task = self.session.dataTask(with: request) { (data, response, error) -> Void in
-                self.completeQueue.sync {
-                    if let data = data {
-                        success(data)
+    final func dataTask(request:URLRequest, success:@escaping ((Data) -> Swift.Void), fail:@escaping ((Error) -> Swift.Void)) -> URLSessionDataTask {
+        let task = self.session.dataTask(with: request) { (data, response, error) -> Void in
+            self.completeQueue.sync {
+                if let data = data {
+                    success(data)
+                } else {
+                    if let error = error {
+                        fail(error)
                     } else {
-                        if let error = error {
-                            fail(error)
-                        } else {
-                            fail(NSError(domain: "request fail", code: -1, userInfo: nil))
-                        }
+                        fail(NSError(domain: "request fail", code: -1, userInfo: nil))
                     }
                 }
             }
-        case "DOWNLOAD":
-            task = self.session.downloadTask(with: request, completionHandler: { (url, response, error) in
-                guard let url = url else {
-                    //....
-                }
-                
-                
-                
-                
-                
-                FileManager.default.moveItem(at: url, to: <#T##URL#>)
-                
-                
-                if (fileURL) {
-                    delegate.downloadFileURL = fileURL;
-                    NSError *error = nil;
-                    
-                    [[NSFileManager defaultManager] moveItemAtURL:location toURL:fileURL error:&error];
-                    if (error) {
-                        [[NSNotificationCenter defaultCenter] postNotificationName:AFURLSessionDownloadTaskDidFailToMoveFileNotification object:downloadTask userInfo:error.userInfo];
-                    }
-                    
-                    return;
-                }
-                
-                let fileManager = FileManager.default
-                let documents = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-                let fileURL = documents.URLByAppendingPathComponent("test.jpg")
-                do {
-                    try fileManager.moveItemAtURL(location!, toURL: fileURL)
-                } catch {
-                    print(error)
-                }
-            })
-        default:
-            break
         }
-        
-        task?.resume()
+        task.resume()
         return task
     }
     
-    
+    final func downloadTask(url:URL, success:@escaping ((Data) -> Swift.Void), fail:@escaping ((Error) -> Swift.Void)) -> URLSessionDownloadTask? {
+        let task = self.session.downloadTask(with: url) { (url, response, error) in
+            guard let url = url else {
+                if let error = error {
+                    fail(error)
+                } else {
+                    fail(NSError(domain: "some catch path error", code: -1, userInfo: nil) as Error)
+                }
+                return
+            }
+            
+            do {
+                //try FileManager.default.moveItem(at: url, to: destinationUrl)
+                let data = try Data(contentsOf: url)
+                success(data)
+            } catch let error {
+                fail(error)
+            }
+            
+            /*
+             guard let url = url,
+             let dir = self?.downloadDirectory,
+             let filename = request.url?.lastPathComponent else {
+             if let error = error {
+             fail(error)
+             } else {
+             fail(NSError(domain: "some catch path error", code: -1, userInfo: nil) as Error)
+             }
+             return
+             }
+             
+             let destinationUrl = dir.appendingPathComponent(filename)
+             var data:Data?
+             do {
+             try FileManager.default.moveItem(at: url, to: destinationUrl)
+             data = try Data(contentsOf: destinationUrl)
+             } catch let error {
+             fail(error)
+             }
+             if let data = data {
+             success(data)
+             } else {
+             print("some error")
+             }
+             */
+        }
+        task.resume()
+        return task
+    }
     
     
 }

@@ -12,6 +12,7 @@
 @interface ViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *urlTextFiled;
 @property (weak, nonatomic) IBOutlet UILabel *logLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *logImage;
 @end
 
 @implementation ViewController
@@ -37,14 +38,13 @@
         [textField resignFirstResponder];
         __weak typeof(self) weakSelf = self;
         self.logLabel.text = @"requesting...";
-        [[Network instance].session downloadTaskWithRequest:nil completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            <#code#>
-        }
+        
         [Network getWithUrl:self.urlTextFiled.text success:^(NSData *data) {
             weakSelf.logLabel.text = [data jsonStr];
         } fail:^(NSError *error) {
             weakSelf.logLabel.text = error.domain;
         }];
+        
         NSDictionary *parameter = @{
             @"username": @"Ding Songwen",
             @"email": @"dingsoung@gmail.com",
@@ -55,6 +55,19 @@
         } fail:^(NSError *error) {
             NSLog(@"%@", error.domain);
         }];
+        
+        /*
+        NSURL *url = [NSURL URLWithString:(self.urlTextFiled.text)];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        self.logImage.image = [UIImage imageWithData: data];
+        */
+        
+        [Network downloadWithUrl:self.urlTextFiled.text success:^(NSData *data) {
+            weakSelf.logImage.image = [UIImage imageWithData:data];
+        } fail:^(NSError *error) {
+            NSLog(@"%@", error.domain);
+        }];
+        
         return NO;
     }
     return YES;
