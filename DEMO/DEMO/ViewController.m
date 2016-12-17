@@ -53,20 +53,23 @@
         [Network postWithUrl:self.urlTextFiled.text parameter:parameter success:^(NSData *data) {
             NSLog(@"%@", [data jsonStr]);
         } fail:^(NSError *error) {
-            NSLog(@"%@", error.domain);
+            NSLog(@"%@", error.localizedDescription);
         }];
-        
-        /*
-        NSURL *url = [NSURL URLWithString:(self.urlTextFiled.text)];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        self.logImage.image = [UIImage imageWithData: data];
-        */
         
         [Network downloadWithUrl:self.urlTextFiled.text success:^(NSData *data) {
             weakSelf.logImage.image = [UIImage imageWithData:data];
         } fail:^(NSError *error) {
-            NSLog(@"%@", error.domain);
+            NSLog(@"%@", error.localizedDescription);
         }];
+        
+        NSURLSessionDownloadTask *taskDump = [Network downloadWithUrl:self.urlTextFiled.text success:^(NSData *data) {
+            weakSelf.logImage.image = [UIImage imageWithData:data];
+        } fail:^(NSError *error) {
+            NSLog(@"%@", error.localizedDescription);
+        }];
+        [taskDump cancel];
+        
+        
         
         return NO;
     }

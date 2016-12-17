@@ -7,16 +7,15 @@ open class Network: NSObject {
     
     open static let instance = Network()
     open var session:URLSession
-    open var completeQueue:DispatchQueue = DispatchQueue.main
-    open var downloadDirectory:URL?
+    open var completeQueue:DispatchQueue! = DispatchQueue.main
     
     fileprivate override init() {
-        session = {
+        self.session = {
             return $0
         }(URLSession(configuration: URLSessionConfiguration.default))
         
         //configuration:
-        let config = session.configuration
+        let config = self.session.configuration
         config.requestCachePolicy = URLRequest.CachePolicy.reloadIgnoringCacheData
         config.timeoutIntervalForRequest = 30.0;
         config.timeoutIntervalForResource = 60.0;
@@ -24,7 +23,7 @@ open class Network: NSObject {
         config.allowsCellularAccess = true
         config.isDiscretionary = true
         if #available(iOS 8.0, *) {
-            config.sharedContainerIdentifier = "CCNetwork"
+            config.sharedContainerIdentifier = "Network"
         } else {
             // Fallback on earlier versions
         }
@@ -48,21 +47,9 @@ open class Network: NSObject {
          open var protocolClasses: [Swift.AnyClass]?
          */
         super.init()
-        
-        do {
-            self.downloadDirectory =  try FileManager.default.url(for: FileManager.SearchPathDirectory.cachesDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create: true)
-        } catch {
-            if let urlStr = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first,
-                let url = URL(string: urlStr) {
-                self.downloadDirectory = url
-            } else {
-                // self.downloadDirectory will be nil
-            }
-        }
     }
     deinit {
     }
-    
     
     // 写一个operation  queue 管理task， 方便 暂停 取消 控制并发数量 等等
     final func request(httpMethod:String, url:String, parameter:Data?) -> NSMutableURLRequest? {
@@ -93,8 +80,8 @@ open class Network: NSObject {
     }
     
     final func dataTask(request:URLRequest, success:@escaping ((Data) -> Swift.Void), fail:@escaping ((Error) -> Swift.Void)) -> URLSessionDataTask {
-        let task = self.session.dataTask(with: request) { (data, response, error) -> Void in
-            self.completeQueue.sync {
+        let task = self.session.dataTask(with: request) {[weak self] (data, response, error) -> Void in
+            self?.completeQueue.sync {
                 if let data = data {
                     success(data)
                 } else {
@@ -111,50 +98,23 @@ open class Network: NSObject {
     }
     
     final func downloadTask(url:URL, success:@escaping ((Data) -> Swift.Void), fail:@escaping ((Error) -> Swift.Void)) -> URLSessionDownloadTask? {
-        let task = self.session.downloadTask(with: url) { (url, response, error) in
-            guard let url = url else {
-                if let error = error {
-                    fail(error)
-                } else {
-                    fail(NSError(domain: "some catch path error", code: -1, userInfo: nil) as Error)
+        let task = self.session.downloadTask(with: url) {[weak self] (url, response, error) in
+            self?.completeQueue.async {
+                guard let url = url else {
+                    if let error = error {
+                        fail(error)
+                    } else {
+                        fail(NSError(domain: "request fail", code: -1, userInfo: nil) as Error)
+                    }
+                    return
                 }
-                return
+                do {
+                    let data = try Data(contentsOf: url)
+                    success(data)
+                } catch let error {
+                    fail(error)
+                }
             }
-            
-            do {
-                //try FileManager.default.moveItem(at: url, to: destinationUrl)
-                let data = try Data(contentsOf: url)
-                success(data)
-            } catch let error {
-                fail(error)
-            }
-            
-            /*
-             guard let url = url,
-             let dir = self?.downloadDirectory,
-             let filename = request.url?.lastPathComponent else {
-             if let error = error {
-             fail(error)
-             } else {
-             fail(NSError(domain: "some catch path error", code: -1, userInfo: nil) as Error)
-             }
-             return
-             }
-             
-             let destinationUrl = dir.appendingPathComponent(filename)
-             var data:Data?
-             do {
-             try FileManager.default.moveItem(at: url, to: destinationUrl)
-             data = try Data(contentsOf: destinationUrl)
-             } catch let error {
-             fail(error)
-             }
-             if let data = data {
-             success(data)
-             } else {
-             print("some error")
-             }
-             */
         }
         task.resume()
         return task
