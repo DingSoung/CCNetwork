@@ -93,7 +93,7 @@ open class Network: NSObject {
     
     final func dataTask(request:URLRequest, success:@escaping ((Data) -> Swift.Void), fail:@escaping ((Error) -> Swift.Void)) -> URLSessionDataTask {
         let task = self.session.dataTask(with: request) {[weak self] (data, response, error) -> Void in
-            self?.completeQueue.sync {
+            self?.completeQueue?.sync {
                 if let data = data {
                     success(data)
                 } else {
@@ -111,7 +111,7 @@ open class Network: NSObject {
     
     final func downloadTask(url:URL, success:@escaping ((Data) -> Swift.Void), fail:@escaping ((Error) -> Swift.Void)) -> URLSessionDownloadTask? {
         let task = self.session.downloadTask(with: url) {[weak self] (url, response, error) in
-            self?.completeQueue.async {
+            self?.completeQueue?.async {
                 guard let url = url else {
                     if let error = error {
                         fail(error)
