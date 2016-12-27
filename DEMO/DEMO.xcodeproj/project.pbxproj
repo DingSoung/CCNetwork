@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE82B39B1E129F6F0016B5C3 /* Network+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE82B3991E129F6F0016B5C3 /* Network+Tools.swift */; };
+		CE82B39C1E129F6F0016B5C3 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE82B39A1E129F6F0016B5C3 /* Network.swift */; };
 		CE96EA981DCB78EB004241B7 /* NSData+Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96EA971DCB78EB004241B7 /* NSData+Transfer.swift */; };
 		CED77C991DD059360065FCFD /* NSDictionary+Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED77C981DD059360065FCFD /* NSDictionary+Transfer.swift */; };
 		FA60D3D71C995EC500814C9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA60D3D61C995EC500814C9A /* main.m */; };
@@ -16,11 +18,11 @@
 		FA60D3E31C995EC500814C9A /* DEMO.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA60D3E11C995EC500814C9A /* DEMO.xcdatamodeld */; };
 		FA60D3E51C995EC500814C9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA60D3E41C995EC500814C9A /* Assets.xcassets */; };
 		FA60D3E81C995EC500814C9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA60D3E61C995EC500814C9A /* LaunchScreen.storyboard */; };
-		FA60D40D1C995ED700814C9A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA60D40C1C995ED700814C9A /* Network.swift */; };
-		FA60D4121C995FAD00814C9A /* Network+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA60D4111C995FAD00814C9A /* Network+Tools.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE82B3991E129F6F0016B5C3 /* Network+Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Network+Tools.swift"; sourceTree = "<group>"; };
+		CE82B39A1E129F6F0016B5C3 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		CE96EA971DCB78EB004241B7 /* NSData+Transfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Transfer.swift"; sourceTree = "<group>"; };
 		CED77C981DD059360065FCFD /* NSDictionary+Transfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+Transfer.swift"; sourceTree = "<group>"; };
 		FA60D3D21C995EC500814C9A /* DEMO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DEMO.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,8 +40,6 @@
 		FA60D3F41C995EC500814C9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA60D3FD1C995EC500814C9A /* DEMOUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEMOUITests.m; sourceTree = "<group>"; };
 		FA60D3FF1C995EC500814C9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA60D40C1C995ED700814C9A /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
-		FA60D4111C995FAD00814C9A /* Network+Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Network+Tools.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +53,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE82B3981E129F6F0016B5C3 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CE82B3991E129F6F0016B5C3 /* Network+Tools.swift */,
+				CE82B39A1E129F6F0016B5C3 /* Network.swift */,
+			);
+			name = Network;
+			path = ../../Network;
+			sourceTree = "<group>";
+		};
 		FA60D3C91C995EC500814C9A = {
 			isa = PBXGroup;
 			children = (
@@ -74,9 +84,9 @@
 		FA60D3D41C995EC500814C9A /* DEMO */ = {
 			isa = PBXGroup;
 			children = (
+				CE82B3981E129F6F0016B5C3 /* Network */,
 				CE96EA971DCB78EB004241B7 /* NSData+Transfer.swift */,
 				CED77C981DD059360065FCFD /* NSDictionary+Transfer.swift */,
-				FA60D40B1C995ED700814C9A /* CCNetwork */,
 				FA60D3D81C995EC500814C9A /* AppDelegate.h */,
 				FA60D3D91C995EC500814C9A /* AppDelegate.m */,
 				FA60D3DB1C995EC500814C9A /* ViewController.h */,
@@ -115,16 +125,6 @@
 				FA60D3FF1C995EC500814C9A /* Info.plist */,
 			);
 			path = DEMOUITests;
-			sourceTree = "<group>";
-		};
-		FA60D40B1C995ED700814C9A /* CCNetwork */ = {
-			isa = PBXGroup;
-			children = (
-				FA60D40C1C995ED700814C9A /* Network.swift */,
-				FA60D4111C995FAD00814C9A /* Network+Tools.swift */,
-			);
-			name = CCNetwork;
-			path = ../../CCNetwork;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,13 +199,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE82B39B1E129F6F0016B5C3 /* Network+Tools.swift in Sources */,
 				FA60D3DD1C995EC500814C9A /* ViewController.m in Sources */,
+				CE82B39C1E129F6F0016B5C3 /* Network.swift in Sources */,
 				FA60D3DA1C995EC500814C9A /* AppDelegate.m in Sources */,
-				FA60D4121C995FAD00814C9A /* Network+Tools.swift in Sources */,
 				FA60D3E31C995EC500814C9A /* DEMO.xcdatamodeld in Sources */,
 				FA60D3D71C995EC500814C9A /* main.m in Sources */,
 				CED77C991DD059360065FCFD /* NSDictionary+Transfer.swift in Sources */,
-				FA60D40D1C995ED700814C9A /* Network.swift in Sources */,
 				CE96EA981DCB78EB004241B7 /* NSData+Transfer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
