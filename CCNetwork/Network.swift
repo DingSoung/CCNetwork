@@ -7,13 +7,13 @@ open class Network: NSObject {
     
     open static let instance = Network()
     open var session:URLSession
-    private var _completeQueue = DispatchQueue.main
-    open var completeQueue:DispatchQueue? {
+    private var _completeQueue = OperationQueue.main
+    open var completeQueue:OperationQueue? {
         set {
             if let value = newValue {
                 _completeQueue = value
             } else {
-                _completeQueue = DispatchQueue.main
+                _completeQueue = OperationQueue.main
             }
         }
         get {
@@ -82,8 +82,8 @@ open class Network: NSObject {
             request.httpBody = parameter
         }
         //request.allHTTPHeaderFields
-        //request.HTTPShouldHandleCookies
-        //request.HTTPShouldUsePipelining
+        //request.httpShouldHandleCookies = true
+        //request.httpShouldUsePipelining = true
         /*
          request.httpMethod = "POST"
          request.httpBody = "data=Hello".data(using: String.Encoding.utf8, allowLossyConversion: true)
@@ -93,7 +93,7 @@ open class Network: NSObject {
     
     final func dataTask(request:URLRequest, success:@escaping ((Data) -> Swift.Void), fail:@escaping ((Error) -> Swift.Void)) -> URLSessionDataTask {
         let task = self.session.dataTask(with: request) {[weak self] (data, response, error) -> Void in
-            self?.completeQueue?.sync {
+            self?.completeQueue?.addOperation {
                 if let data = data {
                     success(data)
                 } else {
@@ -111,7 +111,7 @@ open class Network: NSObject {
     
     final func downloadTask(url:URL, success:@escaping ((Data) -> Swift.Void), fail:@escaping ((Error) -> Swift.Void)) -> URLSessionDownloadTask? {
         let task = self.session.downloadTask(with: url) {[weak self] (url, response, error) in
-            self?.completeQueue?.async {
+            self?.completeQueue?.addOperation {
                 guard let url = url else {
                     if let error = error {
                         fail(error)
