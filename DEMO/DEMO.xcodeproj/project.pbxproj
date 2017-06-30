@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE82B39B1E129F6F0016B5C3 /* Network+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE82B3991E129F6F0016B5C3 /* Network+Tools.swift */; };
-		CE82B39C1E129F6F0016B5C3 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE82B39A1E129F6F0016B5C3 /* Network.swift */; };
-		CE96EA981DCB78EB004241B7 /* NSData+Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE96EA971DCB78EB004241B7 /* NSData+Transfer.swift */; };
-		CED77C991DD059360065FCFD /* NSDictionary+Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED77C981DD059360065FCFD /* NSDictionary+Transfer.swift */; };
+		CE6087311F067505007E99DC /* Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE60872F1F067505007E99DC /* Extension.framework */; };
+		CE6087321F067505007E99DC /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6087301F067505007E99DC /* Network.framework */; };
+		CE6087331F06750E007E99DC /* Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE60872F1F067505007E99DC /* Extension.framework */; };
+		CE6087341F06750E007E99DC /* Extension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE60872F1F067505007E99DC /* Extension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CE6087351F06750E007E99DC /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6087301F067505007E99DC /* Network.framework */; };
+		CE6087361F06750E007E99DC /* Network.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE6087301F067505007E99DC /* Network.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA60D3D71C995EC500814C9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA60D3D61C995EC500814C9A /* main.m */; };
 		FA60D3DA1C995EC500814C9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA60D3D91C995EC500814C9A /* AppDelegate.m */; };
 		FA60D3DD1C995EC500814C9A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA60D3DC1C995EC500814C9A /* ViewController.m */; };
@@ -20,11 +22,24 @@
 		FA60D3E81C995EC500814C9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA60D3E61C995EC500814C9A /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		CE6087281F06731C007E99DC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CE6087341F06750E007E99DC /* Extension.framework in Embed Frameworks */,
+				CE6087361F06750E007E99DC /* Network.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		CE82B3991E129F6F0016B5C3 /* Network+Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Network+Tools.swift"; sourceTree = "<group>"; };
-		CE82B39A1E129F6F0016B5C3 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
-		CE96EA971DCB78EB004241B7 /* NSData+Transfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Transfer.swift"; sourceTree = "<group>"; };
-		CED77C981DD059360065FCFD /* NSDictionary+Transfer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+Transfer.swift"; sourceTree = "<group>"; };
+		CE60872F1F067505007E99DC /* Extension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Extension.framework; sourceTree = "<group>"; };
+		CE6087301F067505007E99DC /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Network.framework; sourceTree = "<group>"; };
 		FA60D3D21C995EC500814C9A /* DEMO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DEMO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA60D3D61C995EC500814C9A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FA60D3D81C995EC500814C9A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -47,22 +62,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE6087331F06750E007E99DC /* Extension.framework in Frameworks */,
+				CE6087311F067505007E99DC /* Extension.framework in Frameworks */,
+				CE6087321F067505007E99DC /* Network.framework in Frameworks */,
+				CE6087351F06750E007E99DC /* Network.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CE82B3981E129F6F0016B5C3 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				CE82B3991E129F6F0016B5C3 /* Network+Tools.swift */,
-				CE82B39A1E129F6F0016B5C3 /* Network.swift */,
-			);
-			name = Network;
-			path = ../../Network;
-			sourceTree = "<group>";
-		};
 		FA60D3C91C995EC500814C9A = {
 			isa = PBXGroup;
 			children = (
@@ -84,9 +93,8 @@
 		FA60D3D41C995EC500814C9A /* DEMO */ = {
 			isa = PBXGroup;
 			children = (
-				CE82B3981E129F6F0016B5C3 /* Network */,
-				CE96EA971DCB78EB004241B7 /* NSData+Transfer.swift */,
-				CED77C981DD059360065FCFD /* NSDictionary+Transfer.swift */,
+				CE60872F1F067505007E99DC /* Extension.framework */,
+				CE6087301F067505007E99DC /* Network.framework */,
 				FA60D3D81C995EC500814C9A /* AppDelegate.h */,
 				FA60D3D91C995EC500814C9A /* AppDelegate.m */,
 				FA60D3DB1C995EC500814C9A /* ViewController.h */,
@@ -137,6 +145,7 @@
 				FA60D3CE1C995EC500814C9A /* Sources */,
 				FA60D3CF1C995EC500814C9A /* Frameworks */,
 				FA60D3D01C995EC500814C9A /* Resources */,
+				CE6087281F06731C007E99DC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -199,14 +208,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE82B39B1E129F6F0016B5C3 /* Network+Tools.swift in Sources */,
 				FA60D3DD1C995EC500814C9A /* ViewController.m in Sources */,
-				CE82B39C1E129F6F0016B5C3 /* Network.swift in Sources */,
 				FA60D3DA1C995EC500814C9A /* AppDelegate.m in Sources */,
 				FA60D3E31C995EC500814C9A /* DEMO.xcdatamodeld in Sources */,
 				FA60D3D71C995EC500814C9A /* main.m in Sources */,
-				CED77C991DD059360065FCFD /* NSDictionary+Transfer.swift in Sources */,
-				CE96EA981DCB78EB004241B7 /* NSData+Transfer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,8 +331,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = C6989DMQ59;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DEMO",
+				);
 				INFOPLIST_FILE = DEMO/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dingsoung.DEMO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -343,8 +352,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = C6989DMQ59;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DEMO",
+				);
 				INFOPLIST_FILE = DEMO/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dingsoung.DEMO;
 				PRODUCT_NAME = "$(TARGET_NAME)";

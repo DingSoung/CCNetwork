@@ -7,7 +7,8 @@
 //
 
 #import "ViewController.h"
-#import "DEMO-swift.h"
+#import "Network.framework/Headers/Network-Swift.h"
+#import "Extension.framework/Headers/Extension-Swift.h"
 
 @interface ViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *urlTextFiled;
@@ -39,8 +40,8 @@
         __weak typeof(self) weakSelf = self;
         self.logLabel.text = @"requesting...";
         
-        [Network getWithUrl:self.urlTextFiled.text success:^(NSData *data) {
-            weakSelf.logLabel.text = [data jsonStr];
+        [Network getWithUrl:self.urlTextFiled.text ?: @"" success:^(NSData *data) {
+            weakSelf.logLabel.text = data.jsonString;
         } fail:^(NSError *error) {
             weakSelf.logLabel.text = error.domain;
         }];
@@ -51,7 +52,7 @@
             @"age": @26,
             };
         [Network postWithUrl:self.urlTextFiled.text parameter:parameter success:^(NSData *data) {
-            NSLog(@"%@", [data jsonStr]);
+            NSLog(@"%@", data.jsonString);
         } fail:^(NSError *error) {
             NSLog(@"%@", error.localizedDescription);
         }];
@@ -68,9 +69,6 @@
             NSLog(@"%@", error.localizedDescription);
         }];
         [taskDump cancel];
-        
-        
-        
         return NO;
     }
     return YES;

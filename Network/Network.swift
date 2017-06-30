@@ -3,7 +3,7 @@
 
 import Foundation
 
-open class Network: NSObject {
+@objc open class Network: NSObject {
     
     open static let instance = Network()
     open var session:URLSession
