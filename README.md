@@ -16,3 +16,9 @@ add code below to your Cartfile and command `carthage update`
 ```
 github "DingSoung/Network"
 ```
+
+```Swift
+ Network.get(url: "http://www.guanggoo.com/", success: { (data) in
+        }, fail: fail)
+```
+
