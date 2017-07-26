@@ -7,63 +7,70 @@ import Foundation
     
     open static let instance = Network()
     open var session:URLSession
-    private var _completeQueue = OperationQueue.main
-    open var completeQueue:OperationQueue? {
-        set {
-            if let value = newValue {
-                _completeQueue = value
+    class SessionDelegateObject:NSObject, URLSessionDelegate {
+        public func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
+            
+        }
+        
+        public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
+            if let trust = challenge.protectionSpace.serverTrust, challenge.previousFailureCount <= 0 {
+                completionHandler(URLSession.AuthChallengeDisposition.useCredential, URLCredential(trust:trust))
             } else {
-                _completeQueue = OperationQueue.main
+                completionHandler(URLSession.AuthChallengeDisposition.cancelAuthenticationChallenge, nil)
             }
         }
-        get {
-            return _completeQueue
+        
+        public func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+            
         }
     }
     
     fileprivate override init() {
         self.session = {
             return $0
-        }(URLSession(configuration: URLSessionConfiguration.default))
-        
-        //configuration:
-        let config = self.session.configuration
-        config.requestCachePolicy = URLRequest.CachePolicy.reloadIgnoringCacheData
-        config.timeoutIntervalForRequest = 30.0;
-        config.timeoutIntervalForResource = 60.0;
-        config.networkServiceType = NSURLRequest.NetworkServiceType.default
-        config.allowsCellularAccess = true
-        config.isDiscretionary = true
-        if #available(iOS 8.0, *) {
-            config.sharedContainerIdentifier = "Network"
-        } else {
-            // Fallback on earlier versions
-        }
-        config.sessionSendsLaunchEvents = true
-        /*
-         open var connectionProxyDictionary: [AnyHashable : Any]?
-         open var tlsMinimumSupportedProtocol: SSLProtocol
-         open var tlsMaximumSupportedProtocol: SSLProtocol
-         open var httpShouldUsePipelining: Bool
-         open var httpShouldSetCookies: Bool
-         open var httpCookieAcceptPolicy: HTTPCookie.AcceptPolicy
-         */
-        config.httpAdditionalHeaders = ["Accept": "application/json"] //text/html
-        config.httpMaximumConnectionsPerHost = 10;
-        /*
-         open var httpCookieStorage: HTTPCookieStorage?
-         open var urlCredentialStorage: URLCredentialStorage?
-         open var urlCache: URLCache?
-         @available(iOS 9.0, *)
-         open var shouldUseExtendedBackgroundIdleMode: Bool
-         open var protocolClasses: [Swift.AnyClass]?
-         */
+            }(
+                URLSession(configuration: {
+                    let config = URLSessionConfiguration.default
+                    config.requestCachePolicy = URLRequest.CachePolicy.reloadIgnoringCacheData
+                    config.timeoutIntervalForRequest = 30.0;
+                    config.timeoutIntervalForResource = 60.0;
+                    config.networkServiceType = NSURLRequest.NetworkServiceType.default
+                    config.allowsCellularAccess = true
+                    config.isDiscretionary = true
+                    if #available(iOS 8.0, *) {
+                        config.sharedContainerIdentifier = "Network"
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                    config.sessionSendsLaunchEvents = true
+                    /*
+                     open var connectionProxyDictionary: [AnyHashable : Any]?
+                     open var tlsMinimumSupportedProtocol: SSLProtocol
+                     open var tlsMaximumSupportedProtocol: SSLProtocol
+                     open var httpShouldUsePipelining: Bool
+                     open var httpShouldSetCookies: Bool
+                     open var httpCookieAcceptPolicy: HTTPCookie.AcceptPolicy
+                     */
+                    config.httpAdditionalHeaders = ["Accept": "application/json"] //text/html
+                    config.httpMaximumConnectionsPerHost = 10;
+                    /*
+                     open var httpCookieStorage: HTTPCookieStorage?
+                     open var urlCredentialStorage: URLCredentialStorage?
+                     open var urlCache: URLCache?
+                     @available(iOS 9.0, *)
+                     open var shouldUseExtendedBackgroundIdleMode: Bool
+                     open var protocolClasses: [Swift.AnyClass]?
+                     */
+                    return config
+                }(),
+                           delegate: SessionDelegateObject(),
+                           delegateQueue: OperationQueue())
+        )
         super.init()
     }
     deinit {
     }
     
-    // 写一个operation  queue 管理task， 方便 暂停 取消 控制并发数量 等等
     final func request(httpMethod:String, url:String, parameter:Data?) -> NSMutableURLRequest? {
         guard let URL = NSURL(string: url) else {
             return nil
@@ -92,17 +99,11 @@ import Foundation
     }
     
     final func dataTask(request:URLRequest, success:@escaping ((Data) -> Swift.Void), fail:@escaping ((Error) -> Swift.Void)) -> URLSessionDataTask {
-        let task = self.session.dataTask(with: request) {[weak self] (data, response, error) -> Void in
-            self?.completeQueue?.addOperation {
-                if let data = data {
-                    success(data)
-                } else {
-                    if let error = error {
-                        fail(error)
-                    } else {
-                        fail(NSError(domain: "request fail", code: -1, userInfo: nil))
-                    }
-                }
+        let task = self.session.dataTask(with: request) {(data, response, error) -> Void in
+            if let data = data {
+                success(data)
+            } else {
+                fail(error ?? NSError(domain: "unkonw request error", code: -1, userInfo: nil) as Error)
             }
         }
         task.resume()
@@ -110,29 +111,21 @@ import Foundation
     }
     
     final func downloadTask(url:URL, success:@escaping ((Data) -> Swift.Void), fail:@escaping ((Error) -> Swift.Void)) -> URLSessionDownloadTask? {
-        let task = self.session.downloadTask(with: url) {[weak self] (url, response, error) in
-            self?.completeQueue?.addOperation {
-                guard let url = url else {
-                    if let error = error {
-                        fail(error)
-                    } else {
-                        fail(NSError(domain: "request fail", code: -1, userInfo: nil) as Error)
-                    }
-                    return
-                }
-                do {
-                    let data = try Data(contentsOf: url)
-                    success(data)
-                } catch let error {
-                    fail(error)
-                }
+        let task = self.session.downloadTask(with: url) {(url, response, error) in
+            guard let url = url else {
+                fail(error ?? NSError(domain: "unkonw request error", code: -1, userInfo: nil) as Error)
+                return
+            }
+            do {
+                let data = try Data(contentsOf: url)
+                success(data)
+            } catch let error {
+                fail(error)
             }
         }
         task.resume()
         return task
     }
-    
-    
 }
 
 

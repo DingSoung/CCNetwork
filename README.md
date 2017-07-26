@@ -18,7 +18,7 @@ github "DingSoung/Network"
 ```
 
 ```Swift
- Network.get(url: "http://www.guanggoo.com/", success: { (data) in
-        }, fail: fail)
+Network.get(url: "http://www.guanggoo.com/", success: { (data) in
+}, fail: fail)
 ```
 

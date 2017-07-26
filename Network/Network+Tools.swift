@@ -6,13 +6,29 @@ import Extension
 
 extension Network {
     
+    private static let association = Association<OperationQueue>()
+    open class var completeQueue: OperationQueue {
+        get {return Network.association[self] ?? OperationQueue.main}
+        set {Network.association[self] = newValue}
+    }
+    
     // MARK: - Request
     @discardableResult open class func request(url:String, method:String, parameter:Dictionary<String, Any>?, success: @escaping ((Data) -> Swift.Void), fail: @escaping ((Error) -> Swift.Void)) -> URLSessionDataTask? {
         guard let request = Network.instance.request(httpMethod: method, url: url, parameter: (parameter as NSDictionary?)?.jsonData) else {
-            fail(NSError(domain: "generate request", code: -1, userInfo: ["url" : url]) as Error)
+            Network.completeQueue.addOperation {
+                fail(NSError(domain: "generate request fail", code: -1, userInfo: ["url" : url]) as Error)
+            }
             return nil
         }
-        return Network.instance.dataTask(request: request as URLRequest, success: success, fail: fail)
+        return Network.instance.dataTask(request: request as URLRequest, success: { (data) in
+            Network.completeQueue.addOperation {
+                success(data)
+            }
+        }, fail: { (error) in
+            Network.completeQueue.addOperation {
+                fail(error)
+            }
+        })
     }
     
     public enum httpMethod: String {
@@ -34,6 +50,12 @@ extension Network {
             fail(NSError(domain: "invalid url", code: -1, userInfo: nil) as Error)
             return nil
         }
-        return Network.instance.downloadTask(url: url, success: success, fail: fail)
+        return Network.instance.downloadTask(url: url, success: { (data) in
+            Network.completeQueue.addOperation {
+                success(data)
+            }
+        }, fail: { (error) in
+            fail(error)
+        })
     }
 }
