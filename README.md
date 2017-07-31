@@ -6,19 +6,59 @@
 [![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/DingSoung/Network/master/LICENSE.md)
 [![Donate](https://img.shields.io/badge/donate-Alipay-00BBEE.svg)](https://qr.alipay.com/paipai/downloadQrCodeImg.resource?code=aex06042bir8odhpd1fgs00)
 
-### Detail
-This is a light weight network request lirary based on NSURLSession
-support HTTP/HTTPS GET, POST and user configed network request
+#### Introduction
 
-### Usage
-add code below to your Cartfile and command `carthage update`
+Networks is a lightweight network request tool based on NSURLSession
+
+Supported functions:
+
+- GET
+- POST
+- Download
+- SSL Pinning
+
+#### Usage
+
+Add Cartfile to your project as follows and execute ``carthage update``
 
 ```
 github "DingSoung/Network"
 ```
 
-```Swift
+Execute the request
+
+```
 Network.get(url: "http://www.guanggoo.com/", success: { (data) in
 }, fail: fail)
 ```
+
+Advanced usage [Example](https://github.com/DingSoung/Example.git)
+
+#### 介绍
+
+Networks是一个轻量级的网络请求工具，基于NSURLSession
+
+支持一下功能:
+
+* GET
+* POST
+* Download
+* SSL Pinning
+
+#### 用法
+
+在你的工程添加Cartfile如下，并执行`carthage update`
+
+```
+github "DingSoung/Network"
+```
+
+执行请求
+
+```
+Network.get(url: "https://dingsoung.tk:520/", success: { (data) in
+}, fail: fail)
+```
+
+高级的用法参考 [Example](https://github.com/DingSoung/Example.git)
 
