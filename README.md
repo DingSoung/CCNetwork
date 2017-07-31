@@ -21,13 +21,13 @@ Supported functions:
 
 Add Cartfile to your project as follows and execute ``carthage update``
 
-```
+```shell
 github "DingSoung/Network"
 ```
 
 Execute the request
 
-```
+```Swift
 Network.get(url: "https://DingSoung.tk:520/", success: { (data) in
 }, fail: fail)
 ```
@@ -49,13 +49,13 @@ Networks是一个轻量级的网络请求工具，基于NSURLSession
 
 在你的工程添加Cartfile如下，并执行`carthage update`
 
-```
+```shell
 github "DingSoung/Network"
 ```
 
 执行请求
 
-```
+```Swift
 Network.get(url: "https://dingsoung.tk:520/", success: { (data) in
 }, fail: fail)
 ```
