@@ -7,16 +7,45 @@ import Foundation
     
     open static let instance = Network()
     open var session:URLSession
-    class SessionDelegateObject:NSObject, URLSessionDelegate {
+    open var sessionDelegate:SessionDelegateObject? {
+        return self.session.delegate as? Network.SessionDelegateObject
+    }
+    @objc open class SessionDelegateObject:NSObject, URLSessionDelegate {
+        open var SSLPinning:Data?
+        
         public func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
             
         }
         
         public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
-            if let trust = challenge.protectionSpace.serverTrust, challenge.previousFailureCount <= 0 {
-                completionHandler(URLSession.AuthChallengeDisposition.useCredential, URLCredential(trust:trust))
-            } else {
+            guard let serverTrust = challenge.protectionSpace.serverTrust else {
                 completionHandler(URLSession.AuthChallengeDisposition.cancelAuthenticationChallenge, nil)
+                return
+            }
+            if let localCert = self.SSLPinning, let secCertificate = SecTrustGetCertificateAtIndex(serverTrust, 0) {
+                // Set SSL policies for domain name check
+                SecTrustSetPolicies(serverTrust, SecPolicyCreateSSL(true, challenge.protectionSpace.host as CFString))
+                
+                // get Evaluate server certificate result
+                var secresult = SecTrustResultType.invalid
+                SecTrustEvaluate(serverTrust, &secresult)
+                
+                // Get remote cert data
+                let cFData = SecCertificateCopyData(secCertificate)
+                let cert = NSData(bytes: CFDataGetBytePtr(cFData), length: CFDataGetLength(cFData))
+                
+                // check
+                if errSecSuccess == SecTrustEvaluate(serverTrust, &secresult), cert.isEqual(to: localCert) {
+                    completionHandler(URLSession.AuthChallengeDisposition.useCredential, URLCredential(trust:serverTrust))
+                } else {
+                    completionHandler(URLSession.AuthChallengeDisposition.cancelAuthenticationChallenge, nil)
+                }
+            } else {
+                if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                    completionHandler(URLSession.AuthChallengeDisposition.useCredential, URLCredential(trust:serverTrust))
+                } else {
+                    completionHandler(URLSession.AuthChallengeDisposition.cancelAuthenticationChallenge, nil)
+                }
             }
         }
         
@@ -71,7 +100,7 @@ import Foundation
     deinit {
     }
     
-    final func request(httpMethod:String, url:String, parameter:Data?) -> NSMutableURLRequest? {
+    final class func request(httpMethod:String, url:String, parameter:Data?) -> NSMutableURLRequest? {
         guard let URL = NSURL(string: url) else {
             return nil
         }

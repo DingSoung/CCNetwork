@@ -14,7 +14,7 @@ extension Network {
     
     // MARK: - Request
     @discardableResult open class func request(url:String, method:String, parameter:Dictionary<String, Any>?, success: @escaping ((Data) -> Swift.Void), fail: @escaping ((Error) -> Swift.Void)) -> URLSessionDataTask? {
-        guard let request = Network.instance.request(httpMethod: method, url: url, parameter: (parameter as NSDictionary?)?.jsonData) else {
+        guard let request = Network.request(httpMethod: method, url: url, parameter: (parameter as NSDictionary?)?.jsonData) else {
             Network.completeQueue.addOperation {
                 fail(NSError(domain: "generate request fail", code: -1, userInfo: ["url" : url]) as Error)
             }
