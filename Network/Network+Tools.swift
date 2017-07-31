@@ -7,6 +7,7 @@ import Extension
 extension Network {
     
     private static let association = Association<OperationQueue>()
+    /// default main queue
     open class var completeQueue: OperationQueue {
         get {return Network.association[self] ?? OperationQueue.main}
         set {Network.association[self] = newValue}
@@ -45,6 +46,7 @@ extension Network {
     }
     
     // MARK: - Download
+    /// Download
     @discardableResult open class func download(url:String, success: @escaping ((Data) -> Swift.Void), fail: @escaping ((Error) -> Swift.Void)) -> URLSessionDownloadTask? {
         guard let url = URL(string: url) else {
             fail(NSError(domain: "invalid url", code: -1, userInfo: nil) as Error)
