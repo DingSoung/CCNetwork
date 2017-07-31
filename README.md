@@ -28,7 +28,7 @@ github "DingSoung/Network"
 Execute the request
 
 ```
-Network.get(url: "http://www.guanggoo.com/", success: { (data) in
+Network.get(url: "https://DingSoung.tk:520/", success: { (data) in
 }, fail: fail)
 ```
 
