@@ -127,31 +127,14 @@ import Foundation
         return request
     }
     
-    final func dataTask(request:URLRequest, success:@escaping ((Data) -> Swift.Void), fail:@escaping ((Error) -> Swift.Void)) -> URLSessionDataTask {
-        let task = self.session.dataTask(with: request) {(data, response, error) -> Void in
-            if let data = data {
-                success(data)
-            } else {
-                fail(error ?? NSError(domain: "unkonw request error", code: -1, userInfo: nil) as Error)
-            }
-        }
+    final func dataTask(request:URLRequest, completion:@escaping (Data?, URLResponse?, Error?) -> Swift.Void) -> URLSessionDataTask {
+        let task = self.session.dataTask(with: request, completionHandler: completion)
         task.resume()
         return task
     }
     
-    final func downloadTask(url:URL, success:@escaping ((Data) -> Swift.Void), fail:@escaping ((Error) -> Swift.Void)) -> URLSessionDownloadTask? {
-        let task = self.session.downloadTask(with: url) {(url, response, error) in
-            guard let url = url else {
-                fail(error ?? NSError(domain: "unkonw request error", code: -1, userInfo: nil) as Error)
-                return
-            }
-            do {
-                let data = try Data(contentsOf: url)
-                success(data)
-            } catch let error {
-                fail(error)
-            }
-        }
+    final func downloadTask(url:URL, completion:@escaping (URL?, URLResponse?, Error?) -> Swift.Void) -> URLSessionDownloadTask? {
+        let task = self.session.downloadTask(with: url, completionHandler: completion)
         task.resume()
         return task
     }
