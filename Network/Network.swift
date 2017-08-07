@@ -81,7 +81,7 @@ import Foundation
                      open var httpCookieAcceptPolicy: HTTPCookie.AcceptPolicy
                      */
                     config.httpAdditionalHeaders = ["Accept": "application/json"] //text/html
-                    config.httpMaximumConnectionsPerHost = 10;
+                    config.httpMaximumConnectionsPerHost = 4;
                     /*
                      open var httpCookieStorage: HTTPCookieStorage?
                      open var urlCredentialStorage: URLCredentialStorage?
