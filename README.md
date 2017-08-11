@@ -1,9 +1,10 @@
-[![Release](https://img.shields.io/github/release/DingSoung/Network.svg)](https://github.com/DingSoung)
-[![Status](https://travis-ci.org/DingSoung/Network.svg?branch=master)](https://travis-ci.org/DingSoung/Network)
-[![Carthage](https://img.shields.io/badge/Carthage-compatible-yellow.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Language](https://img.shields.io/badge/Swift-3.1-FFAC45.svg?style=flat)](https://swift.org/)
-[![Platform](http://img.shields.io/badge/Platform-iOS-E9C2BD.svg?style=flat)](https://developer.apple.com)
+![Release](https://img.shields.io/github/release/DingSoung/Network.svg)
+![Status](https://travis-ci.org/DingSoung/Network.svg?branch=master)
+![Carthage](https://img.shields.io/badge/Carthage-compatible-yellow.svg?style=flat)
+![Language](https://img.shields.io/badge/Swift-3.1-FFAC45.svg?style=flat)
+![Platform](http://img.shields.io/badge/Platform-iOS-E9C2BD.svg?style=flat)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-9EA59D.svg)](paypal.me/DingSongwen)
+
 #### Introduction
 
 Networks is a lightweight network request tool based on NSURLSession
