@@ -15,6 +15,7 @@ Supported functions:
 - POST
 - Download
 - SSL Pinning
+- Network Reachability, Status and Type 
 
 #### Usage
 
@@ -33,16 +34,23 @@ Network.get(url: "https://DingSoung.tk:520/", success: { (data) in
 
 Advanced usage [Example](https://github.com/DingSoung/Example.git)
 
+#### Struct
+
+* NSURLSession task generation and processer
+* POST GET and DOWNLOAD request
+* Network reachablity and status
+
 #### 介绍
 
 Networks是一个轻量级的网络请求工具，基于NSURLSession
 
 支持一下功能:
 
-* GET
-* POST
-* Download
-* SSL Pinning
+- GET
+- POST
+- Download
+- SSL Pinning
+- Network Reachability, Status and Type 
 
 #### 用法
 

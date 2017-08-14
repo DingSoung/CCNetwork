@@ -11,6 +11,7 @@
 		CE6086FF1F06630F007E99DC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6086FD1F06630F007E99DC /* Network.swift */; };
 		CE60871D1F067215007E99DC /* Network+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE60871C1F067215007E99DC /* Network+Tools.swift */; };
 		CEBB48211F286BE300B6430A /* Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBB48201F286BE300B6430A /* Extension.framework */; };
+		CECAA5EF1F4157FC0018FE84 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECAA5EE1F4157FC0018FE84 /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		CE6086FD1F06630F007E99DC /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		CE60871C1F067215007E99DC /* Network+Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Network+Tools.swift"; sourceTree = "<group>"; };
 		CEBB48201F286BE300B6430A /* Extension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Extension.framework; path = Carthage/Build/iOS/Extension.framework; sourceTree = "<group>"; };
+		CECAA5EE1F4157FC0018FE84 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				CE6086FD1F06630F007E99DC /* Network.swift */,
 				CE60871C1F067215007E99DC /* Network+Tools.swift */,
+				CECAA5EE1F4157FC0018FE84 /* Reachability.swift */,
 				CE6086F51F0662A0007E99DC /* Network.h */,
 				CE6086F61F0662A1007E99DC /* Info.plist */,
 			);
@@ -153,6 +156,7 @@
 			files = (
 				CE60871D1F067215007E99DC /* Network+Tools.swift in Sources */,
 				CE6086FF1F06630F007E99DC /* Network.swift in Sources */,
+				CECAA5EF1F4157FC0018FE84 /* Reachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
