@@ -34,12 +34,6 @@ Network.get(url: "https://DingSoung.tk:520/", success: { (data) in
 
 Advanced usage [Example](https://github.com/DingSoung/Example.git)
 
-#### Struct
-
-* NSURLSession task generation and processer
-* POST GET and DOWNLOAD request
-* Network reachablity and status
-
 #### 介绍
 
 Networks是一个轻量级的网络请求工具，基于NSURLSession
@@ -68,4 +62,6 @@ Network.get(url: "https://dingsoung.tk:520/", success: { (data) in
 ```
 
 高级的用法参考 [Example](https://github.com/DingSoung/Example.git)
+
+
 
