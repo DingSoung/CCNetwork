@@ -1,7 +1,10 @@
 ![Release](https://img.shields.io/github/release/DingSoung/Network.svg)
 ![Status](https://travis-ci.org/DingSoung/Network.svg?branch=master)
+
 ![Carthage](https://img.shields.io/badge/Carthage-compatible-yellow.svg?style=flat)
+![SwiftPackage](https://img.shields.io/badge/SwiftPackage-compatible-E66848.svg?style=flat)
 ![Language](https://img.shields.io/badge/Swift-3.1-FFAC45.svg?style=flat)
+
 ![Platform](http://img.shields.io/badge/Platform-iOS-E9C2BD.svg?style=flat)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-9EA59D.svg)](https://paypal.me/DingSongwen)
 
@@ -17,13 +20,29 @@ Supported functions:
 - SSL Pinning
 - Network Reachability, Status and Type 
 
-#### Usage
+#### Install
+
+#### Carthage
 
 Add Cartfile to your project as follows and execute ``carthage update``
 
 ```shell
 github "DingSoung/Network"
 ```
+
+#### Swift Package Manager
+
+```swift
+import PackageDescription
+let package = Package(
+    name: "SPMExample",
+    dependencies: [
+        .Package(url: "https://github.com/DingSoung/Network.git", Version(0,5,0)),
+    ]
+)
+```
+
+### Usage
 
 Execute the request
 
