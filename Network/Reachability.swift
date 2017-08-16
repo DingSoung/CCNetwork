@@ -12,7 +12,7 @@ import SystemConfiguration
  }
  */
 
-@objc open class Reachability:NSObject {
+@objc open class Reachability: NSObject {
     
     public static let notification = "NetworkReachabilityChangedNotification"
     

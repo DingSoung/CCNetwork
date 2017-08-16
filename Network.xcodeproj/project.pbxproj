@@ -9,9 +9,10 @@
 /* Begin PBXBuildFile section */
 		CE6086F71F0662A1007E99DC /* Network.h in Headers */ = {isa = PBXBuildFile; fileRef = CE6086F51F0662A0007E99DC /* Network.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE6086FF1F06630F007E99DC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6086FD1F06630F007E99DC /* Network.swift */; };
-		CE60871D1F067215007E99DC /* Network+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE60871C1F067215007E99DC /* Network+Tools.swift */; };
+		CE60871D1F067215007E99DC /* Network+HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE60871C1F067215007E99DC /* Network+HTTPMethod.swift */; };
 		CEBB48211F286BE300B6430A /* Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBB48201F286BE300B6430A /* Extension.framework */; };
 		CECAA5EF1F4157FC0018FE84 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECAA5EE1F4157FC0018FE84 /* Reachability.swift */; };
+		CECAA6EA1F4431C40018FE84 /* Network+Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECAA6E91F4431C40018FE84 /* Network+Task.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,9 +20,10 @@
 		CE6086F51F0662A0007E99DC /* Network.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Network.h; sourceTree = "<group>"; };
 		CE6086F61F0662A1007E99DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE6086FD1F06630F007E99DC /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
-		CE60871C1F067215007E99DC /* Network+Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Network+Tools.swift"; sourceTree = "<group>"; };
+		CE60871C1F067215007E99DC /* Network+HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Network+HTTPMethod.swift"; sourceTree = "<group>"; };
 		CEBB48201F286BE300B6430A /* Extension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Extension.framework; path = Carthage/Build/iOS/Extension.framework; sourceTree = "<group>"; };
 		CECAA5EE1F4157FC0018FE84 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		CECAA6E91F4431C40018FE84 /* Network+Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Network+Task.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +59,8 @@
 			isa = PBXGroup;
 			children = (
 				CE6086FD1F06630F007E99DC /* Network.swift */,
-				CE60871C1F067215007E99DC /* Network+Tools.swift */,
+				CECAA6E91F4431C40018FE84 /* Network+Task.swift */,
+				CE60871C1F067215007E99DC /* Network+HTTPMethod.swift */,
 				CECAA5EE1F4157FC0018FE84 /* Reachability.swift */,
 				CE6086F51F0662A0007E99DC /* Network.h */,
 				CE6086F61F0662A1007E99DC /* Info.plist */,
@@ -154,7 +157,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE60871D1F067215007E99DC /* Network+Tools.swift in Sources */,
+				CE60871D1F067215007E99DC /* Network+HTTPMethod.swift in Sources */,
+				CECAA6EA1F4431C40018FE84 /* Network+Task.swift in Sources */,
 				CE6086FF1F06630F007E99DC /* Network.swift in Sources */,
 				CECAA5EF1F4157FC0018FE84 /* Reachability.swift in Sources */,
 			);
