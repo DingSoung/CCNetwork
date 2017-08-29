@@ -19,11 +19,11 @@ extension Network {
     }
     
     /// POST
-    @discardableResult open class func post(url:String, parameter:Dictionary<String, Any>, success: @escaping ((Data) -> Swift.Void), fail: @escaping ((Error) -> Swift.Void)) -> URLSessionTask? {
+    @discardableResult open class func post(url:String, parameter:Dictionary<String, Any>, success: @escaping ((Data) -> Swift.Void), fail: @escaping ((Error) -> Swift.Void)) -> URLSessionDataTask? {
         return Network.data(url: url, method: HTTPMethod.post.rawValue, parameter: parameter, success: success, fail: fail)
     }
     /// GET
-    @discardableResult open class func get(url:String, success:@escaping ((Data) -> Swift.Void), fail:@escaping ((Error) -> Swift.Void)) -> URLSessionTask? {
+    @discardableResult open class func get(url:String, success:@escaping ((Data) -> Swift.Void), fail:@escaping ((Error) -> Swift.Void)) -> URLSessionDataTask? {
         return Network.data(url: url, method: HTTPMethod.get.rawValue, parameter: nil, success: success, fail: fail)
     }
 }
