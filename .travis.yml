@@ -1,6 +1,6 @@
 language: swift
 os: osx
-osx_image: xcode8.3
+osx_image: xcode9
 before_install:
   - /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   - brew update
@@ -12,7 +12,7 @@ script:
   - xcodebuild clean -scheme Network_tvOS | xcpretty
   - xcodebuild clean -scheme Network_watchOS | xcpretty
 
-  - xcodebuild -project Network.xcodeproj -scheme Network -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' | xcpretty
+  - xcodebuild -project Network.xcodeproj -scheme Network -destination 'platform=iOS Simulator,name=Generic iOS Device' | xcpretty
   - xcodebuild -project Network.xcodeproj -scheme Network_macOS -destination 'arch=x86_64' | xcpretty
-  - xcodebuild -project Network.xcodeproj -scheme Network_tvOS -destination 'name=Apple TV 1080p,OS=9.0' | xcpretty
-  - xcodebuild -project Network.xcodeproj -scheme Network_watchOS -destination 'name=Apple Watch - 42mm,OS=2.0' | xcpretty
+  - xcodebuild -project Network.xcodeproj -scheme Network_tvOS -destination 'name=Generic tvOS Device' | xcpretty
+  - xcodebuild -project Network.xcodeproj -scheme Network_watchOS -destination 'name=Generic watchOS Device' | xcpretty

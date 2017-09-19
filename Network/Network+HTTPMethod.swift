@@ -2,8 +2,8 @@
 //  Copyright © 2016 DingSoung. All rights reserved.
 
 import Foundation
-import Extension
 
+@objc
 extension Network {
     
     fileprivate enum HTTPMethod: String {

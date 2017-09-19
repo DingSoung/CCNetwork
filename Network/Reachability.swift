@@ -12,13 +12,14 @@ import SystemConfiguration
  }
  */
 
-@objc open class Reachability: NSObject {
+@objcMembers
+open class Reachability: NSObject {
     
-    public static let notification = "NetworkReachabilityChangedNotification"
+    @objc public static let notification = "NetworkReachabilityChangedNotification"
     
     private var networkReachability:SCNetworkReachability?
     private var notifying: Bool = false
-    
+
     public init?(hostName: String) {
         self.networkReachability = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, hostName)
         
@@ -96,7 +97,7 @@ import SystemConfiguration
             self.notifying = false
         }
     }
-    
+
     open var currentReachabilityFlags: SCNetworkReachabilityFlags {
         var flags = SCNetworkReachabilityFlags(rawValue: 0)
         

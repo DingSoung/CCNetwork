@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CE6086F11F0662A0007E99DC"
-               BuildableName = "Network.framework"
-               BlueprintName = "Network"
+               BlueprintIdentifier = "CE9AEA541F711FA30010D22E"
+               BuildableName = "Network_macOS.framework"
+               BlueprintName = "Network_macOS"
                ReferencedContainer = "container:Network.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,9 +47,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CE6086F11F0662A0007E99DC"
-            BuildableName = "Network.framework"
-            BlueprintName = "Network"
+            BlueprintIdentifier = "CE9AEA541F711FA30010D22E"
+            BuildableName = "Network_macOS.framework"
+            BlueprintName = "Network_macOS"
             ReferencedContainer = "container:Network.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,9 +65,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CE6086F11F0662A0007E99DC"
-            BuildableName = "Network.framework"
-            BlueprintName = "Network"
+            BlueprintIdentifier = "CE9AEA541F711FA30010D22E"
+            BuildableName = "Network_macOS.framework"
+            BlueprintName = "Network_macOS"
             ReferencedContainer = "container:Network.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

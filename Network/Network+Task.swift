@@ -2,11 +2,44 @@
 //  Copyright © 2017年 DingSoung. All rights reserved.
 
 import Foundation
-import Extension
 
+// copy from Extension Swift+Association.swift
+fileprivate final class Association<T: Any> {
+
+    private let policy: objc_AssociationPolicy
+
+    /// - Parameter policy: An association policy that will be used when linking objects.
+    public init(policy: objc_AssociationPolicy = .OBJC_ASSOCIATION_RETAIN_NONATOMIC) {
+
+        self.policy = policy
+    }
+
+    /// Accesses associated object.
+    /// - Parameter index: An object whose associated object is to be accessed.
+    public subscript(index: Any) -> T? {
+        get {return objc_getAssociatedObject(index, Unmanaged.passUnretained(self).toOpaque()) as? T}
+        set { objc_setAssociatedObject(index, Unmanaged.passUnretained(self).toOpaque(), newValue, policy) }
+    }
+}
+
+extension Dictionary {
+
+    /// Dictionary -> JSON Data
+    fileprivate var jsonData: Data? {
+        do {
+            return try JSONSerialization.data(withJSONObject: self, options: JSONSerialization.WritingOptions.prettyPrinted)
+        } catch let error as NSError {
+            print("format \(String(describing: self)) to Data fail:\(error.domain)")
+            return nil
+        }
+    }
+}
+
+
+@objc
 extension Network {
     
-    private static let association = Association<OperationQueue>()
+    @nonobjc private static let association = Association<OperationQueue>()
     /// default main queue
     open class var completeQueue: OperationQueue {
         get {return Network.association[self] ?? OperationQueue.main}
