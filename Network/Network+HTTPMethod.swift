@@ -3,6 +3,18 @@
 
 import Foundation
 
+extension Dictionary {
+    /// Dictionary -> JSON Data
+    fileprivate var jsonData: Data? {
+        do {
+            return try JSONSerialization.data(withJSONObject: self, options: JSONSerialization.WritingOptions.prettyPrinted)
+        } catch let error as NSError {
+            print("format \(String(describing: self)) to Data fail:\(error.domain)")
+            return nil
+        }
+    }
+}
+
 @objc
 extension Network {
     
@@ -19,11 +31,11 @@ extension Network {
     }
     
     /// POST
-    @discardableResult open class func post(url:String, parameter:Dictionary<String, Any>, success: @escaping ((Data) -> Swift.Void), fail: @escaping ((Error) -> Swift.Void)) -> URLSessionDataTask? {
-        return Network.data(url: url, method: HTTPMethod.post.rawValue, parameter: parameter, success: success, fail: fail)
+    @discardableResult open class func post(session:URLSession, url:String, parameter:Dictionary<String, Any>, success: @escaping ((Data) -> Swift.Void), fail: @escaping ((Error) -> Swift.Void)) -> URLSessionDataTask? {
+        return Network.data(session: session, url: url, method: HTTPMethod.post.rawValue, parameter: parameter.jsonData, success: success, fail: fail)
     }
     /// GET
-    @discardableResult open class func get(url:String, success:@escaping ((Data) -> Swift.Void), fail:@escaping ((Error) -> Swift.Void)) -> URLSessionDataTask? {
-        return Network.data(url: url, method: HTTPMethod.get.rawValue, parameter: nil, success: success, fail: fail)
+    @discardableResult open class func get(session:URLSession, url:String, success:@escaping ((Data) -> Swift.Void), fail:@escaping ((Error) -> Swift.Void)) -> URLSessionDataTask? {
+        return Network.data(session: session, url: url, method: HTTPMethod.get.rawValue, parameter: nil, success: success, fail: fail)
     }
 }

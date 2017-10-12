@@ -7,6 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE14D0131F8F66B4007F49D3 /* SessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14D0121F8F66B3007F49D3 /* SessionConfiguration.swift */; };
+		CE14D0141F8F67CB007F49D3 /* SessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14D0121F8F66B3007F49D3 /* SessionConfiguration.swift */; };
+		CE14D0151F8F67CC007F49D3 /* SessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14D0121F8F66B3007F49D3 /* SessionConfiguration.swift */; };
+		CE14D0161F8F67CC007F49D3 /* SessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14D0121F8F66B3007F49D3 /* SessionConfiguration.swift */; };
+		CE14D0171F8F67DF007F49D3 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6086FD1F06630F007E99DC /* Network.swift */; };
+		CE14D0181F8F67DF007F49D3 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDE6EC21F71402500A00DD2 /* SessionDelegate.swift */; };
+		CE14D0191F8F67DF007F49D3 /* Network+Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECAA6E91F4431C40018FE84 /* Network+Task.swift */; };
+		CE14D01A1F8F67DF007F49D3 /* Network+HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE60871C1F067215007E99DC /* Network+HTTPMethod.swift */; };
+		CE14D01B1F8F67DF007F49D3 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECAA5EE1F4157FC0018FE84 /* Reachability.swift */; };
+		CE14D01D1F8F67E1007F49D3 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6086FD1F06630F007E99DC /* Network.swift */; };
+		CE14D01E1F8F67E1007F49D3 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDE6EC21F71402500A00DD2 /* SessionDelegate.swift */; };
+		CE14D01F1F8F67E1007F49D3 /* Network+Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECAA6E91F4431C40018FE84 /* Network+Task.swift */; };
+		CE14D0201F8F67E1007F49D3 /* Network+HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE60871C1F067215007E99DC /* Network+HTTPMethod.swift */; };
+		CE14D0211F8F67E1007F49D3 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECAA5EE1F4157FC0018FE84 /* Reachability.swift */; };
+		CE14D0231F8F67E2007F49D3 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6086FD1F06630F007E99DC /* Network.swift */; };
+		CE14D0241F8F67E2007F49D3 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDE6EC21F71402500A00DD2 /* SessionDelegate.swift */; };
+		CE14D0251F8F67E2007F49D3 /* Network+Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECAA6E91F4431C40018FE84 /* Network+Task.swift */; };
+		CE14D0261F8F67E2007F49D3 /* Network+HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE60871C1F067215007E99DC /* Network+HTTPMethod.swift */; };
+		CE14D0271F8F67E2007F49D3 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECAA5EE1F4157FC0018FE84 /* Reachability.swift */; };
+		CE14D02A1F8F6853007F49D3 /* Network+Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14D0291F8F6853007F49D3 /* Network+Request.swift */; };
 		CE6086F71F0662A1007E99DC /* Network.h in Headers */ = {isa = PBXBuildFile; fileRef = CE6086F51F0662A0007E99DC /* Network.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE6086FF1F06630F007E99DC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6086FD1F06630F007E99DC /* Network.swift */; };
 		CE60871D1F067215007E99DC /* Network+HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE60871C1F067215007E99DC /* Network+HTTPMethod.swift */; };
@@ -19,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE14D0121F8F66B3007F49D3 /* SessionConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionConfiguration.swift; sourceTree = "<group>"; };
+		CE14D0291F8F6853007F49D3 /* Network+Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network+Request.swift"; sourceTree = "<group>"; };
 		CE6086F21F0662A0007E99DC /* Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6086F51F0662A0007E99DC /* Network.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Network.h; sourceTree = "<group>"; };
 		CE6086F61F0662A1007E99DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -96,8 +118,10 @@
 			isa = PBXGroup;
 			children = (
 				CE6086FD1F06630F007E99DC /* Network.swift */,
+				CE14D0291F8F6853007F49D3 /* Network+Request.swift */,
 				CEDE6EC21F71402500A00DD2 /* SessionDelegate.swift */,
 				CECAA6E91F4431C40018FE84 /* Network+Task.swift */,
+				CE14D0121F8F66B3007F49D3 /* SessionConfiguration.swift */,
 				CE60871C1F067215007E99DC /* Network+HTTPMethod.swift */,
 				CECAA5EE1F4157FC0018FE84 /* Reachability.swift */,
 				CE6086F51F0662A0007E99DC /* Network.h */,
@@ -332,10 +356,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE60871D1F067215007E99DC /* Network+HTTPMethod.swift in Sources */,
+				CE14D0131F8F66B4007F49D3 /* SessionConfiguration.swift in Sources */,
 				CECAA6EA1F4431C40018FE84 /* Network+Task.swift in Sources */,
 				CEDE6EC31F71402500A00DD2 /* SessionDelegate.swift in Sources */,
 				CE6086FF1F06630F007E99DC /* Network.swift in Sources */,
 				CECAA5EF1F4157FC0018FE84 /* Reachability.swift in Sources */,
+				CE14D02A1F8F6853007F49D3 /* Network+Request.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +369,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE14D0181F8F67DF007F49D3 /* SessionDelegate.swift in Sources */,
+				CE14D01A1F8F67DF007F49D3 /* Network+HTTPMethod.swift in Sources */,
+				CE14D01B1F8F67DF007F49D3 /* Reachability.swift in Sources */,
+				CE14D0191F8F67DF007F49D3 /* Network+Task.swift in Sources */,
+				CE14D0171F8F67DF007F49D3 /* Network.swift in Sources */,
+				CE14D0141F8F67CB007F49D3 /* SessionConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +382,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE14D0241F8F67E2007F49D3 /* SessionDelegate.swift in Sources */,
+				CE14D0261F8F67E2007F49D3 /* Network+HTTPMethod.swift in Sources */,
+				CE14D0271F8F67E2007F49D3 /* Reachability.swift in Sources */,
+				CE14D0251F8F67E2007F49D3 /* Network+Task.swift in Sources */,
+				CE14D0231F8F67E2007F49D3 /* Network.swift in Sources */,
+				CE14D0151F8F67CC007F49D3 /* SessionConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +395,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE14D01E1F8F67E1007F49D3 /* SessionDelegate.swift in Sources */,
+				CE14D0201F8F67E1007F49D3 /* Network+HTTPMethod.swift in Sources */,
+				CE14D0211F8F67E1007F49D3 /* Reachability.swift in Sources */,
+				CE14D01F1F8F67E1007F49D3 /* Network+Task.swift in Sources */,
+				CE14D01D1F8F67E1007F49D3 /* Network.swift in Sources */,
+				CE14D0161F8F67CC007F49D3 /* SessionConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

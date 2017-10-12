@@ -8,7 +8,6 @@ public class SessionDelegate: NSObject, URLSessionDelegate {
     @objc open var SSLPinning: Data?
 
     public func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
-
     }
 
     public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
