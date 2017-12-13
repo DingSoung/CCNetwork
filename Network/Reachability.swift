@@ -14,21 +14,20 @@ import SystemConfiguration
 
 @objcMembers
 open class Reachability: NSObject {
-    
+
     @objc public static let notification = "NetworkReachabilityChangedNotification"
-    
-    private var networkReachability:SCNetworkReachability?
+
+    private var networkReachability: SCNetworkReachability?
     private var notifying: Bool = false
 
     public init?(hostName: String) {
         self.networkReachability = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, hostName)
-        
         super.init()
         if self.networkReachability == nil {
             return nil
         }
     }
-    
+
     public init?(ipAddress: sockaddr_in) {
         let RouteReachability = { (ip:inout sockaddr_in) -> SCNetworkReachability? in
             guard let defaultRouteReachability = withUnsafePointer(to: &ip, {
@@ -40,31 +39,27 @@ open class Reachability: NSObject {
             }
             return defaultRouteReachability
         }
-        
+
         var address = ipAddress
         self.networkReachability = RouteReachability(&address)
-        if (self.networkReachability != nil) {
-        } else {
+        if self.networkReachability == nil {
             var zeroAddress = sockaddr_in()
             zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
             zeroAddress.sin_family = sa_family_t(AF_INET)
             self.networkReachability = RouteReachability(&zeroAddress)
         }
-        
         super.init()
         if self.networkReachability == nil {
             return nil
         }
     }
-    
-    private override init() {
-        super.init()
-    }
-    
+
+    private override init() {}
+
     deinit {
         self.stopNotifier()
     }
-    
+
     @discardableResult open func startNotifier() -> Bool {
         guard notifying == false else {
             return false
@@ -75,13 +70,11 @@ open class Reachability: NSObject {
             SCNetworkReachabilitySetCallback(reachability, { (target: SCNetworkReachability, flags: SCNetworkReachabilityFlags, info: UnsafeMutableRawPointer?) in
                 if let currentInfo = info,
                     let networkReachability = Unmanaged<AnyObject>.fromOpaque(currentInfo).takeUnretainedValue() as? Reachability {
-                    
                     NotificationCenter.default.post(name: Notification.Name(rawValue: Reachability.notification), object: networkReachability)
                 }
             }, &context) == true else {
                 return false
         }
-        
         guard SCNetworkReachabilityScheduleWithRunLoop(reachability,
                                                        CFRunLoopGetCurrent(),
                                                        CFRunLoopMode.defaultMode.rawValue) == true else {
@@ -90,17 +83,16 @@ open class Reachability: NSObject {
         self.notifying = true
         return self.notifying
     }
-    
+
     open func stopNotifier() {
         if let reachability = self.networkReachability, self.notifying == true {
-            SCNetworkReachabilityUnscheduleFromRunLoop(reachability, CFRunLoopGetCurrent(), CFRunLoopMode.defaultMode as! CFString)
+            SCNetworkReachabilityUnscheduleFromRunLoop(reachability, CFRunLoopGetCurrent(), CFRunLoopMode.defaultMode.rawValue)
             self.notifying = false
         }
     }
 
     open var currentReachabilityFlags: SCNetworkReachabilityFlags {
         var flags = SCNetworkReachabilityFlags(rawValue: 0)
-        
         if let reachability = networkReachability, withUnsafeMutablePointer(to: &flags, { SCNetworkReachabilityGetFlags(reachability, UnsafeMutablePointer($0)) }) == true {
             return flags
         }
@@ -108,18 +100,19 @@ open class Reachability: NSObject {
             return []
         }
     }
-    
-    open var reachable:Bool {
+
+    open var reachable: Bool {
         // The target host is not reachable.
-        if (currentReachabilityFlags.contains(.reachable) == false) {
-            return false;
+        if currentReachabilityFlags.contains(.reachable) == false {
+            return false
         }
         // If the target host is reachable and no connection is required then we'll assume (for now) that you're on Wi-Fi...
         if currentReachabilityFlags.contains(.connectionRequired) == false {
             return true //Wi-Fi
         }
         // ... and the connection is on-demand (or on-traffic) if the calling application is using the CFSocketStream or higher APIs...
-        if currentReachabilityFlags.contains(.connectionOnDemand) == true || currentReachabilityFlags.contains(.connectionOnTraffic) == true {
+        if currentReachabilityFlags.contains(.connectionOnDemand) == true
+            || currentReachabilityFlags.contains(.connectionOnTraffic) == true {
             //... and no [user] intervention is needed...
             if currentReachabilityFlags.contains(.interventionRequired) == false {
                 return true //Wi-Fi
@@ -131,8 +124,8 @@ open class Reachability: NSObject {
         }
         return false
     }
-    
-    open var connectionRequired:Bool {
+
+    open var connectionRequired: Bool {
         guard let reach = self.networkReachability else {
             return false
         }
@@ -142,5 +135,4 @@ open class Reachability: NSObject {
         }
         return false
     }
-    
 }

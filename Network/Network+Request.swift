@@ -6,14 +6,12 @@ import Foundation
 @objc
 extension Network {
     public final class func request(method: String, url: String, parameter: Data?) -> NSMutableURLRequest? {
-        guard let URL = NSURL(string: url) else {
-            return nil
-        }
-        let request = NSMutableURLRequest(url: URL as URL)
+        guard let url = URL(string: url) else { return nil }
+        let request = NSMutableURLRequest(url: url)
         //request.cachePolicy
         request.timeoutInterval = 30
         //request.mainDocumentURL
-        request.networkServiceType = NSURLRequest.NetworkServiceType.default
+        request.networkServiceType = URLRequest.NetworkServiceType.default
         request.allowsCellularAccess = true
         request.httpMethod = method
         if method == "POST" {

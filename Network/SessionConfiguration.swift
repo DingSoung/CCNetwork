@@ -5,12 +5,12 @@ import Foundation
 
 @objcMembers
 public class SessionConfiguration: URLSessionConfiguration {
+
     override init() {
         super.init()
-
         self.requestCachePolicy = URLRequest.CachePolicy.useProtocolCachePolicy
-        self.timeoutIntervalForRequest = 60.0;
-        self.timeoutIntervalForResource = 60 * 60 * 24 * 7;
+        self.timeoutIntervalForRequest = 60.0
+        self.timeoutIntervalForResource = 60 * 60 * 24 * 7
         self.networkServiceType = NSURLRequest.NetworkServiceType.default
         self.allowsCellularAccess = true
         //config.isDiscretionary = true

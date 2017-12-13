@@ -17,7 +17,7 @@ extension Dictionary {
 
 @objc
 extension Network {
-    
+
     fileprivate enum HTTPMethod: String {
         case options = "OPTIONS"
         case get     = "GET"
@@ -29,13 +29,20 @@ extension Network {
         case trace   = "TRACE"
         case connect = "CONNECT"
     }
-    
+
     /// POST
-    @discardableResult open class func post(session:URLSession, url:String, parameter:Dictionary<String, Any>, success: @escaping ((Data) -> Swift.Void), fail: @escaping ((Error) -> Swift.Void)) -> URLSessionDataTask? {
+    @discardableResult open class func post(session: URLSession,
+                                            url: String,
+                                            parameter: [String: Any],
+                                            success: @escaping ((Data) -> Swift.Void),
+                                            fail: @escaping ((Error) -> Swift.Void)) -> URLSessionDataTask? {
         return Network.data(session: session, url: url, method: HTTPMethod.post.rawValue, parameter: parameter.jsonData, success: success, fail: fail)
     }
     /// GET
-    @discardableResult open class func get(session:URLSession, url:String, success:@escaping ((Data) -> Swift.Void), fail:@escaping ((Error) -> Swift.Void)) -> URLSessionDataTask? {
+    @discardableResult open class func get(session: URLSession,
+                                           url: String,
+                                           success: @escaping ((Data) -> Swift.Void),
+                                           fail: @escaping ((Error) -> Swift.Void)) -> URLSessionDataTask? {
         return Network.data(session: session, url: url, method: HTTPMethod.get.rawValue, parameter: nil, success: success, fail: fail)
     }
 }

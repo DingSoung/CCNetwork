@@ -7,8 +7,7 @@ import Foundation
 public class SessionDelegate: NSObject, URLSessionDelegate {
     @objc open var SSLPinning: Data?
 
-    public func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
-    }
+    public func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {}
 
     public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
         guard let serverTrust = challenge.protectionSpace.serverTrust else {
@@ -29,20 +28,18 @@ public class SessionDelegate: NSObject, URLSessionDelegate {
 
             // check
             if errSecSuccess == SecTrustEvaluate(serverTrust, &secresult), cert.isEqual(to: localCert) {
-                completionHandler(URLSession.AuthChallengeDisposition.useCredential, URLCredential(trust:serverTrust))
+                completionHandler(URLSession.AuthChallengeDisposition.useCredential, URLCredential(trust: serverTrust))
             } else {
                 completionHandler(URLSession.AuthChallengeDisposition.cancelAuthenticationChallenge, nil)
             }
         } else {
             if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-                completionHandler(URLSession.AuthChallengeDisposition.useCredential, URLCredential(trust:serverTrust))
+                completionHandler(URLSession.AuthChallengeDisposition.useCredential, URLCredential(trust: serverTrust))
             } else {
                 completionHandler(URLSession.AuthChallengeDisposition.cancelAuthenticationChallenge, nil)
             }
         }
     }
 
-    public func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
-
-    }
+    public func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {}
 }

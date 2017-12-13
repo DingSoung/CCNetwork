@@ -17,16 +17,15 @@ fileprivate final class Association<T: Any> {
 
 @objc
 extension Network {
-    
     @nonobjc private static let association = Association<OperationQueue>()
     /// default main queue
     open class var completeQueue: OperationQueue {
         get {return Network.association[self] ?? OperationQueue.main}
         set {Network.association[self] = newValue}
     }
-        
+
     // MARK: - Data Task
-    @discardableResult open class func data(session:URLSession,
+    @discardableResult open class func data(session: URLSession,
                                             url: String,
                                             method: String,
                                             parameter: Data?,
@@ -34,11 +33,11 @@ extension Network {
                                             fail: @escaping ((Error) -> Swift.Void)) -> URLSessionDataTask? {
         guard let request = Network.request(method: method, url: url, parameter: parameter) as URLRequest? else {
             Network.completeQueue.addOperation {
-                fail(NSError(domain: "generate request fail", code: -1, userInfo: ["url" : url]) as Error)
+                fail(NSError(domain: "generate request fail", code: -1, userInfo: ["url": url]) as Error)
             }
             return nil
         }
-        let task  = session.dataTask(with: request) { (data, response, error) in
+        let task  = session.dataTask(with: request) { (data, _, error) in
             Network.completeQueue.addOperation {
                 if let data = data {
                     success(data)
@@ -50,20 +49,20 @@ extension Network {
         task.resume()
         return task
     }
-    
+
     // MARK: - Download Task
-    @discardableResult open class func download(session:URLSession,
-                                                url:String,
+    @discardableResult open class func download(session: URLSession,
+                                                url: String,
                                                 success: @escaping ((Data) -> Swift.Void),
                                                 fail: @escaping ((Error) -> Swift.Void)) -> URLSessionDownloadTask? {
         guard var request = Network.request(method: "GET", url: url, parameter: nil) as URLRequest? else {
             Network.completeQueue.addOperation {
-                fail(NSError(domain: "generate request fail", code: -1, userInfo: ["url" : url]) as Error)
+                fail(NSError(domain: "generate request fail", code: -1, userInfo: ["url": url]) as Error)
             }
             return nil
         }
         request.allowsCellularAccess  = false
-        let task = session.downloadTask(with: request) { (url, response, error) in
+        let task = session.downloadTask(with: request) { (url, _, error) in
             Network.completeQueue.addOperation {
                 guard let url = url else {
                     fail(error ?? NSError(domain: "unkonw url of response resource error", code: -1, userInfo: nil) as Error)
@@ -80,5 +79,4 @@ extension Network {
         task.resume()
         return task
     }
-    
 }

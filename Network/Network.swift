@@ -4,16 +4,12 @@
 import Foundation
 
 @objcMembers
-public final class Network: NSObject {
+public final class Network {
     open static let shareSession = { return $0 }(
         URLSession(configuration: SessionConfiguration(),
                    delegate: SessionDelegate(),
                    delegateQueue: OperationQueue())
     )
-    fileprivate override init() {}
+    fileprivate init() {}
     deinit {}
 }
-
-
-
-
