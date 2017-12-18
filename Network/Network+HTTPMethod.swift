@@ -8,8 +8,8 @@ extension Dictionary {
     fileprivate var jsonData: Data? {
         do {
             return try JSONSerialization.data(withJSONObject: self, options: JSONSerialization.WritingOptions.prettyPrinted)
-        } catch let error as NSError {
-            print("format \(String(describing: self)) to Data fail:\(error.domain)")
+        } catch let error {
+            print(error.localizedDescription, self.debugDescription)
             return nil
         }
     }
