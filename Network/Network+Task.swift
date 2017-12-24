@@ -28,22 +28,17 @@ extension Network {
     @discardableResult open class func data(session: URLSession,
                                             url: String,
                                             method: String,
-                                            parameter: Data?,
-                                            success: @escaping ((Data) -> Swift.Void),
-                                            fail: @escaping ((Error) -> Swift.Void)) -> URLSessionDataTask? {
-        guard let request = Network.request(method: method, url: url, parameter: parameter) as URLRequest? else {
-            Network.completeQueue.addOperation {
-                fail(NSError(domain: "generate request fail", code: -1, userInfo: ["url": url]) as Error)
-            }
+                                            parameters: [String: Any]?,
+                                            complete: @escaping ((Data?, URLResponse?, Error?) -> Swift.Void)) -> URLSessionDataTask? {
+        guard let request = Network.request(method: method, url: url, parameters: parameters) as URLRequest? else {
+            complete(nil, nil, NSError(domain: "generate request fail",
+                                  code: -1,
+                                  userInfo: ["url": url]) as Error)
             return nil
         }
-        let task  = session.dataTask(with: request) { (data, _, error) in
+        let task  = session.dataTask(with: request) { (data, response, error) in
             Network.completeQueue.addOperation {
-                if let data = data {
-                    success(data)
-                } else {
-                    fail(error ?? NSError(domain: "unkonw response dara", code: -1, userInfo: nil) as Error)
-                }
+                complete(data, response, error)
             }
         }
         task.resume()
@@ -53,26 +48,25 @@ extension Network {
     // MARK: - Download Task
     @discardableResult open class func download(session: URLSession,
                                                 url: String,
-                                                success: @escaping ((Data) -> Swift.Void),
-                                                fail: @escaping ((Error) -> Swift.Void)) -> URLSessionDownloadTask? {
-        guard var request = Network.request(method: "GET", url: url, parameter: nil) as URLRequest? else {
-            Network.completeQueue.addOperation {
-                fail(NSError(domain: "generate request fail", code: -1, userInfo: ["url": url]) as Error)
-            }
+                                                complete: @escaping ((Data?, URLResponse?, Error?) -> Swift.Void)) -> URLSessionDownloadTask? {
+        guard var request = Network.request(method: "GET", url: url, parameters: nil) as URLRequest? else {
+            complete(nil, nil, NSError(domain: "generate request fail",
+                                       code: -1,
+                                       userInfo: ["url": url]) as Error)
             return nil
         }
         request.allowsCellularAccess  = false
-        let task = session.downloadTask(with: request) { (url, _, error) in
+        let task = session.downloadTask(with: request) { (url, response, error) in
             Network.completeQueue.addOperation {
-                guard let url = url else {
-                    fail(error ?? NSError(domain: "unkonw url of response resource error", code: -1, userInfo: nil) as Error)
-                    return
-                }
                 do {
+                    guard let url = url else {
+                        complete(nil, response, error ?? NSError(domain: "unkonw url of response resource error", code: -1, userInfo: nil) as Error)
+                        return
+                    }
                     let data = try Data(contentsOf: url)
-                    success(data)
-                } catch let error {
-                    fail(error)
+                    complete(data, response, error)
+                } catch let err {
+                    complete(nil, response, error ?? err)
                 }
             }
         }

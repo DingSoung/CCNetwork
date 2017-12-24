@@ -3,46 +3,33 @@
 
 import Foundation
 
-extension Dictionary {
-    /// Dictionary -> JSON Data
-    fileprivate var jsonData: Data? {
-        do {
-            return try JSONSerialization.data(withJSONObject: self, options: JSONSerialization.WritingOptions.prettyPrinted)
-        } catch let error {
-            print(error.localizedDescription, self.debugDescription)
-            return nil
-        }
-    }
-}
-
 @objc
 extension Network {
 
-    fileprivate enum HTTPMethod: String {
-        case options = "OPTIONS"
-        case get     = "GET"
-        case head    = "HEAD"
-        case post    = "POST"
-        case put     = "PUT"
-        case patch   = "PATCH"
-        case delete  = "DELETE"
-        case trace   = "TRACE"
-        case connect = "CONNECT"
+    @objc public enum HTTPMethod: Int {
+        case options = 0, get, head, post, put, patch, delete, trace, connect
     }
+    @nonobjc private static let HTTPMethodDict: [HTTPMethod: String] = [
+        .options: "OPTIONS",
+        .get: "GET",
+        .head: "HEAD",
+        .post: "POST",
+        .put: "PUT",
+        .patch: "PATCH",
+        .delete: "DELETE",
+        .trace: "TRACE",
+        .connect: "CONNECT"
+    ]
 
-    /// POST
-    @discardableResult open class func post(session: URLSession,
-                                            url: String,
-                                            parameter: [String: Any],
-                                            success: @escaping ((Data) -> Swift.Void),
-                                            fail: @escaping ((Error) -> Swift.Void)) -> URLSessionDataTask? {
-        return Network.data(session: session, url: url, method: HTTPMethod.post.rawValue, parameter: parameter.jsonData, success: success, fail: fail)
-    }
-    /// GET
-    @discardableResult open class func get(session: URLSession,
-                                           url: String,
-                                           success: @escaping ((Data) -> Swift.Void),
-                                           fail: @escaping ((Error) -> Swift.Void)) -> URLSessionDataTask? {
-        return Network.data(session: session, url: url, method: HTTPMethod.get.rawValue, parameter: nil, success: success, fail: fail)
+    @objc @discardableResult open class func request(session: URLSession = Network.shareSession,
+                                                     method: HTTPMethod,
+                                                     url: String,
+                                                     parameters: [String: Any],
+                                                     complete: @escaping ((Data?, URLResponse?, Error?) -> Swift.Void)) -> URLSessionDataTask? {
+        return Network.data(session: session,
+                            url: url,
+                            method: HTTPMethodDict[method] ?? "OPTIONS",
+                            parameters: parameters,
+                            complete: complete)
     }
 }
