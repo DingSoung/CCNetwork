@@ -4,15 +4,15 @@
 import UIKit
 
 extension URLRequest {
-    public static func request(method: String = "POST", url: String, parameters: [String: Any]?) -> URLRequest? {
+    public init?(method: String = "POST", url: String, parameters: [String: Any]?) {
         guard let url = URL(string: url) else { return nil }
-        let request = NSMutableURLRequest(url: url)
+        self.init(url: url)
         //request.cachePolicy
-        request.timeoutInterval = 30
+        self.timeoutInterval = 30
         //request.mainDocumentURL
-        request.networkServiceType = URLRequest.NetworkServiceType.default
-        request.allowsCellularAccess = true
-        request.httpMethod = method
+        self.networkServiceType = URLRequest.NetworkServiceType.default
+        self.allowsCellularAccess = true
+        self.httpMethod = method
         [
             "application/x-www-form-urlencoded; charset=utf-8": "Content-Type",
             //"multipart/form-data": "Content-Type",
@@ -21,14 +21,13 @@ extension URLRequest {
             //"charset=utf-8": "Content-Type",
             "*/*": "Accept"
             ].forEach { (key, value) in
-                request.addValue(key, forHTTPHeaderField: value)
+                self.addValue(key, forHTTPHeaderField: value)
         }
         if method == "POST", let parameters = parameters {
-            request.httpBody = query(parameters).data(using: String.Encoding.utf8, allowLossyConversion: false)
+            self.httpBody = URLRequest.query(parameters).data(using: String.Encoding.utf8, allowLossyConversion: false)
         }
-        request.httpShouldHandleCookies = true
-        request.httpShouldUsePipelining = true
-        return request as URLRequest
+        self.httpShouldHandleCookies = true
+        self.httpShouldUsePipelining = true
     }
 }
 

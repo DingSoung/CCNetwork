@@ -3,29 +3,26 @@
 
 import Foundation
 
-@objcMembers
-public class SessionDelegate: NSObject, URLSessionDelegate {
-    @objc open var SSLPinning: Data?
+@objcMembers public class SessionDelegate: NSObject {
+    open var sslPinning: Data?
+}
 
+extension SessionDelegate: URLSessionDelegate {
     public func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {}
-
     public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
         guard let serverTrust = challenge.protectionSpace.serverTrust else {
             completionHandler(URLSession.AuthChallengeDisposition.cancelAuthenticationChallenge, nil)
             return
         }
-        if let localCert = self.SSLPinning, let secCertificate = SecTrustGetCertificateAtIndex(serverTrust, 0) {
+        if let localCert = self.sslPinning, let secCertificate = SecTrustGetCertificateAtIndex(serverTrust, 0) {
             // Set SSL policies for domain name check
             SecTrustSetPolicies(serverTrust, SecPolicyCreateSSL(true, challenge.protectionSpace.host as CFString))
-
             // get Evaluate server certificate result
             var secresult = SecTrustResultType.invalid
             SecTrustEvaluate(serverTrust, &secresult)
-
             // Get remote cert data
             let cFData = SecCertificateCopyData(secCertificate)
             let cert = NSData(bytes: CFDataGetBytePtr(cFData), length: CFDataGetLength(cFData))
-
             // check
             if errSecSuccess == SecTrustEvaluate(serverTrust, &secresult), cert.isEqual(to: localCert) {
                 completionHandler(URLSession.AuthChallengeDisposition.useCredential, URLCredential(trust: serverTrust))
@@ -40,6 +37,5 @@ public class SessionDelegate: NSObject, URLSessionDelegate {
             }
         }
     }
-
     public func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {}
 }

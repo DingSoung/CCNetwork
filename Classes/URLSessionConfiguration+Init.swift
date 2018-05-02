@@ -3,14 +3,12 @@
 
 import Foundation
 
-@objcMembers
-public class SessionConfiguration: URLSessionConfiguration {
-
-    override init() {
-        super.init()
+extension URLSessionConfiguration {
+    public convenience init(timeout: TimeInterval, httpHeaders: [AnyHashable: Any]?) {
+        self.init()
         self.requestCachePolicy = URLRequest.CachePolicy.useProtocolCachePolicy
-        self.timeoutIntervalForRequest = 60.0
-        self.timeoutIntervalForResource = 60 * 60 * 24 * 7
+        self.timeoutIntervalForRequest = timeout
+        self.timeoutIntervalForResource = timeout * 60 * 24 * 7
         self.networkServiceType = NSURLRequest.NetworkServiceType.default
         self.allowsCellularAccess = true
         //config.isDiscretionary = true
@@ -26,7 +24,7 @@ public class SessionConfiguration: URLSessionConfiguration {
         self.httpShouldUsePipelining = false
         self.httpShouldSetCookies = true
         self.httpCookieAcceptPolicy = HTTPCookie.AcceptPolicy.onlyFromMainDocumentDomain
-        self.httpAdditionalHeaders = ["Accept": "application/json"] //text/html
+        self.httpAdditionalHeaders = httpHeaders
         self.httpMaximumConnectionsPerHost = 4
         self.httpCookieStorage =  HTTPCookieStorage.shared
         self.urlCredentialStorage = URLCredentialStorage.shared

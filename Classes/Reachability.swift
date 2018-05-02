@@ -4,15 +4,15 @@
 import Foundation
 import SystemConfiguration
 
-@objc public enum ReachabilityStatus: Int {
+public enum ReachabilityStatus: Int {
     case notReachable = 0
     case reachableViaWiFi
     case reachableViaWWAN
 }
 
-@objcMembers open class Reachability: NSObject {
+open class Reachability: NSObject {
 
-    @objc public static let notification = "NetworkReachabilityChangedNotification"
+    public static let notification = "NetworkReachabilityChangedNotification"
 
     private var networkReachability: SCNetworkReachability?
     private var notifying: Bool = false
