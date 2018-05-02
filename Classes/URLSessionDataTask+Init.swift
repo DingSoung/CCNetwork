@@ -18,7 +18,6 @@ import UIKit
                 completion(data, response, error)
             }
         }
-        task.resume()
         return task
     }
 
@@ -36,7 +35,6 @@ import UIKit
                 completion(nil, response, error ?? err)
             }
         }
-        task.resume()
         return task
     }
 }
