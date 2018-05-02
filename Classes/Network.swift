@@ -13,3 +13,9 @@ public final class Network {
     fileprivate init() {}
     deinit {}
 }
+
+extension Network {
+    // TODO: create functiuon to generate request, update request, generate task, manager request, progress response, custom complete queue
+    // TODO: support use user delegate
+    // TDOD: complete reach ability
+}

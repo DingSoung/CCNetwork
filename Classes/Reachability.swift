@@ -4,16 +4,13 @@
 import Foundation
 import SystemConfiguration
 
-/*
- @objc enum ReachabilityStatus:Int {
- case notReachable = 0
- case reachableViaWiFi
- case reachableViaWWAN
- }
- */
+@objc public enum ReachabilityStatus: Int {
+    case notReachable = 0
+    case reachableViaWiFi
+    case reachableViaWWAN
+}
 
-@objcMembers
-open class Reachability: NSObject {
+@objcMembers open class Reachability: NSObject {
 
     @objc public static let notification = "NetworkReachabilityChangedNotification"
 
@@ -29,7 +26,7 @@ open class Reachability: NSObject {
     }
 
     public init?(ipAddress: sockaddr_in) {
-        let RouteReachability = { (ip:inout sockaddr_in) -> SCNetworkReachability? in
+        let routeReachability = { (ip: inout sockaddr_in) -> SCNetworkReachability? in
             guard let defaultRouteReachability = withUnsafePointer(to: &ip, {
                 $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
                     SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, $0)
@@ -41,19 +38,18 @@ open class Reachability: NSObject {
         }
 
         var address = ipAddress
-        self.networkReachability = RouteReachability(&address)
+        self.networkReachability = routeReachability(&address)
         if self.networkReachability == nil {
             var zeroAddress = sockaddr_in()
             zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
             zeroAddress.sin_family = sa_family_t(AF_INET)
-            self.networkReachability = RouteReachability(&zeroAddress)
+            self.networkReachability = routeReachability(&zeroAddress)
         }
         super.init()
         if self.networkReachability == nil {
             return nil
         }
     }
-
     private override init() {}
 
     deinit {
@@ -67,7 +63,7 @@ open class Reachability: NSObject {
         var context = SCNetworkReachabilityContext()
         context.info = UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque())
         guard let reachability = self.networkReachability,
-            SCNetworkReachabilitySetCallback(reachability, { (target: SCNetworkReachability, flags: SCNetworkReachabilityFlags, info: UnsafeMutableRawPointer?) in
+            SCNetworkReachabilitySetCallback(reachability, { (_: SCNetworkReachability, _: SCNetworkReachabilityFlags, info: UnsafeMutableRawPointer?) in
                 if let currentInfo = info,
                     let networkReachability = Unmanaged<AnyObject>.fromOpaque(currentInfo).takeUnretainedValue() as? Reachability {
                     NotificationCenter.default.post(name: Notification.Name(rawValue: Reachability.notification), object: networkReachability)
@@ -95,8 +91,7 @@ open class Reachability: NSObject {
         var flags = SCNetworkReachabilityFlags(rawValue: 0)
         if let reachability = networkReachability, withUnsafeMutablePointer(to: &flags, { SCNetworkReachabilityGetFlags(reachability, UnsafeMutablePointer($0)) }) == true {
             return flags
-        }
-        else {
+        } else {
             return []
         }
     }
