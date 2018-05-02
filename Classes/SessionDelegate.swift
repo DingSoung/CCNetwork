@@ -37,5 +37,7 @@ extension SessionDelegate: URLSessionDelegate {
             }
         }
     }
+    #if !os(OSX)
     public func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {}
+    #endif
 }

@@ -1,7 +1,7 @@
 //  Created by Songwen Ding on 10/12/17.
 //  Copyright © 2017 DingSoung. All rights reserved.
 
-import UIKit
+import Foundation
 
 extension URLRequest {
     public init?(method: String = "POST", url: String, parameters: [String: Any]?) {

@@ -11,13 +11,15 @@ extension URLSessionConfiguration {
         self.timeoutIntervalForResource = timeout * 60 * 24 * 7
         self.networkServiceType = NSURLRequest.NetworkServiceType.default
         self.allowsCellularAccess = true
-        //config.isDiscretionary = true
-        if #available(iOS 8.0, *) {
+        #if os(OSX)
+        if #available(OSX 10.10, *) {
+            self.isDiscretionary = true
             self.sharedContainerIdentifier = "Network"
-        } else {
-            // Fallback on earlier versions
         }
-        self.sessionSendsLaunchEvents = true
+        #else
+        self.isDiscretionary = true
+        self.sharedContainerIdentifier = "Network"
+        #endif
         self.connectionProxyDictionary = nil
         self.tlsMinimumSupportedProtocol = SSLProtocol.sslProtocol3
         self.tlsMaximumSupportedProtocol = SSLProtocol.tlsProtocol12
@@ -29,11 +31,13 @@ extension URLSessionConfiguration {
         self.httpCookieStorage =  HTTPCookieStorage.shared
         self.urlCredentialStorage = URLCredentialStorage.shared
         self.urlCache = URLCache.shared
-        if #available(iOS 9.0, *) {
-            self.shouldUseExtendedBackgroundIdleMode = true
-        } else {
-            // Fallback on earlier versions
-        }
+        #if os(iOS)
+        if #available(iOS 9.0, *) { self.shouldUseExtendedBackgroundIdleMode = true }
+        #elseif os(OSX)
+        if #available(OSX 10.11, *) { self.shouldUseExtendedBackgroundIdleMode = true }
+        #else
+        self.shouldUseExtendedBackgroundIdleMode = true
+        #endif
         self.protocolClasses = []
     }
 }
