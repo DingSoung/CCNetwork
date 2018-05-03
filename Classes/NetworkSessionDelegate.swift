@@ -3,11 +3,11 @@
 
 import Foundation
 
-@objcMembers public class SessionDelegate: NSObject {
+@objcMembers public class NetworkSessionDelegate: NSObject {
     open var sslPinning: Data?
 }
 
-extension SessionDelegate: URLSessionDelegate {
+extension NetworkSessionDelegate: URLSessionDelegate {
     public func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {}
     public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void) {
         guard let serverTrust = challenge.protectionSpace.serverTrust else {

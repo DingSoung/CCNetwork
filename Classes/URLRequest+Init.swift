@@ -4,7 +4,38 @@
 import Foundation
 
 extension URLRequest {
-    public init?(method: String = "POST", url: String, parameters: [String: Any]?) {
+    @objc public enum HTTPMethod: Int {
+        case options = 0, get, head, post, put, patch, delete, trace, connect
+    }
+}
+
+extension URLRequest.HTTPMethod {
+    fileprivate var rawString: String {
+        switch self {
+        case .options:
+            return "OPTIONS"
+        case .get:
+            return "GET"
+        case .head:
+            return "HEAD"
+        case .post:
+            return "POST"
+        case .put:
+            return "PUT"
+        case .patch:
+            return "PATCH"
+        case .delete:
+            return "DELETE"
+        case .trace:
+            return "TRACE"
+        case .connect:
+            return "connect"
+        }
+    }
+}
+
+extension URLRequest {
+    public init?(method: HTTPMethod, url: String, parameters: [String: Any]?) {
         guard let url = URL(string: url) else { return nil }
         self.init(url: url)
         //request.cachePolicy
@@ -12,7 +43,7 @@ extension URLRequest {
         //request.mainDocumentURL
         self.networkServiceType = URLRequest.NetworkServiceType.default
         self.allowsCellularAccess = true
-        self.httpMethod = method
+        self.httpMethod = method.rawString
         [
             "application/x-www-form-urlencoded; charset=utf-8": "Content-Type",
             //"multipart/form-data": "Content-Type",
@@ -23,7 +54,7 @@ extension URLRequest {
             ].forEach { (key, value) in
                 self.addValue(key, forHTTPHeaderField: value)
         }
-        if method == "POST", let parameters = parameters {
+        if method.rawString == "POST", let parameters = parameters {
             self.httpBody = URLRequest.query(parameters).data(using: String.Encoding.utf8, allowLossyConversion: false)
         }
         self.httpShouldHandleCookies = true
