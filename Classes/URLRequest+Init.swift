@@ -4,7 +4,7 @@
 import Foundation
 
 extension URLRequest {
-    @objc public enum HTTPMethod: Int {
+    public enum HTTPMethod: Int {
         case options = 0, get, head, post, put, patch, delete, trace, connect
     }
 }

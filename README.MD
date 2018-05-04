@@ -4,7 +4,7 @@
 ![Carthage](https://img.shields.io/badge/Carthage-compatible-yellow.svg?style=flat)
 ![SwiftPackage](https://img.shields.io/badge/SwiftPackage-compatible-E66848.svg?style=flat)
 
-![Language](https://img.shields.io/badge/Swift-4-FFAC45.svg?style=flat)
+![Language](https://img.shields.io/badge/Swift-4.1-FFAC45.svg?style=flat)
 ![Platform](http://img.shields.io/badge/Platform-iOS|tvOS|macOS|watchOS-E9C2BD.svg?style=flat)
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-9EA59D.svg)](https://paypal.me/DingSongwen)
@@ -47,12 +47,30 @@ let package = Package(
 
 Execute the request
 
-```Swift
-Network.get(url: "https://DingSoung.tk:520/", success: { (data) in
-}, fail: fail)
+```objc
+NSString *url = @"https://dingsoung.tk:520/";
+NSURLRequest *getRequest = [NSURLRequest requestWithMethod: HTTPMethodGet url:url parameters:nil];
+// manually
+NSURLSessionDataTask *manuallyTask = [request dataTaskWithSession:nil completion:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+     NSLog(@"%@, %@, %@", data, response, error);
+}];
+[manuallyTask resume];
+// via manager
+NSURLSessionDataTask *managerTask = [Network jsonWithRequest:request trasnform:^id _Nullable(NSDictionary<NSString *,id> * _Nonnull json) {
+     return json;
+} completion:^(id _Nullable obj, NSError * _Nullable error) {
+     NSLog(@"%@, %@", obj, error);
+}];
+[managerTask resume];
 ```
 
 Advanced usage [Example](https://github.com/DingSoung/Example.git)
+
+
+
+------
+
+
 
 #### 介绍
 
@@ -77,11 +95,20 @@ github "DingSoung/Network"
 执行请求
 
 ```Swift
-Network.get(url: "https://dingsoung.tk:520/", success: { (data) in
-}, fail: fail)
+NSString *url = @"https://dingsoung.tk:520/";
+NSURLRequest *getRequest = [NSURLRequest requestWithMethod: HTTPMethodGet url:url parameters:nil];
+// manually
+NSURLSessionDataTask *manuallyTask = [request dataTaskWithSession:nil completion:^(id _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+     NSLog(@"%@, %@, %@", data, response, error);
+}];
+[manuallyTask resume];
+// via manager
+NSURLSessionDataTask *managerTask = [Network jsonWithRequest:request trasnform:^id _Nullable(NSDictionary<NSString *,id> * _Nonnull json) {
+     return json;
+} completion:^(id _Nullable obj, NSError * _Nullable error) {
+     NSLog(@"%@, %@", obj, error);
+}];
+[managerTask resume];
 ```
 
 高级的用法参考 [Example](https://github.com/DingSoung/Example.git)
-
-
-
