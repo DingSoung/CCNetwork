@@ -3,7 +3,7 @@
 
 import Foundation
 
-extension URLSessionConfiguration {
+@objc extension URLSessionConfiguration {
     public convenience init(timeout: TimeInterval, httpHeaders: [AnyHashable: Any]?) {
         self.init()
         self.requestCachePolicy = URLRequest.CachePolicy.useProtocolCachePolicy

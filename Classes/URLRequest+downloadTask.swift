@@ -1,10 +1,5 @@
-//
-//  URLRequest+downloadTask.swift
-//  Network
-//
 //  Created by Songwen Ding on 2018/5/2.
 //  Copyright © 2018年 DingSoung. All rights reserved.
-//
 
 import Foundation
 

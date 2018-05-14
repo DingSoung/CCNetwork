@@ -10,32 +10,44 @@ extension URLRequest {
 }
 
 extension URLRequest.HTTPMethod {
+    init?(rawString: String) {
+        switch rawString {
+        case "OPTIONS": self = .options
+        case "GET": self = .get
+        case "HEAD": self = .head
+        case "POST": self = .post
+        case "PUT": self = .put
+        case "PATCH": self = .patch
+        case "DELETE": self = .delete
+        case "TRACE": self = .trace
+        case "CONNECT": self = .connect
+        default: return nil
+        }
+    }
     fileprivate var rawString: String {
         switch self {
-        case .options:
-            return "OPTIONS"
-        case .get:
-            return "GET"
-        case .head:
-            return "HEAD"
-        case .post:
-            return "POST"
-        case .put:
-            return "PUT"
-        case .patch:
-            return "PATCH"
-        case .delete:
-            return "DELETE"
-        case .trace:
-            return "TRACE"
-        case .connect:
-            return "connect"
+        case .options: return "OPTIONS"
+        case .get: return "GET"
+        case .head: return "HEAD"
+        case .post: return "POST"
+        case .put: return "PUT"
+        case .patch: return "PATCH"
+        case .delete: return "DELETE"
+        case .trace: return "TRACE"
+        case .connect: return "CONNECT"
         }
     }
 }
 
 extension URLRequest {
     public init?(method: HTTPMethod, url: String, parameters: [String: Any]?) {
+        var body: Data?
+        if let parameters = parameters {
+            body = URLRequest.query(parameters).data(using: String.Encoding.utf8, allowLossyConversion: false)
+        }
+        self.init(method: method.rawString, url: url, body: body)
+    }
+    public init?(method: String, url: String, body: Data?) {
         guard let url = URL(string: url) else { return nil }
         self.init(url: url)
         //request.cachePolicy
@@ -43,7 +55,7 @@ extension URLRequest {
         //request.mainDocumentURL
         self.networkServiceType = URLRequest.NetworkServiceType.default
         self.allowsCellularAccess = true
-        self.httpMethod = method.rawString
+        self.httpMethod = method
         [
             "application/x-www-form-urlencoded; charset=utf-8": "Content-Type",
             //"multipart/form-data": "Content-Type",
@@ -54,8 +66,8 @@ extension URLRequest {
             ].forEach { (key, value) in
                 self.addValue(key, forHTTPHeaderField: value)
         }
-        if method.rawString == "POST", let parameters = parameters {
-            self.httpBody = URLRequest.query(parameters).data(using: String.Encoding.utf8, allowLossyConversion: false)
+        if let body = body {
+            self.httpBody = body
         }
         self.httpShouldHandleCookies = true
         self.httpShouldUsePipelining = true
