@@ -41,11 +41,35 @@ extension URLRequest.HTTPMethod {
 
 extension URLRequest {
     public init?(method: HTTPMethod, url: String, parameters: [String: Any]?) {
-        var body: Data?
-        if let parameters = parameters {
-            body = URLRequest.query(parameters).data(using: String.Encoding.utf8, allowLossyConversion: false)
+        guard let parameters = parameters else {
+            self.init(method: method.rawString, url: url, body: nil)
+            return
         }
-        self.init(method: method.rawString, url: url, body: body)
+        switch method {
+        case .get, .head, .delete:
+            if parameters.isEmpty == false,
+                let u = URL(string: url),
+                var components = URLComponents(url: u, resolvingAgainstBaseURL: false) {
+                let encodedQuery = (components.percentEncodedQuery.map { $0 + "&" } ?? "") + URLRequest.query(parameters)
+                components.percentEncodedQuery = encodedQuery
+                if let encodeUrl = components.url?.absoluteString {
+                    self.init(method: method.rawString, url: encodeUrl, body: nil)
+                    return
+                }
+            }
+            self.init(method: method.rawString, url: url, body: nil)
+        case .post:
+            let body: Data?
+            do {
+                body = try JSONSerialization.data(withJSONObject: parameters, options: [])
+            } catch let error {
+                debugPrint(error.localizedDescription, parameters.debugDescription)
+                body = URLRequest.query(parameters).data(using: .utf8, allowLossyConversion: false)
+            }
+            self.init(method: method.rawString, url: url, body: body)
+        default:
+            self.init(method: method.rawString, url: url, body: nil)
+        }
     }
     public init?(method: String, url: String, body: Data?) {
         guard let url = URL(string: url) else { return nil }
@@ -57,24 +81,26 @@ extension URLRequest {
         self.allowsCellularAccess = true
         self.httpMethod = method
         [
-            "application/x-www-form-urlencoded; charset=utf-8": "Content-Type",
-            //"multipart/form-data": "Content-Type",
-            //"application/json": "Content-Type",
-            //"text/xml": "Content-Type",
-            //"charset=utf-8": "Content-Type",
-            "*/*": "Accept"
+            // Content-Type and Accept below
+            // Content-Type will be set automatic
+            // "application/x-www-form-urlencoded", "charset=utf-8", "multipart/form-data", "application/json", "text/xml"
+            // example:
+            // "*/*": "Accept"
+            // "application/x-www-form-urlencoded": "Content-Type"
             ].forEach { (key, value) in
                 self.addValue(key, forHTTPHeaderField: value)
         }
-        if let body = body {
-            self.httpBody = body
-        }
+        self.httpBody = body
         self.httpShouldHandleCookies = true
         self.httpShouldUsePipelining = true
     }
 }
 
-// MARK: - copy from alamofire
+// MARK: - parameter query, copy from alamofire
+extension NSNumber {
+    fileprivate var isBool: Bool { return CFBooleanGetTypeID() == CFGetTypeID(self) }
+}
+
 extension URLRequest {
     private static func escape(_ string: String) -> String {
         let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
@@ -129,8 +155,4 @@ extension URLRequest {
         }
         return components.map { "\($0)=\($1)" }.joined(separator: "&")
     }
-}
-
-extension NSNumber {
-    fileprivate var isBool: Bool { return CFBooleanGetTypeID() == CFGetTypeID(self) }
 }
