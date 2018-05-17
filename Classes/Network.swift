@@ -28,7 +28,8 @@ extension NetworkError: LocalizedError {
         return OperationQueue.main
     }()
     open lazy var sessionConfiguration: URLSessionConfiguration = {
-        return URLSessionConfiguration(timeout: 60, httpHeaders: ["Accept": "application/json"])
+        return URLSessionConfiguration.configuration(timeout: 60,
+                                                     httpHeaders: ["Accept-Language": Locale.preferredLanguages.first ?? Locale.current.identifier])
     }()
 }
 

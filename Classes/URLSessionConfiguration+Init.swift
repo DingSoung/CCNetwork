@@ -4,40 +4,41 @@
 import Foundation
 
 @objc extension URLSessionConfiguration {
-    public convenience init(timeout: TimeInterval, httpHeaders: [AnyHashable: Any]?) {
-        self.init()
-        self.requestCachePolicy = URLRequest.CachePolicy.useProtocolCachePolicy
-        self.timeoutIntervalForRequest = timeout
-        self.timeoutIntervalForResource = timeout * 60 * 24 * 7
-        self.networkServiceType = NSURLRequest.NetworkServiceType.default
-        self.allowsCellularAccess = true
+    public class func configuration(timeout: TimeInterval, httpHeaders: [AnyHashable: Any]?) -> URLSessionConfiguration {
+        let config = URLSessionConfiguration.default
+        config.requestCachePolicy = .useProtocolCachePolicy
+        config.timeoutIntervalForRequest = timeout
+        config.timeoutIntervalForResource = timeout * 60 * 24 * 7
+        config.networkServiceType = .default
+        config.allowsCellularAccess = true
         #if os(OSX)
         if #available(OSX 10.10, *) {
-            self.isDiscretionary = true
-            self.sharedContainerIdentifier = "Network"
+            config.isDiscretionary = true
+            config.sharedContainerIdentifier = "Network"
         }
         #else
-        self.isDiscretionary = true
-        self.sharedContainerIdentifier = "Network"
+        config.isDiscretionary = true
+        config.sharedContainerIdentifier = "Network"
         #endif
-        self.connectionProxyDictionary = nil
-        self.tlsMinimumSupportedProtocol = SSLProtocol.sslProtocol3
-        self.tlsMaximumSupportedProtocol = SSLProtocol.tlsProtocol12
-        self.httpShouldUsePipelining = false
-        self.httpShouldSetCookies = true
-        self.httpCookieAcceptPolicy = HTTPCookie.AcceptPolicy.onlyFromMainDocumentDomain
-        self.httpAdditionalHeaders = httpHeaders
-        self.httpMaximumConnectionsPerHost = 4
-        self.httpCookieStorage =  HTTPCookieStorage.shared
-        self.urlCredentialStorage = URLCredentialStorage.shared
-        self.urlCache = URLCache.shared
+        config.connectionProxyDictionary = nil
+        config.tlsMinimumSupportedProtocol = .sslProtocol3
+        config.tlsMaximumSupportedProtocol = .tlsProtocol12
+        config.httpShouldUsePipelining = false
+        config.httpShouldSetCookies = true
+        config.httpCookieAcceptPolicy = .onlyFromMainDocumentDomain
+        config.httpAdditionalHeaders = httpHeaders
+        config.httpMaximumConnectionsPerHost = 4
+        config.httpCookieStorage =  .shared
+        config.urlCredentialStorage = .shared
+        config.urlCache = URLCache.shared
         #if os(iOS)
-        if #available(iOS 9.0, *) { self.shouldUseExtendedBackgroundIdleMode = true }
+        if #available(iOS 9.0, *) { config.shouldUseExtendedBackgroundIdleMode = true }
         #elseif os(OSX)
-        if #available(OSX 10.11, *) { self.shouldUseExtendedBackgroundIdleMode = true }
+        if #available(OSX 10.11, *) { config.shouldUseExtendedBackgroundIdleMode = true }
         #else
-        self.shouldUseExtendedBackgroundIdleMode = true
+        config.shouldUseExtendedBackgroundIdleMode = true
         #endif
-        self.protocolClasses = []
+        config.protocolClasses = []
+        return config
     }
 }

@@ -7,7 +7,7 @@ extension Network {
     @discardableResult public class func json(request: URLRequest,
                                               trasnform: @escaping ([String: Any]) -> Any?,
                                               completion: @escaping (Any?, Error?) -> Void) -> URLSessionDataTask? {
-        return Network.json(request: request, trasnform: trasnform, completion: completion)
+        return Network.json(request: request, queue: .main, trasnform: trasnform, completion: completion)
     }
 }
 
