@@ -30,7 +30,6 @@
 		CE820B8B2099E77000A41DB1 /* URLRequest+downloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE820B892099E77000A41DB1 /* URLRequest+downloadTask.swift */; };
 		CE820B8C2099E77000A41DB1 /* URLRequest+downloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE820B892099E77000A41DB1 /* URLRequest+downloadTask.swift */; };
 		CE820B8D2099E77000A41DB1 /* URLRequest+downloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE820B892099E77000A41DB1 /* URLRequest+downloadTask.swift */; };
-		CE820BB52099EBAB00A41DB1 /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6086F21F0662A0007E99DC /* Network.framework */; };
 		CE97565A209B4C68001C9A00 /* Objc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE975659209B4C68001C9A00 /* Objc.swift */; };
 		CE97565B209B4C68001C9A00 /* Objc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE975659209B4C68001C9A00 /* Objc.swift */; };
 		CE97565C209B4C68001C9A00 /* Objc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE975659209B4C68001C9A00 /* Objc.swift */; };
@@ -41,16 +40,6 @@
 		CECAA5EF1F4157FC0018FE84 /* SCNetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECAA5EE1F4157FC0018FE84 /* SCNetworkReachability.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		CE820BB62099EBAB00A41DB1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CE6086E91F0662A0007E99DC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CE6086F11F0662A0007E99DC;
-			remoteInfo = Network;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		CE14D0121F8F66B3007F49D3 /* URLSessionConfiguration+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSessionConfiguration+Init.swift"; sourceTree = "<group>"; };
 		CE6086F21F0662A0007E99DC /* Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,7 +49,6 @@
 		CE820B7420995ECA00A41DB1 /* URLRequest+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Init.swift"; sourceTree = "<group>"; };
 		CE820B842099E74C00A41DB1 /* URLRequest+dataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+dataTask.swift"; sourceTree = "<group>"; };
 		CE820B892099E77000A41DB1 /* URLRequest+downloadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+downloadTask.swift"; sourceTree = "<group>"; };
-		CE820BB02099EBAB00A41DB1 /* NetworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE975659209B4C68001C9A00 /* Objc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Objc.swift; sourceTree = "<group>"; };
 		CE9AEA3B1F711F860010D22E /* Network_watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Network_watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9AEA3D1F711F860010D22E /* Network_watchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Network_watchOS.h; sourceTree = "<group>"; };
@@ -79,14 +67,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CE820BAD2099EBAB00A41DB1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CE820BB52099EBAB00A41DB1 /* Network.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,7 +113,6 @@
 				CE9AEA3B1F711F860010D22E /* Network_watchOS.framework */,
 				CE9AEA481F711F930010D22E /* Network_tvOS.framework */,
 				CE9AEA551F711FA30010D22E /* Network_macOS.framework */,
-				CE820BB02099EBAB00A41DB1 /* NetworkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -245,24 +224,6 @@
 			productReference = CE6086F21F0662A0007E99DC /* Network.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		CE820BAF2099EBAB00A41DB1 /* NetworkTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CE820BB82099EBAB00A41DB1 /* Build configuration list for PBXNativeTarget "NetworkTests" */;
-			buildPhases = (
-				CE820BAC2099EBAB00A41DB1 /* Sources */,
-				CE820BAD2099EBAB00A41DB1 /* Frameworks */,
-				CE820BAE2099EBAB00A41DB1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CE820BB72099EBAB00A41DB1 /* PBXTargetDependency */,
-			);
-			name = NetworkTests;
-			productName = NetworkTests;
-			productReference = CE820BB02099EBAB00A41DB1 /* NetworkTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		CE9AEA3A1F711F860010D22E /* Network_watchOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE9AEA401F711F860010D22E /* Build configuration list for PBXNativeTarget "Network_watchOS" */;
@@ -333,11 +294,6 @@
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
-					CE820BAF2099EBAB00A41DB1 = {
-						CreatedOnToolsVersion = 9.3;
-						DevelopmentTeam = DD5P45UV7Y;
-						ProvisioningStyle = Automatic;
-					};
 					CE9AEA3A1F711F860010D22E = {
 						CreatedOnToolsVersion = 9.0;
 						DevelopmentTeam = DD5P45UV7Y;
@@ -371,20 +327,12 @@
 				CE9AEA541F711FA30010D22E /* Network_macOS */,
 				CE9AEA471F711F930010D22E /* Network_tvOS */,
 				CE9AEA3A1F711F860010D22E /* Network_watchOS */,
-				CE820BAF2099EBAB00A41DB1 /* NetworkTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CE6086F01F0662A0007E99DC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CE820BAE2099EBAB00A41DB1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -446,13 +394,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CE820BAC2099EBAB00A41DB1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CE9AEA361F711F860010D22E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -495,14 +436,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		CE820BB72099EBAB00A41DB1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CE6086F11F0662A0007E99DC /* Network */;
-			targetProxy = CE820BB62099EBAB00A41DB1 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		CE6086F81F0662A1007E99DC /* Debug */ = {
@@ -668,50 +601,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
-			};
-			name = Release;
-		};
-		CE820BB92099EBAB00A41DB1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DD5P45UV7Y;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = NetworkTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-6166666843.NetworkTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		CE820BBA2099EBAB00A41DB1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DD5P45UV7Y;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = NetworkTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-6166666843.NetworkTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -898,15 +787,6 @@
 			buildConfigurations = (
 				CE6086FB1F0662A1007E99DC /* Debug */,
 				CE6086FC1F0662A1007E99DC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CE820BB82099EBAB00A41DB1 /* Build configuration list for PBXNativeTarget "NetworkTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CE820BB92099EBAB00A41DB1 /* Debug */,
-				CE820BBA2099EBAB00A41DB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
