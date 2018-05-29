@@ -14,7 +14,7 @@ extension URLRequest {
             if parameters.isEmpty == false,
                 let u = URL(string: url),
                 var components = URLComponents(url: u, resolvingAgainstBaseURL: false) {
-                let encodedQuery = (components.percentEncodedQuery.map { $0 + "&" } ?? "") + parameters.www_form_urlencoded
+                let encodedQuery = (components.percentEncodedQuery.map { $0 + "&" } ?? "") + parameters.wwwFormUrlEncoded
                 components.percentEncodedQuery = encodedQuery
                 if let encodeUrl = components.url?.absoluteString {
                     self.init(method: method.raw, url: encodeUrl, body: nil)
@@ -26,8 +26,8 @@ extension URLRequest {
             let cType = contentType ?? .json
             let body: Data?
             switch cType {
-            case .www_form_urlencoded:
-                body = parameters.www_form_urlencoded.data(using: .utf8, allowLossyConversion: false)
+            case .wwwFormUrlEncoded:
+                body = parameters.wwwFormUrlEncoded.data(using: .utf8, allowLossyConversion: false)
             case .json:
                 body = parameters.json
             }

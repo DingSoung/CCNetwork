@@ -34,20 +34,20 @@ extension URLRequest.HTTPMethod {
 
 extension URLRequest {
     public enum MIMEType: Int {
-        case www_form_urlencoded = 0, json
+        case wwwFormUrlEncoded = 0, json
     }
 }
 
 // MARK: - MIMEType
 extension URLRequest.MIMEType {
     init?(raw: String) {
-        if raw.hasPrefix(URLRequest.MIMEType.www_form_urlencoded.raw) { self = .www_form_urlencoded; return }
+        if raw.hasPrefix(URLRequest.MIMEType.wwwFormUrlEncoded.raw) { self = .wwwFormUrlEncoded; return }
         if raw.hasPrefix(URLRequest.MIMEType.json.raw) { self = .json; return }
         return nil
     }
     var raw: String {
         switch self {
-        case .www_form_urlencoded: return "application/x-www-form-urlencoded"
+        case .wwwFormUrlEncoded: return "application/x-www-form-urlencoded"
         case .json: return "application/json"
         }
         // unsupport type "charset=utf-8", "multipart/form-data", "text/xml"
@@ -64,7 +64,7 @@ extension Dictionary where Key == String {
             return nil
         }
     }
-    public var www_form_urlencoded: String {
+    public var wwwFormUrlEncoded: String {
         var components: [(String, String)] = []
         for key in self.keys.sorted(by: <) {
             let value = self[key]!
