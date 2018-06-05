@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		CE6086F71F0662A1007E99DC /* Network.h in Headers */ = {isa = PBXBuildFile; fileRef = CE6086F51F0662A0007E99DC /* Network.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE6257CC20C6602200697ABE /* MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6257CB20C6602200697ABE /* MIMEType.swift */; };
+		CE6257CD20C6602200697ABE /* MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6257CB20C6602200697ABE /* MIMEType.swift */; };
+		CE6257CE20C6602200697ABE /* MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6257CB20C6602200697ABE /* MIMEType.swift */; };
+		CE6257CF20C6602200697ABE /* MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6257CB20C6602200697ABE /* MIMEType.swift */; };
+		CE6257D120C6607100697ABE /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6257D020C6607100697ABE /* HTTPMethod.swift */; };
+		CE6257D220C6607100697ABE /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6257D020C6607100697ABE /* HTTPMethod.swift */; };
+		CE6257D320C6607100697ABE /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6257D020C6607100697ABE /* HTTPMethod.swift */; };
+		CE6257D420C6607100697ABE /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6257D020C6607100697ABE /* HTTPMethod.swift */; };
+		CE6257D620C6617000697ABE /* Data+MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6257D520C6617000697ABE /* Data+MIMEType.swift */; };
+		CE6257D720C6617000697ABE /* Data+MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6257D520C6617000697ABE /* Data+MIMEType.swift */; };
+		CE6257D820C6617000697ABE /* Data+MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6257D520C6617000697ABE /* Data+MIMEType.swift */; };
+		CE6257D920C6617000697ABE /* Data+MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6257D520C6617000697ABE /* Data+MIMEType.swift */; };
 		CE9AEA3F1F711F860010D22E /* Network_watchOS.h in Headers */ = {isa = PBXBuildFile; fileRef = CE9AEA3D1F711F860010D22E /* Network_watchOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE9AEA4C1F711F930010D22E /* Network_tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = CE9AEA4A1F711F930010D22E /* Network_tvOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE9AEA591F711FA30010D22E /* Network_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = CE9AEA571F711FA30010D22E /* Network_macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -35,10 +47,10 @@
 		CECFEB6420AEFE4C00E0220F /* URLRequest+downloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFEB4C20AEFE4B00E0220F /* URLRequest+downloadTask.swift */; };
 		CECFEB6520AEFE4C00E0220F /* URLRequest+downloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFEB4C20AEFE4B00E0220F /* URLRequest+downloadTask.swift */; };
 		CECFEB6620AEFE4C00E0220F /* URLRequest+downloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFEB4C20AEFE4B00E0220F /* URLRequest+downloadTask.swift */; };
-		CECFEB6720AEFE4C00E0220F /* URLRequest+Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFEB4D20AEFE4B00E0220F /* URLRequest+Types.swift */; };
-		CECFEB6820AEFE4C00E0220F /* URLRequest+Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFEB4D20AEFE4B00E0220F /* URLRequest+Types.swift */; };
-		CECFEB6920AEFE4C00E0220F /* URLRequest+Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFEB4D20AEFE4B00E0220F /* URLRequest+Types.swift */; };
-		CECFEB6A20AEFE4C00E0220F /* URLRequest+Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFEB4D20AEFE4B00E0220F /* URLRequest+Types.swift */; };
+		CECFEB6720AEFE4C00E0220F /* Dictionary+MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFEB4D20AEFE4B00E0220F /* Dictionary+MIMEType.swift */; };
+		CECFEB6820AEFE4C00E0220F /* Dictionary+MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFEB4D20AEFE4B00E0220F /* Dictionary+MIMEType.swift */; };
+		CECFEB6920AEFE4C00E0220F /* Dictionary+MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFEB4D20AEFE4B00E0220F /* Dictionary+MIMEType.swift */; };
+		CECFEB6A20AEFE4C00E0220F /* Dictionary+MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFEB4D20AEFE4B00E0220F /* Dictionary+MIMEType.swift */; };
 		CECFEB6B20AEFE4C00E0220F /* URLRequest+dataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFEB4E20AEFE4B00E0220F /* URLRequest+dataTask.swift */; };
 		CECFEB6C20AEFE4C00E0220F /* URLRequest+dataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFEB4E20AEFE4B00E0220F /* URLRequest+dataTask.swift */; };
 		CECFEB6D20AEFE4C00E0220F /* URLRequest+dataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFEB4E20AEFE4B00E0220F /* URLRequest+dataTask.swift */; };
@@ -49,6 +61,9 @@
 		CE6086F21F0662A0007E99DC /* Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6086F51F0662A0007E99DC /* Network.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Network.h; sourceTree = "<group>"; };
 		CE6086F61F0662A1007E99DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE6257CB20C6602200697ABE /* MIMEType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIMEType.swift; sourceTree = "<group>"; };
+		CE6257D020C6607100697ABE /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		CE6257D520C6617000697ABE /* Data+MIMEType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+MIMEType.swift"; sourceTree = "<group>"; };
 		CE9AEA3B1F711F860010D22E /* Network_watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Network_watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9AEA3D1F711F860010D22E /* Network_watchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Network_watchOS.h; sourceTree = "<group>"; };
 		CE9AEA3E1F711F860010D22E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,7 +79,7 @@
 		CECFEB4A20AEFE4B00E0220F /* SCNetworkReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCNetworkReachability.swift; sourceTree = "<group>"; };
 		CECFEB4B20AEFE4B00E0220F /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		CECFEB4C20AEFE4B00E0220F /* URLRequest+downloadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+downloadTask.swift"; sourceTree = "<group>"; };
-		CECFEB4D20AEFE4B00E0220F /* URLRequest+Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+Types.swift"; sourceTree = "<group>"; };
+		CECFEB4D20AEFE4B00E0220F /* Dictionary+MIMEType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+MIMEType.swift"; sourceTree = "<group>"; };
 		CECFEB4E20AEFE4B00E0220F /* URLRequest+dataTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+dataTask.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +147,16 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		CE6257DA20C661D800697ABE /* MIMEType */ = {
+			isa = PBXGroup;
+			children = (
+				CECFEB4D20AEFE4B00E0220F /* Dictionary+MIMEType.swift */,
+				CE6257D520C6617000697ABE /* Data+MIMEType.swift */,
+				CE6257CB20C6602200697ABE /* MIMEType.swift */,
+			);
+			path = MIMEType;
+			sourceTree = "<group>";
+		};
 		CE9AEA3C1F711F860010D22E /* Network_watchOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,9 +187,10 @@
 		CECFEB4620AEFE4B00E0220F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CE6257DA20C661D800697ABE /* MIMEType */,
 				CECFEB4920AEFE4B00E0220F /* Objc.swift */,
 				CECFEB4B20AEFE4B00E0220F /* Network.swift */,
-				CECFEB4D20AEFE4B00E0220F /* URLRequest+Types.swift */,
+				CE6257D020C6607100697ABE /* HTTPMethod.swift */,
 				CECFEB4720AEFE4B00E0220F /* URLRequest+Init.swift */,
 				CECFEB4E20AEFE4B00E0220F /* URLRequest+dataTask.swift */,
 				CECFEB4C20AEFE4B00E0220F /* URLRequest+downloadTask.swift */,
@@ -392,12 +418,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CECFEB6B20AEFE4C00E0220F /* URLRequest+dataTask.swift in Sources */,
+				CE6257CC20C6602200697ABE /* MIMEType.swift in Sources */,
+				CE6257D620C6617000697ABE /* Data+MIMEType.swift in Sources */,
 				CECFEB6320AEFE4C00E0220F /* URLRequest+downloadTask.swift in Sources */,
 				CECFEB5F20AEFE4C00E0220F /* Network.swift in Sources */,
-				CECFEB6720AEFE4C00E0220F /* URLRequest+Types.swift in Sources */,
+				CECFEB6720AEFE4C00E0220F /* Dictionary+MIMEType.swift in Sources */,
 				CECFEB5720AEFE4C00E0220F /* Objc.swift in Sources */,
 				CECFEB4F20AEFE4C00E0220F /* URLRequest+Init.swift in Sources */,
 				CECFEB5320AEFE4C00E0220F /* URLSessionConfiguration+Init.swift in Sources */,
+				CE6257D120C6607100697ABE /* HTTPMethod.swift in Sources */,
 				CECFEB5B20AEFE4C00E0220F /* SCNetworkReachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,12 +436,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CECFEB6E20AEFE4C00E0220F /* URLRequest+dataTask.swift in Sources */,
+				CE6257CF20C6602200697ABE /* MIMEType.swift in Sources */,
+				CE6257D920C6617000697ABE /* Data+MIMEType.swift in Sources */,
 				CECFEB6620AEFE4C00E0220F /* URLRequest+downloadTask.swift in Sources */,
 				CECFEB6220AEFE4C00E0220F /* Network.swift in Sources */,
-				CECFEB6A20AEFE4C00E0220F /* URLRequest+Types.swift in Sources */,
+				CECFEB6A20AEFE4C00E0220F /* Dictionary+MIMEType.swift in Sources */,
 				CECFEB5A20AEFE4C00E0220F /* Objc.swift in Sources */,
 				CECFEB5220AEFE4C00E0220F /* URLRequest+Init.swift in Sources */,
 				CECFEB5620AEFE4C00E0220F /* URLSessionConfiguration+Init.swift in Sources */,
+				CE6257D420C6607100697ABE /* HTTPMethod.swift in Sources */,
 				CECFEB5E20AEFE4C00E0220F /* SCNetworkReachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,12 +454,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CECFEB6D20AEFE4C00E0220F /* URLRequest+dataTask.swift in Sources */,
+				CE6257CE20C6602200697ABE /* MIMEType.swift in Sources */,
+				CE6257D820C6617000697ABE /* Data+MIMEType.swift in Sources */,
 				CECFEB6520AEFE4C00E0220F /* URLRequest+downloadTask.swift in Sources */,
 				CECFEB6120AEFE4C00E0220F /* Network.swift in Sources */,
-				CECFEB6920AEFE4C00E0220F /* URLRequest+Types.swift in Sources */,
+				CECFEB6920AEFE4C00E0220F /* Dictionary+MIMEType.swift in Sources */,
 				CECFEB5920AEFE4C00E0220F /* Objc.swift in Sources */,
 				CECFEB5120AEFE4C00E0220F /* URLRequest+Init.swift in Sources */,
 				CECFEB5520AEFE4C00E0220F /* URLSessionConfiguration+Init.swift in Sources */,
+				CE6257D320C6607100697ABE /* HTTPMethod.swift in Sources */,
 				CECFEB5D20AEFE4C00E0220F /* SCNetworkReachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,12 +472,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CECFEB6C20AEFE4C00E0220F /* URLRequest+dataTask.swift in Sources */,
+				CE6257CD20C6602200697ABE /* MIMEType.swift in Sources */,
+				CE6257D720C6617000697ABE /* Data+MIMEType.swift in Sources */,
 				CECFEB6420AEFE4C00E0220F /* URLRequest+downloadTask.swift in Sources */,
 				CECFEB6020AEFE4C00E0220F /* Network.swift in Sources */,
-				CECFEB6820AEFE4C00E0220F /* URLRequest+Types.swift in Sources */,
+				CECFEB6820AEFE4C00E0220F /* Dictionary+MIMEType.swift in Sources */,
 				CECFEB5820AEFE4C00E0220F /* Objc.swift in Sources */,
 				CECFEB5020AEFE4C00E0220F /* URLRequest+Init.swift in Sources */,
 				CECFEB5420AEFE4C00E0220F /* URLSessionConfiguration+Init.swift in Sources */,
+				CE6257D220C6607100697ABE /* HTTPMethod.swift in Sources */,
 				CECFEB5C20AEFE4C00E0220F /* SCNetworkReachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

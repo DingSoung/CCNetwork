@@ -3,58 +3,6 @@
 
 import Foundation
 
-// MARK: - HTTPMethod
-extension URLRequest {
-    public enum HTTPMethod: Int {
-        case get = 0, head, delete, post
-    }
-}
-
-extension URLRequest.HTTPMethod {
-    init?(raw: String) {
-        switch raw {
-        case "GET": self = .get
-        case "HEAD": self = .head
-        case "DELETE": self = .delete
-        case "POST": self = .post
-        default:
-            // unsupport type: "OPTIONS" "PUT" "PATCH" "TRACE" "CONNECT"
-            return nil
-        }
-    }
-    var raw: String {
-        switch self {
-        case .get: return "GET"
-        case .head: return "HEAD"
-        case .delete: return "DELETE"
-        case .post: return "POST"
-        }
-    }
-}
-
-extension URLRequest {
-    public enum MIMEType: Int {
-        case wwwFormUrlEncoded = 0, json
-    }
-}
-
-// MARK: - MIMEType
-extension URLRequest.MIMEType {
-    init?(raw: String) {
-        if raw.hasPrefix(URLRequest.MIMEType.wwwFormUrlEncoded.raw) { self = .wwwFormUrlEncoded; return }
-        if raw.hasPrefix(URLRequest.MIMEType.json.raw) { self = .json; return }
-        return nil
-    }
-    var raw: String {
-        switch self {
-        case .wwwFormUrlEncoded: return "application/x-www-form-urlencoded"
-        case .json: return "application/json"
-        }
-        // unsupport type "charset=utf-8", "multipart/form-data", "text/xml"
-    }
-}
-
-// MARK: MIME transform for Content-Type Dictionary
 extension Dictionary where Key == String {
     public var json: Data? {
         do {
@@ -78,27 +26,6 @@ extension Dictionary where Key == String {
     public var jsonString: String? {
         guard let data = self.json else { return nil }
         return String(data: data, encoding: .utf8)
-    }
-}
-
-// MARK: Others Base trasnform
-extension Data {
-    public var jsonObject: Any? {
-        do {
-            return try  JSONSerialization.jsonObject(with: self)
-        } catch let error {
-            debugPrint(error.localizedDescription, self.debugDescription)
-            return nil
-        }
-    }
-}
-
-extension Data {
-    public var jsonArray: [Any]? {
-        return self.jsonObject as? Array
-    }
-    public var jsonDictionary: [String: Any]? {
-        return self.jsonObject as? [String: Any]
     }
 }
 

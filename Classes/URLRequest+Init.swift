@@ -5,21 +5,26 @@ import Foundation
 
 extension URLRequest {
     public init?(method: HTTPMethod, url: String, parameters: [String: Any]? = nil, contentType: MIMEType? = nil) {
+        guard let url = URL(string: url) else {
+            assertionFailure("invalid url")
+            return nil
+        }
         guard let parameters = parameters else {
             self.init(method: method.raw, url: url, body: nil)
             return
         }
         switch method {
         case .get, .head, .delete:
-            if parameters.isEmpty == false,
-                let u = URL(string: url),
-                var components = URLComponents(url: u, resolvingAgainstBaseURL: false) {
-                let encodedQuery = (components.percentEncodedQuery.map { $0 + "&" } ?? "") + parameters.wwwFormUrlEncoded
-                components.percentEncodedQuery = encodedQuery
-                if let encodeUrl = components.url?.absoluteString {
-                    self.init(method: method.raw, url: encodeUrl, body: nil)
-                    return
-                }
+            guard let components = { () -> URLComponents? in
+                var c = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                let encodedQuery = (c?.percentEncodedQuery.map { $0 + "&" } ?? "") + parameters.wwwFormUrlEncoded
+                c?.percentEncodedQuery = encodedQuery
+                return c
+                }(),
+                let encodeUrl = components.url?.absoluteString,
+                let url = URL(string: encodeUrl) else {
+                    assertionFailure("invalid parameters")
+                    return nil
             }
             self.init(method: method.raw, url: url, body: nil)
         case .post:
@@ -35,8 +40,8 @@ extension URLRequest {
             self.setValue(cType.raw, forHTTPHeaderField: "Content-Type")
         }
     }
-    public init?(method: String, url: String, body: Data?) {
-        guard let url = URL(string: url) else { return nil }
+
+    public init(method: String, url: URL, body: Data?) {
         self.init(url: url)
         //request.cachePolicy
         self.timeoutInterval = 30
