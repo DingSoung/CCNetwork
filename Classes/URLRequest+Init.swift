@@ -50,7 +50,6 @@ extension URLRequest {
         self.allowsCellularAccess = true
         self.httpMethod = method
         [
-            // Content-Type will be set automatic by data type
             // example:
             // "*/*": "Accept"
             // "application/x-www-form-urlencoded": "Content-Type"
