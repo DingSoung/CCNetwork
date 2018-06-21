@@ -12,7 +12,7 @@ extension Network {
 }
 
 extension NSURLRequest {
-    @objc public class func request(method: HTTPMethod, url: String, parameters: [String: Any]?) -> NSURLRequest? {
+    @objc public class func request(method: HTTPMethod, url: URL, parameters: [String: Any]?) -> NSURLRequest? {
         guard let m = HTTPMethod(rawValue: method.rawValue) else { return nil }
         return URLRequest(method: m, url: url, parameters: parameters) as NSURLRequest?
     }
