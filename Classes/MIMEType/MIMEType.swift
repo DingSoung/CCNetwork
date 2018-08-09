@@ -4,7 +4,7 @@
 import Foundation
 
 @objc public enum MIMEType: Int {
-    case wwwFormUrlEncoded = 0, json
+    case wwwFormUrlEncoded = 0, json, formData
 }
 
 // MARK: - MIMEType
@@ -18,7 +18,8 @@ extension MIMEType {
         switch self {
         case .wwwFormUrlEncoded: return "application/x-www-form-urlencoded"
         case .json: return "application/json"
+        case .formData: return "multipart/form-data"
         }
-        // unsupport type "charset=utf-8", "multipart/form-data", "text/xml"
+        // unsupport type "charset=utf-8" "text/xml"
     }
 }

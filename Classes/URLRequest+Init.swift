@@ -18,14 +18,21 @@ extension URLRequest {
         case .post:
             let cType = contentType ?? .json
             let body: Data?
+            let contentTypeRaw: String
             switch cType {
             case .wwwFormUrlEncoded:
                 body = parameters.wwwFormUrlEncoded.data(using: .utf8, allowLossyConversion: false)
+                contentTypeRaw = cType.raw
             case .json:
                 body = parameters.json
+                contentTypeRaw = cType.raw
+            case .formData:
+                let boundary = Date().timeIntervalSince1970.hashValue.description
+                body = parameters.formData(boundary: boundary, name: "1", type: "image", file: Data())
+                contentTypeRaw = cType.raw + "; boundary=\(boundary)"
             }
             self.init(method: HTTPMethod.post.raw, url: url, body: body)
-            self.setValue(cType.raw, forHTTPHeaderField: "Content-Type")
+            self.setValue(contentTypeRaw, forHTTPHeaderField: "Content-Type")
         }
     }
 

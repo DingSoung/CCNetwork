@@ -20,6 +20,37 @@ extension Dictionary where Key == String {
         }
         return components.map { "\($0)=\($1)" }.joined(separator: "&")
     }
+    public func formData(boundary: String, name: String, type: String, file: Data) -> Data {
+        var data = Data()
+        let prifix = "--" + boundary + "\r\n"
+        self.forEach({ (key, value) in
+            if key == "file" || key == "size" { return }
+            data.appendString(prifix)
+            data.appendString("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+            data.appendString("\(value)\r\n")
+        })
+        // size
+        data.appendString(prifix)
+        data.appendString("Content-Disposition: form-data; name=\"\("size")\"\r\n\r\n")
+        data.appendString("\(file.count)\r\n")
+        // type & file
+        data.appendString(prifix)
+        data.appendString("Content-Disposition: form-data; name=\"file\"; filename=\"\(name)\"\r\n")
+        data.appendString("Content-Type: \(type)\r\n\r\n")
+        data.append(file)
+        data.appendString("\r\n")
+        data.appendString("--" + boundary + "--")
+        return data
+    }
+}
+
+extension Data {
+    fileprivate mutating func appendString(_ string: String) {
+        guard let data = string.data(using: .utf8, allowLossyConversion: false) else {
+            return
+        }
+        self.append(data)
+    }
 }
 
 extension Dictionary where Key == String {
