@@ -55,15 +55,15 @@ extension Network: URLSessionDelegate {
             let cert = NSData(bytes: CFDataGetBytePtr(cFData), length: CFDataGetLength(cFData))
             // check
             if errSecSuccess == SecTrustEvaluate(serverTrust, &secresult), cert.isEqual(to: localCert) {
-                completionHandler(URLSession.AuthChallengeDisposition.useCredential, URLCredential(trust: serverTrust))
+                completionHandler(.useCredential, URLCredential(trust: serverTrust))
             } else {
-                completionHandler(URLSession.AuthChallengeDisposition.cancelAuthenticationChallenge, nil)
+                completionHandler(.cancelAuthenticationChallenge, nil)
             }
         } else {
             if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-                completionHandler(URLSession.AuthChallengeDisposition.useCredential, URLCredential(trust: serverTrust))
+                completionHandler(.useCredential, URLCredential(trust: serverTrust))
             } else {
-                completionHandler(URLSession.AuthChallengeDisposition.cancelAuthenticationChallenge, nil)
+                completionHandler(.cancelAuthenticationChallenge, nil)
             }
         }
     }
