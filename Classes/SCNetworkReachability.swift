@@ -24,9 +24,9 @@ extension SCNetworkReachability {
 
 extension SCNetworkReachability {
     private static var updateCallBackKey: UInt8 = 0
-    public var updateCallBack: ((SCNetworkReachability) -> Void)? {
+    public var updateCallBack: ((SCNetworkReachability.Status) -> Void)? {
         set { objc_setAssociatedObject(self, &SCNetworkReachability.updateCallBackKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
-        get { return objc_getAssociatedObject(self, &SCNetworkReachability.updateCallBackKey) as? (SCNetworkReachability) -> Void }
+        get { return objc_getAssociatedObject(self, &SCNetworkReachability.updateCallBackKey) as? (SCNetworkReachability.Status) -> Void }
     }
 }
 
@@ -36,7 +36,7 @@ extension SCNetworkReachability {
         let callback: SCNetworkReachabilityCallBack = { _, _, info in
             guard let info  = info else { return }
             let networkReachability = Unmanaged<SCNetworkReachability>.fromOpaque(info).takeUnretainedValue() as SCNetworkReachability
-            networkReachability.updateCallBack?(networkReachability)
+            networkReachability.updateCallBack?(networkReachability.currentReachabilityStatus)
         }
         return SCNetworkReachabilitySetCallback(self, callback, &context)
             && SCNetworkReachabilityScheduleWithRunLoop(self, CFRunLoopGetCurrent(), CFRunLoopMode.defaultMode.rawValue)
@@ -67,11 +67,6 @@ extension SCNetworkReachability {
         }
         #endif
         return ret
-    }
-    public var connectionRequired: Bool {
-        var flags: SCNetworkReachabilityFlags = []
-        SCNetworkReachabilityGetFlags(self, &flags)
-        return flags.contains(.connectionRequired)
     }
     public var currentReachabilityStatus: Status {
         var flags: SCNetworkReachabilityFlags = []

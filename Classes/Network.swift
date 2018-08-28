@@ -3,18 +3,6 @@
 
 import Foundation
 
-private struct NetworkError: Error {
-    let code: Int
-    let message: String
-}
-
-extension NetworkError: LocalizedError {
-    fileprivate var errorDescription: String? { return self.message }
-    fileprivate var failureReason: String? { return self.message }
-    fileprivate var recoverySuggestion: String? { return "Please Check" }
-    fileprivate var helpAnchor: String? { return "Update to Latest version" }
-}
-
 @objcMembers public final class Network: NSObject {
     public static let shared = Network()
     fileprivate override init() {}
@@ -43,7 +31,7 @@ extension Network {
             if let dict = obj as? [String: Any], let json = trasnform(dict) {
                 queue.addOperation { completion(json, nil) }
             } else {
-                queue.addOperation { completion(nil, error ?? NetworkError(code: -2, message: "phrase json fail")) }
+                queue.addOperation { completion(nil, error ?? NetworkError(code: .notJSON)) }
             }
         })
     }

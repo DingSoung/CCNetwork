@@ -55,6 +55,10 @@
 		CECFEB6C20AEFE4C00E0220F /* URLRequest+dataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFEB4E20AEFE4B00E0220F /* URLRequest+dataTask.swift */; };
 		CECFEB6D20AEFE4C00E0220F /* URLRequest+dataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFEB4E20AEFE4B00E0220F /* URLRequest+dataTask.swift */; };
 		CECFEB6E20AEFE4C00E0220F /* URLRequest+dataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFEB4E20AEFE4B00E0220F /* URLRequest+dataTask.swift */; };
+		CEE63DC8213576A500CF7E69 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE63DC7213576A500CF7E69 /* NetworkError.swift */; };
+		CEE63DC9213576A500CF7E69 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE63DC7213576A500CF7E69 /* NetworkError.swift */; };
+		CEE63DCA213576A500CF7E69 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE63DC7213576A500CF7E69 /* NetworkError.swift */; };
+		CEE63DCB213576A500CF7E69 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE63DC7213576A500CF7E69 /* NetworkError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +85,7 @@
 		CECFEB4C20AEFE4B00E0220F /* URLRequest+downloadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+downloadTask.swift"; sourceTree = "<group>"; };
 		CECFEB4D20AEFE4B00E0220F /* Dictionary+MIMEType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+MIMEType.swift"; sourceTree = "<group>"; };
 		CECFEB4E20AEFE4B00E0220F /* URLRequest+dataTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+dataTask.swift"; sourceTree = "<group>"; };
+		CEE63DC7213576A500CF7E69 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +195,7 @@
 				CE6257DA20C661D800697ABE /* MIMEType */,
 				CECFEB4920AEFE4B00E0220F /* Objc.swift */,
 				CECFEB4B20AEFE4B00E0220F /* Network.swift */,
+				CEE63DC7213576A500CF7E69 /* NetworkError.swift */,
 				CE6257D020C6607100697ABE /* HTTPMethod.swift */,
 				CECFEB4720AEFE4B00E0220F /* URLRequest+Init.swift */,
 				CECFEB4E20AEFE4B00E0220F /* URLRequest+dataTask.swift */,
@@ -426,6 +432,7 @@
 				CECFEB5720AEFE4C00E0220F /* Objc.swift in Sources */,
 				CECFEB4F20AEFE4C00E0220F /* URLRequest+Init.swift in Sources */,
 				CECFEB5320AEFE4C00E0220F /* URLSessionConfiguration+Init.swift in Sources */,
+				CEE63DC8213576A500CF7E69 /* NetworkError.swift in Sources */,
 				CE6257D120C6607100697ABE /* HTTPMethod.swift in Sources */,
 				CECFEB5B20AEFE4C00E0220F /* SCNetworkReachability.swift in Sources */,
 			);
@@ -444,6 +451,7 @@
 				CECFEB5A20AEFE4C00E0220F /* Objc.swift in Sources */,
 				CECFEB5220AEFE4C00E0220F /* URLRequest+Init.swift in Sources */,
 				CECFEB5620AEFE4C00E0220F /* URLSessionConfiguration+Init.swift in Sources */,
+				CEE63DCB213576A500CF7E69 /* NetworkError.swift in Sources */,
 				CE6257D420C6607100697ABE /* HTTPMethod.swift in Sources */,
 				CECFEB5E20AEFE4C00E0220F /* SCNetworkReachability.swift in Sources */,
 			);
@@ -462,6 +470,7 @@
 				CECFEB5920AEFE4C00E0220F /* Objc.swift in Sources */,
 				CECFEB5120AEFE4C00E0220F /* URLRequest+Init.swift in Sources */,
 				CECFEB5520AEFE4C00E0220F /* URLSessionConfiguration+Init.swift in Sources */,
+				CEE63DCA213576A500CF7E69 /* NetworkError.swift in Sources */,
 				CE6257D320C6607100697ABE /* HTTPMethod.swift in Sources */,
 				CECFEB5D20AEFE4C00E0220F /* SCNetworkReachability.swift in Sources */,
 			);
@@ -480,6 +489,7 @@
 				CECFEB5820AEFE4C00E0220F /* Objc.swift in Sources */,
 				CECFEB5020AEFE4C00E0220F /* URLRequest+Init.swift in Sources */,
 				CECFEB5420AEFE4C00E0220F /* URLSessionConfiguration+Init.swift in Sources */,
+				CEE63DC9213576A500CF7E69 /* NetworkError.swift in Sources */,
 				CE6257D220C6607100697ABE /* HTTPMethod.swift in Sources */,
 				CECFEB5C20AEFE4C00E0220F /* SCNetworkReachability.swift in Sources */,
 			);
