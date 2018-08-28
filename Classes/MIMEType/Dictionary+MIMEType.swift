@@ -4,6 +4,7 @@
 import Foundation
 
 extension Dictionary where Key == String {
+    /// -> serialize to data
     public var json: Data? {
         do {
             return try JSONSerialization.data(withJSONObject: self)
@@ -12,6 +13,7 @@ extension Dictionary where Key == String {
             return nil
         }
     }
+    /// -> url encode
     public var wwwFormUrlEncoded: String {
         var components: [(String, String)] = []
         for key in self.keys.sorted(by: <) {
@@ -20,6 +22,7 @@ extension Dictionary where Key == String {
         }
         return components.map { "\($0)=\($1)" }.joined(separator: "&")
     }
+    /// -> form data
     public func formData(boundary: String, name: String, type: String, file: Data) -> Data {
         var data = Data()
         let prifix = "--" + boundary + "\r\n"
@@ -54,6 +57,7 @@ extension Data {
 }
 
 extension Dictionary where Key == String {
+    /// -> json data string
     public var jsonString: String? {
         guard let data = self.json else { return nil }
         return String(data: data, encoding: .utf8)

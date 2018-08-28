@@ -4,6 +4,7 @@
 import Foundation
 
 extension Data {
+    /// -> json object
     public var jsonObject: Any? {
         do {
             return try  JSONSerialization.jsonObject(with: self)
@@ -15,9 +16,11 @@ extension Data {
 }
 
 extension Data {
+    /// -> json array
     public var jsonArray: [Any]? {
         return self.jsonObject as? Array
     }
+    /// -> json dict
     public var jsonDictionary: [String: Any]? {
         return self.jsonObject as? [String: Any]
     }

@@ -5,13 +5,14 @@ import Foundation
 import SystemConfiguration
 
 extension SCNetworkReachability {
+    /// init with host, ex:  domain.com
     public class func reachability(hostName: String) -> SCNetworkReachability? {
         return SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, hostName)
     }
-    public class func reachability(hostAddress: inout sockaddr) -> SCNetworkReachability? {
+    class func reachability(hostAddress: inout sockaddr) -> SCNetworkReachability? {
         return SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, &hostAddress)
     }
-    public class var reachabilityForInternetConnection: SCNetworkReachability? {
+    class var reachabilityForInternetConnection: SCNetworkReachability? {
         var zeroAddress: sockaddr?
         let size = MemoryLayout<sockaddr>.size
         bzero(&zeroAddress, size)
@@ -24,6 +25,7 @@ extension SCNetworkReachability {
 
 extension SCNetworkReachability {
     private static var updateCallBackKey: UInt8 = 0
+    /// status updated callback
     public var updateCallBack: ((SCNetworkReachability.Status) -> Void)? {
         set { objc_setAssociatedObject(self, &SCNetworkReachability.updateCallBackKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
         get { return objc_getAssociatedObject(self, &SCNetworkReachability.updateCallBackKey) as? (SCNetworkReachability.Status) -> Void }
@@ -31,6 +33,7 @@ extension SCNetworkReachability {
 }
 
 extension SCNetworkReachability {
+    /// start
     @discardableResult public func start() -> Bool {
         var context = SCNetworkReachabilityContext(version: 0, info: UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque()), retain: nil, release: nil, copyDescription: nil)
         let callback: SCNetworkReachabilityCallBack = { _, _, info in
@@ -41,6 +44,7 @@ extension SCNetworkReachability {
         return SCNetworkReachabilitySetCallback(self, callback, &context)
             && SCNetworkReachabilityScheduleWithRunLoop(self, CFRunLoopGetCurrent(), CFRunLoopMode.defaultMode.rawValue)
     }
+    /// stop
     public func stop() {
         SCNetworkReachabilityUnscheduleFromRunLoop(self, CFRunLoopGetCurrent(), CFRunLoopMode.defaultMode.rawValue)
     }
@@ -68,7 +72,7 @@ extension SCNetworkReachability {
         #endif
         return ret
     }
-    public var currentReachabilityStatus: Status {
+    private var currentReachabilityStatus: Status {
         var flags: SCNetworkReachabilityFlags = []
         SCNetworkReachabilityGetFlags(self, &flags)
         return self.networkStatus(flags: flags)
