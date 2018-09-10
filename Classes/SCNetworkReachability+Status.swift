@@ -9,17 +9,18 @@ extension SCNetworkReachability {
     public class func reachability(hostName: String) -> SCNetworkReachability? {
         return SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, hostName)
     }
-    class func reachability(hostAddress: inout sockaddr) -> SCNetworkReachability? {
-        return SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, &hostAddress)
+    public class func reachability(hostAddress: inout sockaddr_in) -> SCNetworkReachability? {
+        return withUnsafePointer(to: &hostAddress, {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, $0)
+            }
+        })
     }
-    class var reachabilityForInternetConnection: SCNetworkReachability? {
-        var zeroAddress: sockaddr?
-        let size = MemoryLayout<sockaddr>.size
-        bzero(&zeroAddress, size)
-        zeroAddress?.sa_len = __uint8_t(size)
-        zeroAddress?.sa_family = sa_family_t(AF_INET)
-        guard var za = zeroAddress else { return nil }
-        return self.reachability(hostAddress: &za)
+    public class var reachabilityForInternetConnection: SCNetworkReachability? {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        return self.reachability(hostAddress: &zeroAddress)
     }
 }
 
