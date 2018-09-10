@@ -2,6 +2,7 @@
 //  Copyright © 2016年 DingSoung. All rights reserved.
 
 import Foundation
+#if !os(watchOS)
 import SystemConfiguration
 
 extension SCNetworkReachability {
@@ -79,3 +80,4 @@ extension SCNetworkReachability {
         return self.networkStatus(flags: flags)
     }
 }
+#endif
