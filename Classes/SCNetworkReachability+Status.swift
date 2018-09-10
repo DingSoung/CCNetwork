@@ -74,7 +74,7 @@ extension SCNetworkReachability {
         #endif
         return ret
     }
-    private var currentReachabilityStatus: Status {
+    public var currentReachabilityStatus: Status {
         var flags: SCNetworkReachabilityFlags = []
         SCNetworkReachabilityGetFlags(self, &flags)
         return self.networkStatus(flags: flags)
