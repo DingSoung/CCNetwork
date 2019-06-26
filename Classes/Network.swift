@@ -9,12 +9,13 @@ import Foundation
     deinit {}
 
     public lazy var session: URLSession = {
-        return URLSession(configuration: sessionConfiguration, delegate: sessionDelegate, delegateQueue: completionQueue)
+        return URLSession(configuration: self.sessionConfiguration,
+                          delegate: SessionDelegate(),
+                          delegateQueue: self.completionQueue)
     }()
-    private var sessionDelegate = SessionDelegate()
     public var sslPinning: Data? {
-        set { sessionDelegate.sslPinning = newValue }
-        get { return sessionDelegate.sslPinning }
+        set { (self.session.delegate as? SessionDelegate)?.sslPinning = newValue }
+        get { return (self.session.delegate as? SessionDelegate)?.sslPinning }
     }
     public lazy var completionQueue: OperationQueue = {
         return OperationQueue.main

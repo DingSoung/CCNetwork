@@ -3,6 +3,22 @@
 
 import Foundation
 
+#if os(iOS)
+import Extension
+#endif
+
+#if os(watchOS)
+import Extension_watchOS
+#endif
+
+#if os(macOS)
+import Extension_macOS
+#endif
+
+#if os(tvOS)
+import Extension_tvOS
+#endif
+
 extension URLRequest {
     public init(method: HTTPMethod, url: URL, parameters: [String: Any]? = nil, contentType: MIMEType? = nil) {
         guard let parameters = parameters else {
