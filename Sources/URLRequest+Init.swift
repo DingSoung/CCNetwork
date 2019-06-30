@@ -2,22 +2,7 @@
 //  Copyright © 2017 DingSoung. All rights reserved.
 
 import Foundation
-
-#if os(iOS)
 import Extension
-#endif
-
-#if os(watchOS)
-import Extension_watchOS
-#endif
-
-#if os(macOS)
-import Extension_macOS
-#endif
-
-#if os(tvOS)
-import Extension_tvOS
-#endif
 
 extension URLRequest {
     public init(method: HTTPMethod, url: URL, parameters: [String: Any]? = nil, contentType: MIMEType? = nil) {
@@ -57,7 +42,7 @@ extension URLRequest {
         //request.cachePolicy
         self.timeoutInterval = 30
         //request.mainDocumentURL
-        self.networkServiceType = URLRequest.NetworkServiceType.default
+        self.networkServiceType = .default
         self.allowsCellularAccess = true
         self.httpMethod = method
         [
