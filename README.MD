@@ -1,7 +1,6 @@
 ![Release](https://img.shields.io/github/release/DingSoung/Network.svg)
 ![Status](https://travis-ci.org/DingSoung/Network.svg?branch=master)
 
-![Carthage](https://img.shields.io/badge/Carthage-compatible-yellow.svg?style=flat)
 ![SwiftPackage](https://img.shields.io/badge/SwiftPackage-compatible-E66848.svg?style=flat)
 
 ![Language](https://img.shields.io/badge/Swift-5.0-FFAC45.svg?style=flat)
