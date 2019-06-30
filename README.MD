@@ -23,14 +23,6 @@ Supported functions:
 
 #### Install
 
-#### Carthage
-
-Add Cartfile to your project as follows and execute ``carthage update``
-
-```shell
-github "DingSoung/Network"
-```
-
 #### Swift Package Manager
 
 ```swift

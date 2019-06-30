@@ -13,8 +13,11 @@ let package = Package(
     products: [
         .library(name: "Network", targets: ["Network"])
     ],
+    dependencies: [
+        .package(url: "https://github.com/DingSoung/Extension", from: "0.8.9")
+    ],
     targets: [
-        .target(name: "Network", dependencies: [], path: "Sources")
+        .target(name: "Network", path: "Sources")
     ],
     swiftLanguageVersions: [
         .version("5.0.0")
