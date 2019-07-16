@@ -8,8 +8,8 @@ import Foundation
 }
 
 extension HTTPMethod {
-    init?(raw: String) {
-        switch raw {
+    public init?(rawString: String) {
+        switch rawString {
         case "GET": self = .get
         case "HEAD": self = .head
         case "DELETE": self = .delete
@@ -19,7 +19,8 @@ extension HTTPMethod {
             return nil
         }
     }
-    var raw: String {
+
+    public var rawString: String {
         switch self {
         case .get: return "GET"
         case .head: return "HEAD"

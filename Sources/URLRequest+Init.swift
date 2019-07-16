@@ -7,7 +7,7 @@ import Extension
 extension URLRequest {
     public init(method: HTTPMethod, url: URL, parameters: [String: Any]? = nil, contentType: MIMEType? = nil) {
         guard let parameters = parameters else {
-            self.init(method: method.raw, url: url, body: nil)
+            self.init(method: method.rawString, url: url, body: nil)
             return
         }
         switch method {
@@ -15,7 +15,7 @@ extension URLRequest {
             var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
             let encodedQuery = (components?.percentEncodedQuery.map { $0 + "&" } ?? "") + parameters.wwwFormUrlEncoded
             components?.percentEncodedQuery = encodedQuery
-            self.init(method: method.raw, url: components?.url ?? url, body: nil)
+            self.init(method: method.rawString, url: components?.url ?? url, body: nil)
         case .post:
             let cType = contentType ?? .json
             let body: Data?
@@ -32,7 +32,7 @@ extension URLRequest {
                 body = parameters.formData(boundary: boundary, name: "1", type: "image", file: Data())
                 contentTypeRaw = cType.raw + "; boundary=\(boundary)"
             }
-            self.init(method: HTTPMethod.post.raw, url: url, body: body)
+            self.init(method: HTTPMethod.post.rawString, url: url, body: body)
             self.setValue(contentTypeRaw, forHTTPHeaderField: "Content-Type")
         }
     }
