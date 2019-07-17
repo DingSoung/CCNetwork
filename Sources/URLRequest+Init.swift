@@ -5,7 +5,11 @@ import Foundation
 import Extension
 
 extension URLRequest {
-    public init(method: HTTPMethod, url: URL, parameters: [String: Any]? = nil, contentType: MIMEType? = nil) {
+    public init(method: HTTPMethod,
+                url: URL,
+                contentType: MIMEType = .json,
+                parameters: [String: Any]? = nil,
+                file: Data? = nil) {
         guard let parameters = parameters else {
             self.init(method: method.rawString, url: url, body: nil)
             return
@@ -17,20 +21,22 @@ extension URLRequest {
             components?.percentEncodedQuery = encodedQuery
             self.init(method: method.rawString, url: components?.url ?? url, body: nil)
         case .post:
-            let cType = contentType ?? .json
             let body: Data?
             let contentTypeRaw: String
-            switch cType {
+            switch contentType {
             case .wwwFormUrlEncoded:
                 body = parameters.wwwFormUrlEncoded.data(using: .utf8, allowLossyConversion: false)
-                contentTypeRaw = cType.raw
+                contentTypeRaw = contentType.raw
             case .json:
                 body = parameters.json
-                contentTypeRaw = cType.raw
+                contentTypeRaw = contentType.raw
             case .formData:
                 let boundary = Date().timeIntervalSince1970.hashValue.description
-                body = parameters.formData(boundary: boundary, name: "1", type: "image", file: Data())
-                contentTypeRaw = cType.raw + "; boundary=\(boundary)"
+                body = parameters.formData(boundary: boundary,
+                                           name: (parameters["name"] as? String) ?? boundary,
+                                           type: (parameters["type"] as? String) ?? "image",
+                                           file: file ?? Data())
+                contentTypeRaw = contentType.raw + "; boundary=\(boundary)"
             }
             self.init(method: HTTPMethod.post.rawString, url: url, body: body)
             self.setValue(contentTypeRaw, forHTTPHeaderField: "Content-Type")
