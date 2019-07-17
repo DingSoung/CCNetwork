@@ -10,7 +10,6 @@
 		CE0F0C5C22C8AC7600F72849 /* Extension in Frameworks */ = {isa = PBXBuildFile; productRef = CE0F0C5B22C8AC7600F72849 /* Extension */; };
 		CE0F0C6E22C8ADE900F72849 /* URLRequest+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F0C6222C8ADE900F72849 /* URLRequest+Init.swift */; };
 		CE0F0C7122C8ADEA00F72849 /* URLSessionConfiguration+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F0C6322C8ADE900F72849 /* URLSessionConfiguration+Init.swift */; };
-		CE0F0C7422C8ADEA00F72849 /* Objc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F0C6422C8ADE900F72849 /* Objc.swift */; };
 		CE0F0C7722C8ADEA00F72849 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F0C6522C8ADE900F72849 /* Network.swift */; };
 		CE0F0C7A22C8ADEA00F72849 /* URLRequest+downloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F0C6622C8ADE900F72849 /* URLRequest+downloadTask.swift */; };
 		CE0F0C7D22C8ADEA00F72849 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F0C6722C8ADE900F72849 /* HTTPMethod.swift */; };
@@ -24,7 +23,6 @@
 /* Begin PBXFileReference section */
 		CE0F0C6222C8ADE900F72849 /* URLRequest+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+Init.swift"; sourceTree = "<group>"; };
 		CE0F0C6322C8ADE900F72849 /* URLSessionConfiguration+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSessionConfiguration+Init.swift"; sourceTree = "<group>"; };
-		CE0F0C6422C8ADE900F72849 /* Objc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Objc.swift; sourceTree = "<group>"; };
 		CE0F0C6522C8ADE900F72849 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		CE0F0C6622C8ADE900F72849 /* URLRequest+downloadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+downloadTask.swift"; sourceTree = "<group>"; };
 		CE0F0C6722C8ADE900F72849 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
@@ -54,7 +52,6 @@
 			children = (
 				CE0F0C6222C8ADE900F72849 /* URLRequest+Init.swift */,
 				CE0F0C6322C8ADE900F72849 /* URLSessionConfiguration+Init.swift */,
-				CE0F0C6422C8ADE900F72849 /* Objc.swift */,
 				CE0F0C6522C8ADE900F72849 /* Network.swift */,
 				CE0F0C6622C8ADE900F72849 /* URLRequest+downloadTask.swift */,
 				CE0F0C6722C8ADE900F72849 /* HTTPMethod.swift */,
@@ -201,7 +198,6 @@
 			files = (
 				CE0F0C7A22C8ADEA00F72849 /* URLRequest+downloadTask.swift in Sources */,
 				CE0F0C8622C8ADEA00F72849 /* SCNetworkReachability+Status.swift in Sources */,
-				CE0F0C7422C8ADEA00F72849 /* Objc.swift in Sources */,
 				CE0F0C7D22C8ADEA00F72849 /* HTTPMethod.swift in Sources */,
 				CE0F0C6E22C8ADE900F72849 /* URLRequest+Init.swift in Sources */,
 				CE0F0C7722C8ADEA00F72849 /* Network.swift in Sources */,

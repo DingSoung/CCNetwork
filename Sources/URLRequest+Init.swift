@@ -5,13 +5,13 @@ import Foundation
 import Extension
 
 extension URLRequest {
-    public init(method: HTTPMethod,
-                url: URL,
+    public init(url: URL,
+                method: HTTPMethod,
                 contentType: MIMEType = .json,
                 parameters: [String: Any]? = nil,
                 file: Data? = nil) {
         guard let parameters = parameters else {
-            self.init(method: method.rawString, url: url, body: nil)
+            self.init(url: url, method: method.rawString)
             return
         }
         switch method {
@@ -19,7 +19,7 @@ extension URLRequest {
             var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
             let encodedQuery = (components?.percentEncodedQuery.map { $0 + "&" } ?? "") + parameters.wwwFormUrlEncoded
             components?.percentEncodedQuery = encodedQuery
-            self.init(method: method.rawString, url: components?.url ?? url, body: nil)
+            self.init(url: components?.url ?? url, method: method.rawString)
         case .post:
             let body: Data?
             let contentTypeRaw: String
@@ -38,12 +38,12 @@ extension URLRequest {
                                            file: file ?? Data())
                 contentTypeRaw = contentType.raw + "; boundary=\(boundary)"
             }
-            self.init(method: HTTPMethod.post.rawString, url: url, body: body)
+            self.init(url: url, method: HTTPMethod.post.rawString, body: body)
             self.setValue(contentTypeRaw, forHTTPHeaderField: "Content-Type")
         }
     }
 
-    public init(method: String, url: URL, body: Data?) {
+    public init(url: URL, method: String, body: Data? = nil) {
         self.init(url: url)
         //request.cachePolicy
         self.timeoutInterval = 30
