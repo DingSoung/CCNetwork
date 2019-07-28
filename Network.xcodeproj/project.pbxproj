@@ -14,7 +14,6 @@
 		CE0F0C7A22C8ADEA00F72849 /* URLRequest+downloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F0C6622C8ADE900F72849 /* URLRequest+downloadTask.swift */; };
 		CE0F0C7D22C8ADEA00F72849 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F0C6722C8ADE900F72849 /* HTTPMethod.swift */; };
 		CE0F0C8022C8ADEA00F72849 /* MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F0C6822C8ADE900F72849 /* MIMEType.swift */; };
-		CE0F0C8622C8ADEA00F72849 /* SCNetworkReachability+Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F0C6A22C8ADE900F72849 /* SCNetworkReachability+Status.swift */; };
 		CE0F0C8922C8ADEA00F72849 /* URLRequest+dataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F0C6B22C8ADE900F72849 /* URLRequest+dataTask.swift */; };
 		CE0F0C8C22C8ADEA00F72849 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F0C6C22C8ADE900F72849 /* NetworkError.swift */; };
 		CE6086F71F0662A1007E99DC /* Network.h in Headers */ = {isa = PBXBuildFile; fileRef = CE6086F51F0662A0007E99DC /* Network.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -27,7 +26,6 @@
 		CE0F0C6622C8ADE900F72849 /* URLRequest+downloadTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+downloadTask.swift"; sourceTree = "<group>"; };
 		CE0F0C6722C8ADE900F72849 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		CE0F0C6822C8ADE900F72849 /* MIMEType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIMEType.swift; sourceTree = "<group>"; };
-		CE0F0C6A22C8ADE900F72849 /* SCNetworkReachability+Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCNetworkReachability+Status.swift"; sourceTree = "<group>"; };
 		CE0F0C6B22C8ADE900F72849 /* URLRequest+dataTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+dataTask.swift"; sourceTree = "<group>"; };
 		CE0F0C6C22C8ADE900F72849 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		CE6086F21F0662A0007E99DC /* Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,7 +54,6 @@
 				CE0F0C6622C8ADE900F72849 /* URLRequest+downloadTask.swift */,
 				CE0F0C6722C8ADE900F72849 /* HTTPMethod.swift */,
 				CE0F0C6822C8ADE900F72849 /* MIMEType.swift */,
-				CE0F0C6A22C8ADE900F72849 /* SCNetworkReachability+Status.swift */,
 				CE0F0C6B22C8ADE900F72849 /* URLRequest+dataTask.swift */,
 				CE0F0C6C22C8ADE900F72849 /* NetworkError.swift */,
 			);
@@ -197,7 +194,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE0F0C7A22C8ADEA00F72849 /* URLRequest+downloadTask.swift in Sources */,
-				CE0F0C8622C8ADEA00F72849 /* SCNetworkReachability+Status.swift in Sources */,
 				CE0F0C7D22C8ADEA00F72849 /* HTTPMethod.swift in Sources */,
 				CE0F0C6E22C8ADE900F72849 /* URLRequest+Init.swift in Sources */,
 				CE0F0C7722C8ADEA00F72849 /* Network.swift in Sources */,
