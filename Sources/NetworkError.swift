@@ -16,7 +16,7 @@ extension NetworkError {
 
 extension NetworkError {
     private var message: String {
-        switch self.code {
+        switch code {
         case .success: return "success"
         case .notJSON: return "phrase json fail"
         }
