@@ -1,12 +1,12 @@
-// swift-tools-version:5.0.0
+// swift-tools-version:5.1
 
 import PackageDescription
 
 let package = Package(
     name: "Network",
     platforms: [
+       	.macOS(.v10_10),
         .iOS(.v8),
-        .macOS(.v10_10),
         .tvOS(.v9),
         .watchOS(.v2)
     ],
@@ -14,12 +14,16 @@ let package = Package(
         .library(name: "Network", targets: ["Network"])
     ],
     dependencies: [
-        .package(url: "https://github.com/DingSoung/Extension", from: "0.8.9")
+        .package(url: "https://github.com/DingSoung/Extension", .branch("master"))
     ],
     targets: [
-        .target(name: "Network", path: "Sources")
+        .target(
+            name: "Network",
+            dependencies: ["Extension"],
+            path: "Sources"
+        )
     ],
     swiftLanguageVersions: [
-        .version("5.0.0")
+        .version("5")
     ]
 )
